@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="color_menu_text_off">#5a6378</color>
+    <color name="color_menu_text_on">#ffffff</color>
+    
+    <color name="text">#5a6378</color>
+    <color name="color_contents_tab_on">#374460</color>
+    <color name="color_contents_tab">#5a6378</color>
+    
+    <color name="security_pwd_use_on">#7bb239</color>
+    <color name="security_pwd_use_off">#444444</color>
+    
+    <color name="on">#7bb239</color>
+    <color name="off">#444444</color>
+ 
+    <color name="color_red">#f47c6e</color>
+    <color name="color_red_press">#444444</color>
+    
+    <color name="color_green">#7bb239</color>
+    <color name="color_green_press">#508511</color>
+    
+    <color name="color_gray">#444444</color>
+    <color name="color_gray_press">#000000</color>
+    
+    <color name="color_list_select">#FF5602</color>
+    
+    <color name="complex_list_select">#7d799a</color>
+    <color name="user_info_change_button">#7d799a</color>
+    <color name="white">#ffffff</color>
+    
+</resources>
+ 	

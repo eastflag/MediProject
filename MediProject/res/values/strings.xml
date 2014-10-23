@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">내과정보</string>
+    <string name="action_settings">내과정보</string>
+    <string name="menu_21">간경화 사망률 구하기</string>
+    <string name="spin_21">원인을 선택하세요.</string>
+
+</resources>
