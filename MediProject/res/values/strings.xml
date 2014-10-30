@@ -3,6 +3,15 @@
 
     <string name="app_name">내과정보</string>
     <string name="action_settings">내과정보</string>
+    <string name="menu_11">기계환기재시작기준</string>
+    <string name="menu_12">FiO2설정과 한계</string>
+    <string name="menu_13">sedative agent(ICU setting)</string>
+    <string name="menu_14">Weaning criteria</string>
+    <string name="menu_15">ARDS ventilator setting</string>
+    <string name="menu_16">패혈증 초기 치료 GOAL</string>
+    <string name="menu_17">초기 인공호흡기 세팅법</string>
+    <string name="menu_18">도파민 필살기</string>
+    <string name="menu_19">도부파민 필살기</string>
     <string name="menu_21">간경화 사망률 구하기</string>
     <string name="spin_21">원인을 선택하세요.</string>
 
