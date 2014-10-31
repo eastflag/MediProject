@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.lgcns.wd.R;
@@ -14,12 +15,7 @@ import com.lgcns.wd.R;
 public class _1_9_Fragment extends Fragment {
 
 	private View mView;
-	private String mHtmlText = "<body><br /><img src='pin.png'>호흡피로증후가 보일때<br /><br />"
-			+ "<img src='pin.png'>RR이 10회이상 증가하거나 RR>30<br /><br />"
-			+ "<img src='pin.png'>sys BP가 20이상 dia.BP가 10이상 변화있을때<br /><br />"
-			+ "<img src='pin.png'>PaO2 <60 mmHg PaCO2 >55mmHg<br /><br />"
-			+ "<img src='pin.png'>pH < 7.35<br /><br />"
-			+ "<img src='pin.png'>Tidal volume <250-300ml or 5ml/kg<br /></body>";
+	private WebView mWebView;
 
 	public _1_9_Fragment() {
 
@@ -30,8 +26,9 @@ public class _1_9_Fragment extends Fragment {
 			Bundle savedInstanceState) {
 		mView = inflater.inflate(R.layout.fragment_11, null);
 
-		TextView tvDisplay = (TextView) mView.findViewById(R.id.tvDisplay);
-		tvDisplay.setText(Html.fromHtml(mHtmlText, new ImageGetter(), null));
+		mWebView = (WebView) mView.findViewById(R.id.webview);
+		mWebView.getSettings().setJavaScriptEnabled(true);
+		mWebView.loadUrl("");
 
 		return mView;
 	}
@@ -40,21 +37,5 @@ public class _1_9_Fragment extends Fragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 	}
-
-	private class ImageGetter implements Html.ImageGetter {
-
-		public Drawable getDrawable(String source) {
-			int id;
-			if (source.equals("pin.png")) {
-				id = R.drawable.pin;
-			} else {
-				return null;
-			}
-
-			Drawable d = getResources().getDrawable(id);
-			d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-			return d;
-		}
-	};
 
 }
