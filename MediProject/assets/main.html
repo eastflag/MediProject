@@ -223,6 +223,24 @@
             <td>10</td>
           </tr>
        </table>
+       <p />
+       <table>
+          <tr>
+          	<td>성별</td>
+            <td>
+                <label for="male">남</label>
+                <input type="radio" name="sex" id="male" value="남">
+                <label for="female">여</label>
+                <input type="radio" name="sex" id="female" value="여">
+            </td>
+          </tr>
+          <tr>
+          	<td>키</td>
+            <td>
+                <input type="number" id="kee">
+            </td>
+          </tr>
+       </table>
 	</div>
 </div>
 
@@ -407,11 +425,53 @@
 	</div>
 
 	<div role="main" class="ui-content">
-        <p>iNITIAL SETTING 법</p>
-        <p>1) TV : 8-12ml/kg</p>
-        <p>2) Freq : 10-16</p>
-        <p>3) mode : CMV/AC/SIMV</p>
-        <p>4) FiO2 0.5-1.0</p>
+        <table>
+        	<tr>
+            	<td>1.Confusion</td>
+                <td>
+                	<label for="confusion_y">yes</label>
+                    <input type="radio" name="confusion" id="confusion_y" value="yes">
+                    <label for="confusion_n">no</label>
+        			<input type="radio" name="confusion" id="confusion_n" value="no">
+                </td>
+            </tr>
+            <tr>
+            	<td>2. BUN 19이상</td>
+                <td>
+                	<label for="bun_y">yes</label>
+                    <input type="radio" name="bun" id="bun_y" value="yes">
+                    <label for="bun_n">no</label>
+        			<input type="radio" name="bun" id="bun_n" value="no">
+                </td>
+            </tr>
+            <tr>
+            	<td>3. RR 30이상</td>
+                <td>
+                	<label for="rr_y">yes</label>
+                    <input type="radio" name="rr" id="rr_y" value="yes">
+                    <label for="rr_n">no</label>
+        			<input type="radio" name="rr" id="rr_n" value="no">
+                </td>
+            </tr>
+            <tr>
+            	<td>4.BP 90/60 이하</td>
+                <td>
+                	<label for="bp_y">yes</label>
+                    <input type="radio" name="bp" id="bp_y" value="yes">
+                    <label for="bp_n">no</label>
+        			<input type="radio" name="bp" id="bp_n" value="no">
+                </td>
+            </tr>
+            <tr>
+            	<td>5. 나이 65세이상</td>
+                <td>
+                	<label for="age_y">yes</label>
+                    <input type="radio" name="age" id="age_y" value="yes">
+                    <label for="age_n">no</label>
+        			<input type="radio" name="age" id="age_n" value="no">
+                </td>
+            </tr>
+        </table>
 	</div>
 </div>
 
