@@ -46,6 +46,20 @@
 				background-color: #EAF2D3;
 			}
 		</style>
+        <script type="text/javascript">
+		$(document).ready(function(){
+			$('#main205_submit').click(function(){
+				var a = $("#main205_a option:selected").val();
+				var b = $("#main205_b option:selected").val();
+				var c = $("#main205_c option:selected").val();
+				var d = $("#main205_d option:selected").val();
+				var e = $("#main205_e option:selected").val();
+				var result = eval(a) + eval(b) + eval(c) + eval(d) + eval(e);
+				console.log("result:" + result);
+				$('#main205_result').val(result);
+			});
+		});
+		</script>
 	</head>
 	<body> 
 
@@ -546,78 +560,465 @@
 	<div role="main" class="ui-content">
 		<p>normal : <50mosm/kg/h2o</p>
 		<p>증가하는 경우 osmotic diarrhea : 금식시 호전</p>
-		<p>sys BP가 20이상 dia.BP가 10이상 변화있을때</p>
 		<p>normal 인경우 secretory diarrhea</p>
+        <table width="100%" border="1">
+          <tr>
+            <td>stool Na(mEq/L)</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>stool K(mEq/L)</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Serum osm(mosm/kg)</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
 	</div>
 </div>
 
 <div data-role="page" id="main202">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>NSAIDs risk 별 가이드</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%" border="1">
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">No/Low NSAID</td>
+            <td>NSAIDs GI risk</td>
+          </tr>
+          <tr>
+            <td>No CV risk</td>
+            <td>그냥쓴다</td>
+            <td>&nbsp;</td>
+            <td>cerecoxib </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>NSAIDs+PPI</td>
+          </tr>
+          <tr>
+            <td>CV risk (+)</td>
+            <td colspan="2">NSAIDs+ PPI </td>
+            <td>NSAIDs+PPI</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">NSAIDs+misoprostol </td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
 	</div>
 </div>
 
 <div data-role="page" id="main203">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>GI bleeding의 Forrest classification</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>재출혈율</td>
+          </tr>
+          <tr>
+            <td>Ia </td>
+            <td><table cellspacing="0" cellpadding="0">
+  			<td>spurting hemorrhage</td>
+            </table></td>
+            <td>80-100</td>
+          </tr>
+          <tr>
+            <td>Ib</td>
+            <td>Oozing hemorrhage</td>
+            <td>75-85</td>
+          </tr>
+          <tr>
+            <td>Iia</td>
+            <td><table cellspacing="0" cellpadding="0">
+  			<td>Visible vessel</td>
+            </table></td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td>Iib</td>
+            <td>Adherent clot</td>
+            <td>23-30</td>
+          </tr>
+          <tr>
+            <td>Iic</td>
+            <td>Hematin on ulcer base</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>III</td>
+            <td>Lesion without sign of recent hemorrhage</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+        <p>** Iia 까지는 ICU 1일 이상 입실시킨다!!</p>
 	</div>
 </div>
 
 <div data-role="page" id="main204">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>UC, CD 빠른 비교</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%" border="1">
+          <tr>
+            <td>&nbsp;</td>
+            <td>UC</td>
+            <td>CD</td>
+          </tr>
+          <tr>
+            <td>smoking</td>
+            <td>maybe protect</td>
+            <td>질환유발</td>
+          </tr>
+          <tr>
+            <td>남녀비</td>
+            <td>1대1</td>
+            <td>1.1-1.8:1 M:F</td>
+          </tr>
+          <tr>
+            <td>oral contraceptive</td>
+            <td>risk 올리지않음</td>
+            <td>Odd ratio 1.4</td>
+          </tr>
+          <tr>
+            <td>Appendectomy</td>
+            <td>Protective</td>
+            <td>not protective</td>
+          </tr>
+          <tr>
+            <td>pANCA</td>
+            <td>60-70%양성</td>
+            <td>5-10% 양성</td>
+          </tr>
+          <tr>
+            <td>ASCA</td>
+            <td>10% 양성</td>
+            <td>60-70% 양성</td>
+          </tr>
+          <tr>
+            <td>침범</td>
+            <td>rectum 침범</td>
+            <td>rectal sparing</td>
+          </tr>
+          <tr>
+            <td>cobble stone</td>
+            <td>no</td>
+            <td>yes</td>
+          </tr>
+          <tr>
+            <td>양상</td>
+            <td>continous lesion</td>
+            <td><p>longitudinal ulcer</p>
+            <p>aphthous ulcer</p>
+            <p>skipped lesion</p></td>
+          </tr>
+        </table>
+
 	</div>
 </div>
 
 <div data-role="page" id="main205">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>CTP score</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%" border="1">
+          <tr>
+            <td>serum albumin</td>
+            <td>
+              <select name="main205_a" id="main205_a">
+                <option value="1">&gt;3.5</option>
+                <option value="2">2.8-3.5</option>
+                <option value="3">&lt;2.8</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>serum bilirubin </td>
+            <td>
+            	<select name="main205_b" id="main205_b">
+            	  <option value="1">&lt; 2</option>
+            	  <option value="2">2 ~ 2</option>
+            	  <option value="3">&gt; 3</option>
+                </select>
+             </td>
+          </tr>
+          <tr>
+            <td width="80"><p>PT INR</p>
+            <p>PT prolongation</p></td>
+            <td>
+            	<select name="main205_c" id="main205_c">
+            	  <option value="1">&lt; 1.7</option>
+            	  <option value="2">1.7 ~ 2.3</option>
+            	  <option value="3">&gt; 2.3</option>
+            	  <option value="1">&lt; 4</option>
+            	  <option value="2">4 ~ 6</option>
+            	  <option value="3">&gt; 6</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td>복수</td>
+            <td>
+            	<select name="main205_d" id="main205_d">
+            	  <option value="1">없음</option>
+            	  <option value="2">경증</option>
+            	  <option value="3">중등도</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>encephalopathy</td>
+            <td>
+            	<select name="main205_e" id="main205_e">
+            	  <option value="1">없음</option>
+            	  <option value="2">1-2단계</option>
+            	  <option value="3">3-4단계</option>
+                </select>
+            </td>
+          <tr>
+            <td colspan="2"><input name="main205_submit" id="main205_submit" type="button" value="조회"></td>
+          </tr>
+          <tr>
+            <td>합계</td>
+            <td><input name="main205_result" id="main205_result" type="text" readonly></td>
+          </tr>
+          </tr>
+        </table>
+
+
+      <table width="100%" border="1">
+	      <tr>
+	        <td>CTP class</td>
+	        <td>점수</td>
+	        <td>수술사망률</td>
+        </tr>
+	      <tr>
+	        <td>A</td>
+	        <td>5 ~ 6</td>
+	        <td>0 ~ 5</td>
+        </tr>
+	      <tr>
+	        <td>B</td>
+	        <td>7 ~ 9</td>
+	        <td>5 ~ 15</td>
+        </tr>
+	      <tr>
+	        <td>C</td>
+	        <td>10 ~ 15</td>
+	        <td>24%이상</td>
+        </tr>
+      </table>
 	</div>
 </div>
 
 <div data-role="page" id="main206">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>MELD-Na score</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="50%" border="1">
+          <tr>
+            <td>빌리루빈</td>
+            <td><input name="main206_a" id="main206_a" type="text"></td>
+          </tr>
+          <tr>
+            <td>크레아티닌</td>
+            <td><input name="main206_b" id="main206_b" type="text"></td>
+          </tr>
+          <tr>
+            <td>INR</td>
+            <td><input name="main206_c" id="main206_c" type="text"></td>
+          </tr>
+          <tr>
+            <td>원인</td>
+            <td>
+            	<select name="main206_d" id="main206_d">
+                  <option value="0">알코올/담즙정체</option>
+                  <option value="1">바이러스 및 기타</option>
+            	</select>
+            </td>
+          </tr>
+          <tr>
+            <td>Na+</td>
+            <td><input name="main206_e" id="main206_e" type="text"></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+            <input type="submit" name="main206_submit" id="main206_submit" value="전송"></td>
+          </tr>
+          <tr>
+          	<td>합산</td>
+            <td><input name="main206_result" id="main206_result" type="text" readonly></td>
+          </tr>
+        </table>
+        
+        <table width="100%" border="1">
+          <tr>
+            <td>0 ~ 9</td>
+            <td>4%</td>
+          </tr>
+          <tr>
+            <td>10 ~ 19</td>
+            <td>27%</td>
+          </tr>
+          <tr>
+            <td>20 ~ 29</td>
+            <td>76%</td>
+          </tr>
+          <tr>
+            <td>30 ~ 39</td>
+            <td>83%</td>
+          </tr>
+          <tr>
+            <td>40이상</td>
+            <td>100%</td>
+          </tr>
+        </table>
+
+
 	</div>
 </div>
 
 <div data-role="page" id="main207">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>췌장염 지표들</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+	    <p>Ranson criteria(이중 3개항목이상이면 severe pancreatitis</p>
+		<table width="100%" border="1">
+          <tr>
+            <td>입원 및 진단당시</td>
+            <td>48시간이후</td>
+          </tr>
+          <tr>
+            <td>Age&gt; 55</td>
+            <td>Hct 10%이상감소</td>
+          </tr>
+          <tr>
+            <td>WBC&gt; 16000/uL</td>
+            <td>수분결핍 6L이상</td>
+          </tr>
+          <tr>
+            <td>glucose &gt;200mg/dl</td>
+            <td>칼슘 &lt; 8mg/dl</td>
+          </tr>
+          <tr>
+            <td>L DH &gt; 400IU/L</td>
+            <td>PaO2 &lt; 60mmHg </td>
+          </tr>
+          <tr>
+            <td>AST &gt; 250IU/L</td>
+            <td>BUN 수액투여후에도 5이상증가</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>Base deficit &gt; 4mmol/L</td>
+          </tr>
+        </table>
+
+		<table width="100%" border="1">
+          <tr>
+            <td>CT severity index</td>
+            <td>Necrosis index</td>
+          </tr>
+          <tr>
+            <td>A: 정상</td>
+            <td>괴사없음</td>
+          </tr>
+          <tr>
+            <td>B : 췌장의 국소 미만성 비대와 부종</td>
+            <td>췌장 1/3미만의 괴사 </td>
+          </tr>
+          <tr>
+            <td>C: B+ 췌장 및 주위염증</td>
+            <td>췌장 1/3~1/2의 괴사</td>
+          </tr>
+          <tr>
+            <td>D: C+ single fluid collection</td>
+            <td>췌장 1/2 이상의 괴사</td>
+          </tr>
+          <tr>
+            <td>E: C+ 2개 이상의 fluid collection or 췌장내 gas</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+
 	</div>
 </div>
 
 <div data-role="page" id="main208">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>자가면역간염 진단 치료 필살기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%" border="1">
+  <tr>
+    <td>ANA or SMA</td>
+    <td>1:40 이상</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>or LKM </td>
+    <td>1:40이상</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>or SLA</td>
+    <td>양성</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>IgG</td>
+    <td>&gt;upper normal limit</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&gt;UNL의 1:1배이상</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Liver histology</td>
+    <td>Compatible with AIH</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Typical AIH</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>Absence of viral hepatitis</td>
+    <td>&nbsp;</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
 	</div>
 </div>
 
