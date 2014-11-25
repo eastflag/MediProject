@@ -58,6 +58,21 @@
 				console.log("result:" + result);
 				$('#main205_result').val(result);
 			});
+			
+			$( "#main212_1, #main212_2, #main212_3, #main212_4").bind("change", function() {
+				var result = 0;
+				$("input[name*=main212_]:checked").each(function () {
+                	result += Number($(this).val());
+            	});
+				console.log("result:" + result);
+				if(result == 0) {
+					$('#main212_result').html("<h3>stage I 치료안했을시 수명 8개월</h3>");
+				} else if(result>0 && result < 3) { 
+					$('#main212_result').html("<h3>stage II 치료안했을시 수명 2개월</h3>");
+				} else {
+					$('#main212_result').html("<h3>stage III 치료안했을시 수명 1개월미만</h3>");
+				}
+			});
 		});
 		</script>
 	</head>
@@ -70,8 +85,9 @@
 	
 	<div data-role="content" data-theme="d">
 		<div class="content-secondary">
-			<ul data-role="listview" data-inset="true" data-dividertheme="b">
-				<li data-role="list-divider" class="egov-bar-main3">응급처방(ICU)</li>
+			<div data-role="collapsible">
+		      <h3>응급처방(ICU)</h3>
+		      <ul data-role="listview" data-inset="true">
 				<li><a href="#main11" data-ajax="false">기계환기재시작기준</a></li>
 				<li><a href="#main12" data-ajax="false">FiO2 설정과 한계</a></li>
 				<li><a href="#main13" data-ajax="false">sedative agent(ICU setting)</a></li>
@@ -83,9 +99,13 @@
 				<li><a href="#main19" data-ajax="false">도부파민 필살기</a></li>
 				<li><a href="#main110" data-ajax="false">Norepi. 사용법</a></li>
 				<li><a href="#main111" data-ajax="false">DIC score 계산 ISTH criteria</a></li>
-				
-				<li data-role="list-divider" class="egov-bar-main3" >소화기</li>
-				<li><a href="#main201" data-ajax="false">stool osmotic gap</a></li>
+			  </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>소화기</h3>
+		      <ul data-role="listview" data-inset="true">
+		        <li><a href="#main201" data-ajax="false">stool osmotic gap</a></li>
                 <li><a href="#main202" data-ajax="false">NSAIDs risk 별 가이드</a></li>
                 <li><a href="#main203" data-ajax="false">GI bleeding의 Forrest classification</a></li>
                 <li><a href="#main204" data-ajax="false">UC, CD 빠른 비교</a></li>
@@ -98,27 +118,49 @@
                 <li><a href="#main211" data-ajax="false">각종 enema 법과 주의점</a></li>
                 <li><a href="#main212" data-ajax="false">간암 병기 Okuda staging</a></li>
                 <li><a href="#main213" data-ajax="false">간암에서 간이식 적응증 (Milan criteria)</a></li>
-				
-				<li data-role="list-divider" class="egov-bar-main3" >순환기</li>
-				<li><a href="#" data-ajax="false"></a></li>
-				
-				<li data-role="list-divider" class="egov-bar-main3" >호흡기</li>
-				<li><a href="#main41" data-ajax="false">호흡기 협진필살기</a></li>
+		      </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>순환기</h3>
+		      <ul data-role="listview" data-inset="true">
+		      
+		      </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>호흡기</h3>
+		      <ul data-role="listview" data-inset="true">
+		        <li><a href="#main41" data-ajax="false">호흡기 협진필살기</a></li>
                 <li><a href="#main42" data-ajax="false">폐렴환자입원기준(CURB-65)</a></li>
-
-				<li data-role="list-divider" class="egov-bar-main3" >신장</li>
-				<li><a href="#" data-ajax="false"></a></li>
-
-				<li data-role="list-divider" class="egov-bar-main3" >감염(항생제)</li>
-				<li><a href="#" data-ajax="false"></a></li>
-
-				<li data-role="list-divider" class="egov-bar-main3" >내분비</li>
-				<li><a href="#" data-ajax="false"></a></li>
-
-				<li data-role="list-divider" class="egov-bar-main3" >기타</li>
-				<li><a href="#" data-ajax="false"></a></li>
-
-			</ul>
+		      </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>신장</h3>
+		      <ul data-role="listview" data-inset="true">
+		      
+		      </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>감염(항생제)</h3>
+		      <ul data-role="listview" data-inset="true">
+		      
+		      </ul>
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>내분비</h3>
+		      
+		    </div>
+		    
+		    <div data-role="collapsible">
+		      <h3>기타</h3>
+		      <ul data-role="listview" data-inset="true">
+		      
+		      </ul>
+		    </div>
 			
 		</div><!--/content-secondary-->	
 
@@ -1209,21 +1251,67 @@
 
 <div data-role="page" id="main212">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>간암 병기 Okuda staging</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table width="100%">
+          <tr>
+            <td width="10%">1</td>
+            <td width="50%">간의 크기의 50% 이상</td>
+            <td width="40%">
+            	<fieldset  data-role="controlgroup" data-type="horizontal" name="main212_1" id="main212_1">
+				  <input name="main212_1g" id="main212_1a" value="1" type="radio" />
+				  <label for="main212_1a">Yes</label>
+				  <input name="main212_1g" id="main212_1b" value="0" type="radio" />
+				  <label for="main212_1b">No</label>
+				</fieldset >
+			</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>복수의 존재</td>
+            <td><div data-role="controlgroup" data-type="horizontal" name="main212_2" id="main212_2">
+				  <input name="main212_2g" id="main212_2a" value="1" type="radio" />
+				  <label for="main212_2a">Yes</label>
+				  <input name="main212_2g" id="main212_2b" value="0" type="radio" />
+				  <label for="main212_2b">No</label>
+				</div>
+			</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>bilirubin>3</td>
+            <td><div data-role="controlgroup" data-type="horizontal" name="main212_3" id="main212_3">
+				  <input name="main212_3g" id="main212_3a" value="1" type="radio" />
+				  <label for="main212_3a">Yes</label>
+				  <input name="main212_3g" id="main212_3b" value="0" type="radio" />
+				  <label for="main212_3b">No</label>
+			</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Albumin<3</td>
+            <td><div data-role="controlgroup" data-type="horizontal" name="main212_4" id="main212_4">
+				  <input name="main212_4g" id="main212_4a" value="1" type="radio" />
+				  <label for="main212_4a">Yes</label>
+				  <input name="main212_4g" id="main212_4b" value="0" type="radio" />
+				  <label for="main212_4b">No</label>
+			</td>
+          </tr>
+       </table>
+       <div id="main212_result" />
 	</div>
 </div>
 
 <div data-role="page" id="main213">
 	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	   <h1>간암에서 간이식 적응증 (Milan criteria)</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<p>원격전이 혈관침범이 없는 5cm 이하의 단일 종양 or 3cm이하의 다발성(3개이하) 의종양</p>
+		<p>** 확대된 개념으로는 6.5cm 이하의 단일 동양 or 4.5cm 미만의 다발종양(3개이하) 종양(직경합 8cm 이하)</p>
 	</div>
 </div>
 
