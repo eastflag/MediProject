@@ -1,21 +1,14 @@
 <!DOCTYPE html> 
 <html lang="kr"> 
 	<head> 
-		<title>내과 정보</title> 
-        <meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />    
+		<title>내과 정보</title>  
 
-		<!-- eGovFrame Common import -->        
-		<link rel="stylesheet" href="./mguide2.7/css/egovframework/mbl/cmm/jquery.mobile-1.3.2.css" />
-		<link rel="stylesheet" href="./mguide2.7/css/egovframework/mbl/cmm/EgovMobile-1.3.2.css" />
-		<script type="text/javascript" src="./mguide2.7/js/egovframework/mbl/cmm/jquery-1.9.1.min.js"></script>
-		
-		<script type="text/javascript" src="./mguide2.7/js/egovframework/mbl/cmm/jquery.mobile-1.3.2.min.js"></script>
-		<script type="text/javascript" src="./mguide2.7/js/egovframework/mbl/cmm/EgovMobile-1.3.2.js"></script>
-   
-        <!-- guide import -->
-		<link rel="stylesheet" href="./mguide2.7/css/egovframework/mbl/rte/guide/guide.css">
-		<script type="text/javascript"  src="./mguide2.7/js/egovframework/mbl/rte/guide/guide.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./css/themes/default/jquery.mobile-1.4.5.min.css">
+		<script src="./js/jquery.js"></script>
+		<script src="./js/jquery.mobile-1.4.5.min.js"></script>
+
         <style>
 			@font-face {
 				font-family: 'nanum';
@@ -47,16 +40,48 @@
 			}
 		</style>
         <script type="text/javascript">
+		$(document).bind(“mobileinit”, function(){
+		   $.mobile.page.prototype.options.addBackBtn=true;
+		});
+
 		$(document).ready(function(){
-			$('#main205_submit').click(function(){
-				var a = $("#main205_a option:selected").val();
-				var b = $("#main205_b option:selected").val();
-				var c = $("#main205_c option:selected").val();
-				var d = $("#main205_d option:selected").val();
-				var e = $("#main205_e option:selected").val();
-				var result = eval(a) + eval(b) + eval(c) + eval(d) + eval(e);
+			 
+			$('#main201_submit').click(function() {
+				var result = Number($('#main201_3').val()) 
+					- (2*(Number($('#main201_1').val()) + Number($('#main201_2').val())));
+				$('#main201_result').text(result);
+				console.log("result:"+result);
+			});
+			
+			$( "#main205_1, #main205_2, #main205_3, #main205_4, #main205_5").bind("change", function() {
+				var result = 0;
+				$("input[name*=main205_]:checked").each(function () {
+                	result += Number($(this).val());
+            	});
 				console.log("result:" + result);
-				$('#main205_result').val(result);
+				$('#main205_result').text(result);
+			});
+			
+			$('#main206_submit').click(function() {
+				var result_a = 0;
+				var result_b = 0;
+				result_a = 3.78*Math.log(Number($('#main206_1').val())) + 9.57*Math.log(Number($('#main206_2').val())) 
+					+ 11.2*Math.log(Number($('#main206_3').val())) + 6.43*Number($('#main206_4 option:selected').val());
+				var na = Number($('#main206_5').val());
+				result_a = Math.round(result_a);
+				result_b = Math.round( result_a - na - (0.025*result_a*(140-na)) + 140 );
+				console.log("result_a:" + result_a + "," + result_b);
+				$('#main206_result_a').text(result_a);
+				$('#main206_result_b').text(result_b);
+			});
+			
+			$( "#main210_1, #main210_2, #main210_3, #main210_4, #main210_5, #main210_6, #main210_7").bind("change", function() {
+				var result = 0;
+				$("input[name*=main210_]:checked").each(function () {
+                	result += Number($(this).val());
+            	});
+				console.log("result:" + result);
+				$('#main210_result').text(result);
 			});
 			
 			$( "#main212_1, #main212_2, #main212_3, #main212_4").bind("change", function() {
@@ -73,103 +98,128 @@
 					$('#main212_result').html("<h3>stage III 치료안했을시 수명 1개월미만</h3>");
 				}
 			});
+			
+			$( "#main402_1, #main402_2, #main402_3, #main402_4, #main402_5").bind("change", function() {
+				var result = 0;
+				var result_a, result_b;
+				$("input[name*=main402_]:checked").each(function () {
+                	result += Number($(this).val());
+            	});
+				console.log("result:" + result);
+				if(result>2) {
+					$('#main402_result_a').text('입원');	
+				} else {
+					$('#main402_result_a').text('외래');
+				}
+				if(result<2) {
+					$('#main402_result_b').text('1.5%');
+				} else if(result == 2) {
+					$('#main402_result_b').text('9.2%');
+				} else {
+					$('#main402_result_b').text('22%');
+				}
+			});
 		});
 		</script>
 	</head>
 	<body> 
 
-<div data-role="page" class="type-home" id="home">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
+<div data-role="page">
+	<div data-role="header" data-position="inline">
 	   <h1>내과 정보</h1>
 	</div>
 	
-	<div data-role="content" data-theme="d">
-		<div class="content-secondary">
-			<div data-role="collapsible">
-		      <h3>응급처방(ICU)</h3>
-		      <ul data-role="listview" data-inset="true">
-				<li><a href="#main11" data-ajax="false">기계환기재시작기준</a></li>
-				<li><a href="#main12" data-ajax="false">FiO2 설정과 한계</a></li>
-				<li><a href="#main13" data-ajax="false">sedative agent(ICU setting)</a></li>
-				<li><a href="#main14" data-ajax="false">Weaning criteria</a></li>
-				<li><a href="#main15" data-ajax="false">ARDS ventilator setting</a></li>
-				<li><a href="#main16" data-ajax="false">패혈증 초기 치료 GOAL</a></li>
-				<li><a href="#main17" data-ajax="false">초기 인공호흡기 세팅법</a></li>
-				<li><a href="#main18" data-ajax="false">도파민 필살기</a></li>
-				<li><a href="#main19" data-ajax="false">도부파민 필살기</a></li>
-				<li><a href="#main110" data-ajax="false">Norepi. 사용법</a></li>
-				<li><a href="#main111" data-ajax="false">DIC score 계산 ISTH criteria</a></li>
-			  </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>소화기</h3>
-		      <ul data-role="listview" data-inset="true">
-		        <li><a href="#main201" data-ajax="false">stool osmotic gap</a></li>
-                <li><a href="#main202" data-ajax="false">NSAIDs risk 별 가이드</a></li>
-                <li><a href="#main203" data-ajax="false">GI bleeding의 Forrest classification</a></li>
-                <li><a href="#main204" data-ajax="false">UC, CD 빠른 비교</a></li>
-                <li><a href="#main205" data-ajax="false">CTP score</a></li>
-                <li><a href="#main206" data-ajax="false">MELD-Na score</a></li>
-                <li><a href="#main207" data-ajax="false">췌장염 지표들</a></li>
-                <li><a href="#main208" data-ajax="false">자가면역간염 진단 치료 필살기</a></li>
-                <li><a href="#main209" data-ajax="false">간절제 가능여부 보기</a></li>
-                <li><a href="#main210" data-ajax="false">RUCAM(약인성 간손상 파악)</a></li>
-                <li><a href="#main211" data-ajax="false">각종 enema 법과 주의점</a></li>
-                <li><a href="#main212" data-ajax="false">간암 병기 Okuda staging</a></li>
-                <li><a href="#main213" data-ajax="false">간암에서 간이식 적응증 (Milan criteria)</a></li>
-		      </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>순환기</h3>
-		      <ul data-role="listview" data-inset="true">
-		      
-		      </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>호흡기</h3>
-		      <ul data-role="listview" data-inset="true">
-		        <li><a href="#main41" data-ajax="false">호흡기 협진필살기</a></li>
-                <li><a href="#main42" data-ajax="false">폐렴환자입원기준(CURB-65)</a></li>
-		      </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>신장</h3>
-		      <ul data-role="listview" data-inset="true">
-		      
-		      </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>감염(항생제)</h3>
-		      <ul data-role="listview" data-inset="true">
-		      
-		      </ul>
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>내분비</h3>
-		      
-		    </div>
-		    
-		    <div data-role="collapsible">
-		      <h3>기타</h3>
-		      <ul data-role="listview" data-inset="true">
-		      
-		      </ul>
-		    </div>
-			
-		</div><!--/content-secondary-->	
+	<div data-role="content">
+		<div data-role="collapsible">
+	      <h3>응급처방(ICU)</h3>
+	      <ul data-role="listview" data-inset="true">
+			<li><a href="#main11" data-ajax="false">기계환기재시작기준</a></li>
+			<li><a href="#main12" data-ajax="false">FiO2 설정과 한계</a></li>
+			<li><a href="#main13" data-ajax="false">sedative agent(ICU setting)</a></li>
+			<li><a href="#main14" data-ajax="false">Weaning criteria</a></li>
+			<li><a href="#main15" data-ajax="false">ARDS ventilator setting</a></li>
+			<li><a href="#main16" data-ajax="false">패혈증 초기 치료 GOAL</a></li>
+			<li><a href="#main17" data-ajax="false">초기 인공호흡기 세팅법</a></li>
+			<li><a href="#main18" data-ajax="false">도파민 필살기</a></li>
+			<li><a href="#main19" data-ajax="false">도부파민 필살기</a></li>
+			<li><a href="#main110" data-ajax="false">Norepi. 사용법</a></li>
+			<li><a href="#main111" data-ajax="false">DIC score 계산 ISTH criteria</a></li>
+		  </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>소화기</h3>
+	      <ul data-role="listview" data-inset="true">
+	        <li><a href="#main201" data-ajax="false">stool osmotic gap</a></li>
+            <li><a href="#main202" data-ajax="false">NSAIDs risk 별 가이드</a></li>
+            <li><a href="#main203" data-ajax="false">GI bleeding의 Forrest classification</a></li>
+            <li><a href="#main204" data-ajax="false">UC, CD 빠른 비교</a></li>
+            <li><a href="#main205" data-ajax="false">CTP score</a></li>
+            <li><a href="#main206" data-ajax="false">MELD-Na score</a></li>
+            <li><a href="#main207" data-ajax="false">췌장염 지표들</a></li>
+            <li><a href="#main208" data-ajax="false">자가면역간염 진단 치료 필살기</a></li>
+            <li><a href="#main209" data-ajax="false">간절제 가능여부 보기</a></li>
+            <li><a href="#main210" data-ajax="false">RUCAM(약인성 간손상 파악)</a></li>
+            <li><a href="#main211" data-ajax="false">각종 enema 법과 주의점</a></li>
+            <li><a href="#main212" data-ajax="false">간암 병기 Okuda staging</a></li>
+            <li><a href="#main213" data-ajax="false">간암에서 간이식 적응증 (Milan criteria)</a></li>
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>순환기</h3>
+	      <ul data-role="listview" data-inset="true">
+	      	<li><a href="#main301" data-ajax="false">Killip Classification</a></li>
+            <li><a href="#main302" data-ajax="false">Hyperkalemia 응급처치</a></li>
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>호흡기</h3>
+	      <ul data-role="listview" data-inset="true">
+	        <li><a href="#main41" data-ajax="false">호흡기 협진필살기</a></li>
+            <li><a href="#main42" data-ajax="false">폐렴환자입원기준(CURB-65)</a></li>
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>신장</h3>
+	      <ul data-role="listview" data-inset="true">
+	      
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>감염(항생제)</h3>
+	      <ul data-role="listview" data-inset="true">
+	      
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>내분비</h3>
+	      <ul data-role="listview" data-inset="true">
+	        <li><a href="#main701" data-ajax="false">저혈당 치료법</a></li>
+            <li><a href="#main702" data-ajax="false">DKA 처방</a></li>
+            <li><a href="#main703" data-ajax="false">STEROID 역가비교</a></li>
+            <li><a href="#main704" data-ajax="false">DKA vs HHS</a></li>
+	      </ul>
+	    </div>
+	    
+	    <div data-role="collapsible">
+	      <h3>기타</h3>
+	      <ul data-role="listview" data-inset="true">
+	      
+	      </ul>
+	    </div>
 
 	</div>
 </div>
 
 <div data-role="page" id="main11">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>기계환기재시작기준</h1>
+	<div data-role="header" data-position="inline">
+    	<a href="./main.html" data-rel="back" data-icon="back">Back</a>
+        <h1>기계환기재시작기준</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -183,8 +233,9 @@
 </div>
 
 <div data-role="page" id="main12">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>FiO2 설정과 한계</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>FiO2 설정과 한계</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -198,8 +249,9 @@
 </div>
 
 <div data-role="page" id="main13">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>sedative agent(ICU setting)</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>sedative agent(ICU setting)</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -245,8 +297,9 @@
 </div>
 
 <div data-role="page" id="main14">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>Weaning criteria</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Weaning criteria</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -259,8 +312,9 @@
 </div>
 
 <div data-role="page" id="main15">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>ARDS ventilator setting</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>ARDS ventilator setting</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -315,8 +369,9 @@
 </div>
 
 <div data-role="page" id="main16">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>패혈증 초기 치료 GOAL</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>패혈증 초기 치료 GOAL</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -328,8 +383,9 @@
 </div>
 
 <div data-role="page" id="main17">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>초기 인공호흡기 세팅법</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>초기 인공호흡기 세팅법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -342,8 +398,9 @@
 </div>
 
 <div data-role="page" id="main18">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>도파민 필살기</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>도파민 필살기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -409,8 +466,9 @@
 </div>
 
 <div data-role="page" id="main19">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>도부파민 필살기</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>도부파민 필살기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -468,8 +526,9 @@
 </div>
 
 <div data-role="page" id="main110">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>Norepi. 사용법</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Norepi. 사용법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -508,8 +567,9 @@
 </div>
 
 <div data-role="page" id="main111">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>DIC score 계산 ISTH criteria</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>DIC score 계산 ISTH criteria</h1>
 	</div>
 
   <div role="main" class="ui-content">
@@ -595,8 +655,9 @@
 
 <!-- 메인화면2 소화기------------------------------------------------------------------------------->
 <div data-role="page" id="main201">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>기계환기재시작기준</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>기계환기재시작기준</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -606,15 +667,19 @@
         <table width="100%" border="1">
           <tr>
             <td>stool Na(mEq/L)</td>
-            <td>&nbsp;</td>
+            <td><input type="text" id="main201_1"></td>
           </tr>
           <tr>
             <td>stool K(mEq/L)</td>
-            <td>&nbsp;</td>
+            <td><input type="text" id="main201_2"></td>
           </tr>
           <tr>
             <td>Serum osm(mosm/kg)</td>
-            <td>&nbsp;</td>
+            <td><input type="text" id="main201_3"></td>
+          </tr>
+          <tr>
+            <td><input type="button" id="main201_submit" value="결과보기"></td>
+            <td><div style="color:#FF00FF;font-weight:bold" id="main201_result"></div></td>
           </tr>
         </table>
 
@@ -622,8 +687,9 @@
 </div>
 
 <div data-role="page" id="main202">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>NSAIDs risk 별 가이드</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>NSAIDs risk 별 가이드</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -661,8 +727,9 @@
 </div>
 
 <div data-role="page" id="main203">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>GI bleeding의 Forrest classification</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>GI bleeding의 Forrest classification</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -674,9 +741,7 @@
           </tr>
           <tr>
             <td>Ia </td>
-            <td><table cellspacing="0" cellpadding="0">
-  			<td>spurting hemorrhage</td>
-            </table></td>
+            <td>spurting hemorrhage</td>
             <td>80-100</td>
           </tr>
           <tr>
@@ -686,9 +751,7 @@
           </tr>
           <tr>
             <td>Iia</td>
-            <td><table cellspacing="0" cellpadding="0">
-  			<td>Visible vessel</td>
-            </table></td>
+            <td>Visible vessel</td>
             <td>50</td>
           </tr>
           <tr>
@@ -712,8 +775,9 @@
 </div>
 
 <div data-role="page" id="main204">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>UC, CD 빠른 비교</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>UC, CD 빠른 비교</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -766,9 +830,9 @@
           <tr>
             <td>양상</td>
             <td>continous lesion</td>
-            <td><p>longitudinal ulcer</p>
-            <p>aphthous ulcer</p>
-            <p>skipped lesion</p></td>
+            <td>longitudinal ulcer<br>
+                aphthous ulcer<br>
+                skipped lesion</td>
           </tr>
         </table>
 
@@ -776,75 +840,87 @@
 </div>
 
 <div data-role="page" id="main205">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>CTP score</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>CTP score</h1>
 	</div>
 
 	<div role="main" class="ui-content">
 		<table width="100%" border="1">
           <tr>
             <td>serum albumin</td>
-            <td>
-              <select name="main205_a" id="main205_a">
-                <option value="1">&gt;3.5</option>
-                <option value="2">2.8-3.5</option>
-                <option value="3">&lt;2.8</option>
-              </select>
+            <td><fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" id="main205_1">
+                  <input name="main205_1group" id="main205_1a" value="1" type="radio" />
+				  <label for="main205_1a">&gt;3.5</label>
+				  <input name="main205_1group" id="main205_1b" value="2" type="radio" />
+				  <label for="main205_1b">2.8-3.5</label>
+                  <input name="main205_1group" id="main205_1c" value="3" type="radio" />
+				  <label for="main205_1c">&lt;2.8</label>
+				</fieldset>
             </td>
           </tr>
           <tr>
             <td>serum bilirubin </td>
             <td>
-            	<select name="main205_b" id="main205_b">
-            	  <option value="1">&lt; 2</option>
-            	  <option value="2">2 ~ 2</option>
-            	  <option value="3">&gt; 3</option>
-                </select>
+            <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" id="main205_2">
+                  <input name="main205_2group" id="main205_2a" value="1" type="radio" />
+				  <label for="main205_2a">&lt; 2</label>
+				  <input name="main205_2group" id="main205_2b" value="2" type="radio" />
+				  <label for="main205_2b">2 ~ 3</label>
+                  <input name="main205_2group" id="main256_2c" value="3" type="radio" />
+				  <label for="main256_2c">&gt; 3</label>
              </td>
           </tr>
           <tr>
             <td width="80"><p>PT INR</p>
             <p>PT prolongation</p></td>
             <td>
-            	<select name="main205_c" id="main205_c">
-            	  <option value="1">&lt; 1.7</option>
-            	  <option value="2">1.7 ~ 2.3</option>
-            	  <option value="3">&gt; 2.3</option>
-            	  <option value="1">&lt; 4</option>
-            	  <option value="2">4 ~ 6</option>
-            	  <option value="3">&gt; 6</option>
+            <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" id="main205_3">
+                  <input name="main205_3group" id="main205_3a" value="1" type="radio" />
+				  <label for="main205_3a">&lt; 1.7</label>
+				  <input name="main205_3group" id="main205_3b" value="2" type="radio" />
+				  <label for="main205_3b">1.7 ~ 2.3</label>
+                  <input name="main205_3group" id="main205_3c" value="3" type="radio" />
+				  <label for="main205_3c">&gt; 2.3</label>
+                  <input name="main205_3group" id="main205_3d" value="1" type="radio" />
+				  <label for="main205_3d">&lt; 4</label>
+				  <input name="main205_3group" id="main205_3e" value="2" type="radio" />
+				  <label for="main205_3e">4 ~ 6</label>
+                  <input name="main205_3group" id="main205_3f" value="3" type="radio" />
+				  <label for="main205_3f">&gt; 6</label>
+				</fieldset>
             </select></td>
           </tr>
           <tr>
             <td>복수</td>
-            <td>
-            	<select name="main205_d" id="main205_d">
-            	  <option value="1">없음</option>
-            	  <option value="2">경증</option>
-            	  <option value="3">중등도</option>
-                </select>
+            <td><fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" id="main205_4">
+                  <input name="main205_4group" id="main205_4a" value="1" type="radio" />
+				  <label for="main205_4a">없음</label>
+				  <input name="main205_4group" id="main205_4b" value="2" type="radio" />
+				  <label for="main205_4b">경증</label>
+                  <input name="main205_4group" id="main205_4c" value="3" type="radio" />
+				  <label for="main205_4c">중등도</label>
+				</fieldset>
             </td>
           </tr>
           <tr>
             <td>encephalopathy</td>
-            <td>
-            	<select name="main205_e" id="main205_e">
-            	  <option value="1">없음</option>
-            	  <option value="2">1-2단계</option>
-            	  <option value="3">3-4단계</option>
-                </select>
+            <td><fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" id="main205_5">
+                  <input name="main205_5group" id="main205_5a" value="1" type="radio" />
+				  <label for="main205_5a">없음</label>
+				  <input name="main205_5group" id="main205_5b" value="2" type="radio" />
+				  <label for="main205_5b">1-2단계</label>
+                  <input name="main205_5group" id="main205_5c" value="3" type="radio" />
+				  <label for="main205_5c">3-4단계</label>
+				</fieldset>
             </td>
           <tr>
-            <td colspan="2"><input name="main205_submit" id="main205_submit" type="button" value="조회"></td>
-          </tr>
-          <tr>
-            <td>합계</td>
-            <td><input name="main205_result" id="main205_result" type="text" readonly></td>
-          </tr>
+            <td colspan="2">
+            	<div>합산점수: <span id="main205_result" style="color:#FF00FF;font-weight:bold"></span></div>
+            </td>
           </tr>
         </table>
-
-
+		<br>
       <table width="100%" border="1">
 	      <tr>
 	        <td>CTP class</td>
@@ -871,28 +947,30 @@
 </div>
 
 <div data-role="page" id="main206">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>MELD-Na score</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>MELD-Na score</h1>
 	</div>
 
 	<div role="main" class="ui-content">
 		<table width="50%" border="1">
           <tr>
             <td>빌리루빈</td>
-            <td><input name="main206_a" id="main206_a" type="text"></td>
+            <td><input name="main206_1" id="main206_1" type="text"></td>
           </tr>
           <tr>
             <td>크레아티닌</td>
-            <td><input name="main206_b" id="main206_b" type="text"></td>
+            <td><input name="main206_2" id="main206_2" type="text"></td>
           </tr>
           <tr>
             <td>INR</td>
-            <td><input name="main206_c" id="main206_c" type="text"></td>
+            <td><input name="main206_3" id="main206_3" type="text"></td>
           </tr>
           <tr>
             <td>원인</td>
             <td>
-            	<select name="main206_d" id="main206_d">
+            	<select name="main206_4" id="main206_4">
+                  <option value="0">원인 선택</option>
                   <option value="0">알코올/담즙정체</option>
                   <option value="1">바이러스 및 기타</option>
             	</select>
@@ -900,19 +978,27 @@
           </tr>
           <tr>
             <td>Na+</td>
-            <td><input name="main206_e" id="main206_e" type="text"></td>
+            <td><input name="main206_5" id="main206_5" type="text"></td>
           </tr>
           <tr>
             <td colspan="2">
-            <input type="submit" name="main206_submit" id="main206_submit" value="전송"></td>
+            <input type="submit" name="main206_submit" id="main206_submit" value="계 산"></td>
           </tr>
           <tr>
-          	<td>합산</td>
-            <td><input name="main206_result" id="main206_result" type="text" readonly></td>
+          	<td colspan="2">
+            	<div>
+                	MELD : <span id="main206_result_a" style="color:#FF00FF;font-weight:bold"></span><br>
+                    MELD-NA : <span id="main206_result_b" style="color:#FF00FF;font-weight:bold"></span><br>
+                </div>
+            </td>
           </tr>
         </table>
-        
-        <table width="100%" border="1">
+        <br>
+        <table width="100%">
+         <tr>
+            <td>점수</td>
+            <td>입원한 LC환자의 3개월 사먕률(%)</td>
+          </tr>
           <tr>
             <td>0 ~ 9</td>
             <td>4%</td>
@@ -940,8 +1026,9 @@
 </div>
 
 <div data-role="page" id="main207">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>췌장염 지표들</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>췌장염 지표들</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -976,7 +1063,7 @@
             <td>Base deficit &gt; 4mmol/L</td>
           </tr>
         </table>
-
+		<br>
 		<table width="100%" border="1">
           <tr>
             <td>CT severity index</td>
@@ -1008,8 +1095,9 @@
 </div>
 
 <div data-role="page" id="main208">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>자가면역간염 진단 치료 필살기</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>자가면역간염 진단 치료 필살기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1117,8 +1205,9 @@
 </div>
 
 <div data-role="page" id="main209">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>간절제 가능여부 보기</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>간절제 가능여부 보기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1144,128 +1233,193 @@
 
         <p>ICG Rmax(3.4mg/kg/min 이상이면 정상)</p>
         <p>단위 mg/kg/min</p>
+        
         <table width="100%" border="1">
-  <tr>
-    <td>1이상</td>
-    <td>안전한 절제가능</td>
-  </tr>
-  <tr>
-    <td>0.8 ~ 1</td>
-    <td>간엽절제 가능</td>
-  </tr>
-  <tr>
-    <td>0.4 ~ 0.8</td>
-    <td>구역절제 가능</td>
-  </tr>
-  <tr>
-    <td>0.2이하</td>
-    <td>금지</td>
-  </tr>
-</table>
-
+          <tr>
+            <td>1이상</td>
+            <td>안전한 절제가능</td>
+          </tr>
+          <tr>
+            <td>0.8 ~ 1</td>
+            <td>간엽절제 가능</td>
+          </tr>
+          <tr>
+            <td>0.4 ~ 0.8</td>
+            <td>구역절제 가능</td>
+          </tr>
+          <tr>
+            <td>0.2이하</td>
+            <td>금지</td>
+          </tr>
+        </table>
 	</div>
 </div>
 
 <div data-role="page" id="main210">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>RUCAM(약인성 간손상 파악)</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>RUCAM(약인성 간손상 파악)</h1>
 	</div>
 
 	<div role="main" class="ui-content">
 		<table width="100%" border="1">
-  <tr>
-    <td>1</td>
-    <td>악물 복용 ~ 증상까지의 시간</td>
-    <td>첫노출 5-90일 두번째 노출 1-15일<br>
-      첫노출 &lt;5 or&gt;90일 두번째노출 &gt;15일<br>
-      약물중단후 15일 이내</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>약물중단후 경과</td>
-    <td>8일이내  ALT 50% 이상 감소<br>
-      30일이내 ALT 50% 이상 감소<br>
-      약물 계속 복용 or 정보부족</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>위험인자</td>
-    <td>알코올<br>
-      연력 55세이상</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>동반약물 투여</td>
-    <td>증상 발생시간과 관련있는 약물<br>
-      증상 발생시간과 관련있는 간독성약물<br>
-      추가 근거가 있는 약물(재투여시 반응 있음)</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>약물이외의 원인<br>
-      (항목 바이러스성간염 1),2),3)A,B,C)<br>
-      4) 담도폐쇄 5) 알코올중독<br>
-      6) 최근저혈압 7)CMV EBV HSV</td>
-    <td>모두해당 없음<br>
-      1~6해당없음<br>
-      4개이상의 원인에 해당 <br>
-      비약물성원인이 강력히 의심됨</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>간독성에 대한 기록</td>
-    <td>약물 설명서에 명시됨<br>
-      증례보고수준<br>
-      모름</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td><table cellspacing="0" cellpadding="0">
-      <col width="80">
-      <tr>
-        <td width="80">재투여시의 반응</td>
-      </tr>
-      <tr>
-        <td>(ALT, ALP, bilirubin 으로 평가)</td>
-      </tr>
-    </table></td>
-    <td>양성 2배이상상승<br>
-      합당 2배상승했지만 다른원인도 가능<br>
-      음성(정상 상한치의 2배미만 상승<br>
-      재투여 시행안함</td>
-  </tr>
-</table>
-
+		  <tr>
+		    <td width="5%">1</td>
+		    <td>악물 복용 ~ 증상까지의 시간</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_1" id="main210_1" data-mini="true">
+                  <input name="main210_1group" id="main210_1a" value="2" type="radio" />
+				  <label for="main210_1a">첫노출 5-90일 두번째 노출 1-15일<font color="#FF00FF">(+2)</font></label>
+				  <input name="main210_1group" id="main210_1b" value="1" type="radio" />
+				  <label for="main210_1b">첫노출 &lt;5 or&gt;90일 두번째노출 &gt;15일<font color="#FF00FF">(+1)</font></label>
+                  <input name="main210_1group" id="main210_1c" value="1" type="radio" />
+				  <label for="main210_1c">약물중단후 15일 이내<font color="#FF00FF">(+1)</font></label>
+				</fieldset>
+		      </td>
+		  </tr>
+		  <tr>
+		    <td>2</td>
+		    <td>약물중단후 경과</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_2" id="main210_2" data-mini="true">
+                  <input name="main210_2group" id="main210_2a" value="3" type="radio" />
+				  <label for="main210_2a">8일이내  ALT 50% 이상 감소<font color="#FF00FF">(+3)</font></label>
+				  <input name="main210_2group" id="main210_2b" value="2" type="radio" />
+				  <label for="main210_2b">30일이내 ALT 50% 이상 감소<font color="#FF00FF">(+2)</font></label>
+                  <input name="main210_2group" id="main210_2c" value="0" type="radio" />
+				  <label for="main210_2c">약물 계속 복용 or 정보부족<font color="#FF00FF">(0)</font></label>
+				</fieldset></td>
+		  </tr>
+		  <tr>
+		    <td>3</td>
+		    <td>위험인자</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_3" id="main210_3" data-mini="true">
+                  <input name="main210_3group" id="main210_3a" value="1" type="radio" />
+				  <label for="main210_3a">알코올<font color="#FF00FF">(+1)</font></label>
+				  <input name="main210_3group" id="main210_3b" value="1" type="radio" />
+				  <label for="main210_3b">연령 55세이상<font color="#FF00FF">(+1)</font></label>
+				</fieldset></td>
+		  </tr>
+		  <tr>
+		    <td>4</td>
+		    <td>동반약물 투여</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_4" id="main210_4" data-mini="true">
+                  <input name="main210_4group" id="main210_4a" value="-1" type="radio" />
+				  <label for="main210_4a">8일이내  ALT 50% 이상 감소<font color="#FF00FF">(-1)</font></label>
+				  <input name="main210_4group" id="main210_4b" value="-2" type="radio" />
+				  <label for="main210_4b">30일이내 ALT 50% 이상 감소<font color="#FF00FF">(-2)</font></label>
+                  <input name="main210_4group" id="main210_4c" value="-3" type="radio" />
+				  <label for="main210_4c">약물 계속 복용 or 정보부족<font color="#FF00FF">(3)</font></label>
+				</fieldset></td>
+		  </tr>
+		  <tr>
+		    <td>5</td>
+		    <td>약물이외의 원인<br>
+		      (항목 바이러스성간염 1),2),3)A,B,C)<br>
+		      4) 담도폐쇄<br> 5) 알코올중독<br>
+		      6) 최근저혈압<br> 7)CMV EBV HSV</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_5" id="main210_5" data-mini="true">
+                  <input name="main210_5group" id="main210_5a" value="2" type="radio" />
+				  <label for="main210_5a">모두해당 없음<font color="#FF00FF">(+2)</font></label>
+				  <input name="main210_5group" id="main210_5b" value="1" type="radio" />
+				  <label for="main210_5b">1~6해당없음<font color="#FF00FF">(+1)</font></label>
+                  <input name="main210_5group" id="main210_5c" value="-2" type="radio" />
+				  <label for="main210_5c">4개이상의 원인에 해당<font color="#FF00FF">(-2)</font></label>
+                  <input name="main210_5group" id="main210_5d" value="-3" type="radio" />
+				  <label for="main210_5d">비약물성원인이 강력히 의심됨<font color="#FF00FF">(-3)</font></label>
+				</fieldset></td>
+		  </tr>
+		  <tr>
+		    <td>6</td>
+		    <td>간독성에 대한 기록</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_6" id="main210_6" data-mini="true">
+                  <input name="main210_6group" id="main210_6a" value="2" type="radio" />
+				  <label for="main210_6a">약물 설명서에 명시됨<font color="#FF00FF">(2)</font></label>
+				  <input name="main210_6group" id="main210_6b" value="1" type="radio" />
+				  <label for="main210_6b">증례보고수준<font color="#FF00FF">(1)</font></label>
+                  <input name="main210_6group" id="main210_6c" value="0" type="radio" />
+				  <label for="main210_6c">모름<font color="#FF00FF">(0)</font></label>
+				</fieldset></td>
+		  </tr>
+		  <tr>
+		    <td>7</td>
+		    <td>재투여시의 반응</td>
+		    <td><fieldset  data-role="controlgroup" data-type="vertical" name="main210_7" id="main210_7" data-mini="true">
+                  <input name="main210_7group" id="main210_7a" value="2" type="radio" />
+				  <label for="main210_7a">양성 2배이상상승<font color="#FF00FF">(2)</font></label>
+				  <input name="main210_7group" id="main210_7b" value="1" type="radio" />
+				  <label for="main210_7b">합당 2배상승했지만 다른원인도 가능<font color="#FF00FF">(1)</font></label>
+                  <input name="main210_7group" id="main210_c" value="-2" type="radio" />
+				  <label for="main210_7c">음성(정상 상한치의 2배미만 상승<font color="#FF00FF">(-2)</font></label>
+                  <input name="main210_7group" id="main210_7d" value="0" type="radio" />
+				  <label for="main210_7d">재투여 시행안함<font color="#FF00FF">(0)</font></label>
+				</fieldset></td>
+		  </tr>
+		</table>
+        <br />
+		<div>
+        	Total score <span id="main210_result" style="color:#FF00FF;font-weight:bold">0</span>점 입니다
+        </div>
+        <p>high probable (9점이상) <br />
+            probable (6~8점)<br />
+            Possible (3~5점)<br />
+            unlikely(1~2점)<br />
+            Excluded (0점)<br />
+        </p>
 	</div>
 </div>
 
 <div data-role="page" id="main211">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1></h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>각종 enema 법과 주의점</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<p></p>
+		<table>
+			<tr>
+				<td>관장법</td>
+				<td>설명</td>
+			</tr>
+			<tr>
+				<td>Lactulose enema : </td>
+				<td>Lactulose 간성혼수시 주로 씀</td>
+			</tr>
+			<tr>
+				<td>Kalimate enema</td>
+				<td>300cc lactulose + 700cc(N/S)을 섞어 10-15분 retension enema</td>
+			</tr>
+			<tr>
+				<td>Glycerin enema</td>
+				<td>장의 연동운동촉진 미지근한 물과 25cc+25cc로 mix 하여 주입</td>
+			</tr>
+			<tr>
+				<td>Fleet enema</td>
+				<td>압축병이 나와있어 섞을 필요없이 즉시 사용<br />
+					Na 증가 인산염농도의 상승과 칼슘농도의 감소에 주의!!!
+				</td>
+			</tr>
+		</table>
+		<p>온도는 40'c 근처 관의 굵기는 성인 22-30Fr. 삽입길이 7.5~10cm</p>
 	</div>
 </div>
 
 <div data-role="page" id="main212">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>간암 병기 Okuda staging</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>간암 병기 Okuda staging</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-		<table width="100%">
+    	<table width="100%">
           <tr>
             <td width="10%">1</td>
             <td width="50%">간의 크기의 50% 이상</td>
             <td width="40%">
-            	<fieldset  data-role="controlgroup" data-type="horizontal" name="main212_1" id="main212_1">
+            	<div  data-role="controlgroup" data-type="horizontal" name="main212_1" id="main212_1">
 				  <input name="main212_1g" id="main212_1a" value="1" type="radio" />
 				  <label for="main212_1a">Yes</label>
 				  <input name="main212_1g" id="main212_1b" value="0" type="radio" />
 				  <label for="main212_1b">No</label>
-				</fieldset >
+				</div >
 			</td>
           </tr>
           <tr>
@@ -1287,6 +1441,7 @@
 				  <label for="main212_3a">Yes</label>
 				  <input name="main212_3g" id="main212_3b" value="0" type="radio" />
 				  <label for="main212_3b">No</label>
+                </div>
 			</td>
           </tr>
           <tr>
@@ -1297,16 +1452,19 @@
 				  <label for="main212_4a">Yes</label>
 				  <input name="main212_4g" id="main212_4b" value="0" type="radio" />
 				  <label for="main212_4b">No</label>
+                </div>
 			</td>
           </tr>
        </table>
-       <div id="main212_result" />
+		<div id="main212_result">
+        </div>
 	</div>
 </div>
 
 <div data-role="page" id="main213">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>간암에서 간이식 적응증 (Milan criteria)</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>간암에서 간이식 적응증 (Milan criteria)</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1315,10 +1473,56 @@
 	</div>
 </div>
 
+<!-- 메인화면3 순환기------------------------------------------------------------------------------->
+<div data-role="page" id="main301">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Killip Classification</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+    <table width="200" border="1">
+        <tr>
+          <td>I</td>
+          <td>HF의 sign 없음</td>
+        </tr>
+        <tr>
+          <td>II</td>
+          <td>Rales or Crackles in the lungs, S3, and elevated JVP</td>
+        </tr>
+        <tr>
+          <td>III</td>
+          <td>Frank Acute Pulmonary edema</td>
+        </tr>
+        <tr>
+          <td>IV</td>
+          <td>Cardiogenic shock or hypotension(SBP <90mmHg 이하)<br>
+                Evidence of peripheral vasoconstriction
+          </td>
+        </tr>
+    </table>
+
+	</div>
+</div>
+
+<div data-role="page" id="main302">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Hyperkalemia 응급처치</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>Calcium gluconate 10% 10mg iv over 3min (5분후에 반복가능) 20-30분효과있음. Bicarbonate와 같이 주지 마세요</p>
+        <p>10U RI + 20% DW 500cc에 mix하여 1시간동안 infusion</p>
+        <p>Kalimate PO or Retension enema : 30-50g +5dw 100-200cc</p>
+	</div>
+</div>
+
 <!-- 메인화면4 호흡기------------------------------------------------------------------------------->
 <div data-role="page" id="main41">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>호흡기 협진필살기</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>호흡기 협진필살기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1339,59 +1543,237 @@
 </div>
 
 <div data-role="page" id="main42">
-	<div data-role="header" data-position="inline" data-theme="z" class="egovBarHeader">
-	   <h1>초기 인공호흡기 세팅법</h1>
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>초기 인공호흡기 세팅법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
         <table>
         	<tr>
             	<td>1.Confusion</td>
-                <td>
-                	<label for="confusion_y">yes</label>
-                    <input type="radio" name="confusion" id="confusion_y" value="yes">
-                    <label for="confusion_n">no</label>
-        			<input type="radio" name="confusion" id="confusion_n" value="no">
+                <td><fieldset  data-role="controlgroup" data-type="horizontal" id="main402_1">
+                  <input name="main402_1group" id="main402_1a" value="1" type="radio" />
+				  <label for="main402_1a">Yes</label>
+				  <input name="main402_1group" id="main402_1b" value="0" type="radio" />
+				  <label for="main402_1b">No</label>
+				</fieldset>
                 </td>
             </tr>
             <tr>
             	<td>2. BUN 19이상</td>
                 <td>
-                	<label for="bun_y">yes</label>
-                    <input type="radio" name="bun" id="bun_y" value="yes">
-                    <label for="bun_n">no</label>
-        			<input type="radio" name="bun" id="bun_n" value="no">
+                	<fieldset  data-role="controlgroup" data-type="horizontal" id="main402_2">
+                  <input name="main402_2group" id="main402_2a" value="1" type="radio" />
+				  <label for="main402_2a">Yes</label>
+				  <input name="main402_2group" id="main402_2b" value="0" type="radio" />
+				  <label for="main402_2b">No</label>
+				</fieldset>
                 </td>
             </tr>
             <tr>
             	<td>3. RR 30이상</td>
-                <td>
-                	<label for="rr_y">yes</label>
-                    <input type="radio" name="rr" id="rr_y" value="yes">
-                    <label for="rr_n">no</label>
-        			<input type="radio" name="rr" id="rr_n" value="no">
+                <td><fieldset  data-role="controlgroup" data-type="horizontal" id="main402_3">
+                  <input name="main402_3group" id="main402_3a" value="1" type="radio" />
+				  <label for="main402_3a">Yes</label>
+				  <input name="main402_3group" id="main402_3b" value="0" type="radio" />
+				  <label for="main402_3b">No</label>
+				</fieldset>
                 </td>
             </tr>
             <tr>
             	<td>4.BP 90/60 이하</td>
-                <td>
-                	<label for="bp_y">yes</label>
-                    <input type="radio" name="bp" id="bp_y" value="yes">
-                    <label for="bp_n">no</label>
-        			<input type="radio" name="bp" id="bp_n" value="no">
+                <td><fieldset  data-role="controlgroup" data-type="horizontal" id="main402_4">
+                  <input name="main402_4group" id="main402_4a" value="1" type="radio" />
+				  <label for="main402_4a">Yes</label>
+				  <input name="main402_4group" id="main402_4b" value="0" type="radio" />
+				  <label for="main402_4b">No</label>
+				</fieldset>
                 </td>
             </tr>
             <tr>
             	<td>5. 나이 65세이상</td>
-                <td>
-                	<label for="age_y">yes</label>
-                    <input type="radio" name="age" id="age_y" value="yes">
-                    <label for="age_n">no</label>
-        			<input type="radio" name="age" id="age_n" value="no">
+                <td><fieldset  data-role="controlgroup" data-type="horizontal" id="main402_5">
+                  <input name="main402_5group" id="main402_5a" value="1" type="radio" />
+				  <label for="main402_5a">Yes</label>
+				  <input name="main402_5group" id="main402_5b" value="0" type="radio" />
+				  <label for="main402_5b">No</label>
+				</fieldset>
+                </td>
+            </tr>
+            <tr>
+            	<td colspan="2">
+                	<div>
+                    	결과 : <span id="main402_result_a" style="color:#FF00FF;font-weight:bold"></span><br>
+                        사망률 : <span id="main402_result_b" style="color:#FF00FF;font-weight:bold"></span>
+                    </div>
                 </td>
             </tr>
         </table>
 	</div>
+</div>
+
+<!-- 메인화면7 내분비------------------------------------------------------------------------------->
+<div data-role="page" id="main701">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>저혈당 치료법</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+       <p>2) 이어서 5%~10% DW를 glucose 100 targer으로 정주한다.</p>
+       <p>3) Severe의 경우  glucacon 1mg IM or SC 권장(S/E 구토 : aspiration 주의)</p>
+	</div>
+</div>
+
+<div data-role="page" id="main702">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>DKA 처방</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p> 1) Fluid therapy<br>
+         Normal saline : full drop(1L) 이후 volume deficit 에 맞게 1L/hr infusion<br>
+         * Na수치가 155이상이면 half saline 으로<br>
+          => Half saline 150-500cc/hr</p>
+       <p>  2) Insulin therapy<br>
+         Initially RI 10-15 unit IV bolous<br>
+         N/S 150ml + RI 150U mix 5cc/hr속도 주입(50kg 기준) 0.1u/kg/hr<br>
+         시간당 50-100의 glucose를 낮추는 것을 목표로 한다(너무빨리낮추면 osmotic encephalopathy)<br>
+         Glucose level 이 250 까지 내려가면 G.I.K 를 시작한다</p>
+       <p>  3) Potassium<br>
+         K+ hyperkalemia 가 없다면 K 을 시간당 10-20mEq을 준다.<br>
+         Hypokalemia 가 있으면 40mEq/hr 이상의 K+을 공급해야함</p>
+       <p> 4) 모니터링<br>
+       		glucose level 1시간간격측정 electrolyte 1-2시간 간격으로 측정<br>
+            ABGA는 필요시마다 시행</p>
+       <p>  5) Bivon therapy<br>
+         a) coma 나 shock pH &lt;7.1 이하. Plasma bicarnobate 5mEq/L 이하일 경우<br>
+         sodium bicarbonate 50-100eEq/L + 1L half saline + KCl 10-20eEq (500cc/hr)</p>
+	</div>
+</div>
+
+<div data-role="page" id="main703">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>STEROID 역가비교</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+	  <table width="100%">
+	    <tr>
+	      <td>　</td>
+	      <td>Antiinflammatory    potency</td>
+	      <td>Na+ retaining    potency</td>
+	      <td>Duration of    action</td>
+	      <td>Equivalent dose    oral vs IV</td>
+        </tr>
+	    <tr>
+	      <td>hydrocortisone</td>
+	      <td align="right">1</td>
+	      <td align="right">1</td>
+	      <td>Short</td>
+	      <td align="right">20</td>
+        </tr>
+	    <tr>
+	      <td>solucortef</td>
+	      <td align="right">0.8</td>
+	      <td align="right">0.8</td>
+	      <td>Short</td>
+	      <td align="right">25</td>
+        </tr>
+	    <tr>
+	      <td>Prednisone</td>
+	      <td align="right">4</td>
+	      <td align="right">0.8</td>
+	      <td>Intermediate</td>
+	      <td align="right">5</td>
+        </tr>
+	    <tr>
+	      <td>Prednisolone</td>
+	      <td align="right">5</td>
+	      <td align="right">0.8</td>
+	      <td>Intermediate</td>
+	      <td align="right">5</td>
+        </tr>
+	    <tr>
+	      <td>Triamcinolone</td>
+	      <td align="right">5</td>
+	      <td align="right">0</td>
+	      <td>Intermediate</td>
+	      <td align="right">4</td>
+        </tr>
+	    <tr>
+	      <td>Dexamethasone</td>
+	      <td align="right">25</td>
+	      <td align="right">0</td>
+	      <td>Long</td>
+	      <td align="right">0.75</td>
+        </tr>
+      </table>
+	  
+	</div>
+</div>
+
+<div data-role="page" id="main704">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>DKA vs HHS</h1>
+	</div>
+    <br>
+	<table width="100%">
+	  <tr>
+	    <td>plasma glucose</td>
+	    <td>&gt;250</td>
+	    <td>&gt;250</td>
+	    <td>&gt;250</td>
+	    <td>&gt;600</td>
+      </tr>
+	  <tr>
+	    <td>Effective Serum osm</td>
+	    <td>다양</td>
+	    <td>다양</td>
+	    <td>다양</td>
+	    <td>&gt;320</td>
+      </tr>
+	  <tr>
+	    <td>Urine or serum ketone</td>
+	    <td>(+)</td>
+	    <td>(+)</td>
+	    <td>(+)</td>
+	    <td>(-) to (+)</td>
+      </tr>
+	  <tr>
+	    <td>Arterial pH</td>
+	    <td>7.25~7.3</td>
+	    <td>7.00~7.24</td>
+	    <td>&lt;7.00</td>
+	    <td>&gt;7.3</td>
+      </tr>
+	  <tr>
+	    <td>Serum bicarbonate</td>
+	    <td>15-18</td>
+	    <td>10~15</td>
+	    <td>&lt;10</td>
+	    <td>&gt;15</td>
+      </tr>
+	  <tr>
+	    <td>Anion Gap</td>
+	    <td>&gt;10</td>
+	    <td>&gt;12</td>
+	    <td>&gt;12</td>
+	    <td>&lt;12</td>
+      </tr>
+	  <tr>
+	    <td>Typical mental status</td>
+	    <td>Alert</td>
+	    <td>Drowsy</td>
+	    <td>Stupor 이상</td>
+	    <td>Stupor 이상</td>
+      </tr>
+  </table>
 </div>
 
 </body>

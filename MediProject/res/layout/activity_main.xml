@@ -1,33 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView 
-        android:id="@+id/tv_tab" android:layout_width="match_parent" android:layout_height="40dp" 
-        android:layout_margin="1dp"
-        android:gravity="center" android:textColor="#ffffff" android:textSize="18sp" android:text="test"
-        android:visibility="gone"
-        android:background="@drawable/tab_s_on"/>
-
-    <LinearLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="30dp"
-        android:background="@null" android:orientation="vertical"  android:gravity="center"
-        android:id="@+id/main_menu">
-
-        <ExpandableListView
-            android:id="@+id/elv_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-        </ExpandableListView>
-        
-    </LinearLayout>
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
     
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </FrameLayout>
+    <ProgressBar
+       android:id="@+id/progressbar"
+       style="?android:attr/progressBarStyleLargeInverse"
+       android:layout_width="wrap_content" android:layout_height="wrap_content" 
+       android:layout_centerInParent="true"
+       android:visibility="invisible" />
     
-</LinearLayout>
+    <ImageView 
+       android:id="@+id/logo"
+       android:layout_width="wrap_content" android:layout_height="wrap_content" 
+       android:layout_centerInParent="true"
+       android:src="@drawable/icon_medi" />
+    
+</RelativeLayout>
