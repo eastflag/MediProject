@@ -40,10 +40,6 @@
 			}
 		</style>
         <script type="text/javascript">
-		$(document).bind(“mobileinit”, function(){
-		   $.mobile.page.prototype.options.addBackBtn=true;
-		});
-
 		$(document).ready(function(){
 			 
 			$('#main201_submit').click(function() {
@@ -118,6 +114,28 @@
 				} else {
 					$('#main402_result_b').text('22%');
 				}
+			});
+			
+			$( "#main501_1, #main501_2, #main501_3, #main501_4").bind("change", function() {
+				console.log("main 501 is changed");
+				var Na = Number($('#main501_1').val());
+				var Ci = Number($('#main501_2').val());
+				var Hco3 = Number($('#main501_3').val());
+				var Albumin = Number($('#main501_4').val());
+				var result_a = Na - (Ci+Hco3);
+				var result_b = result_a + 0.25*(40-Albumin);
+				$('#main501_result_a').text(result_a);	
+				$('#main501_result_b').text(result_b);
+				console.log("result:" + result_a);
+			});
+			
+			$( "#main502_1, #main502_2, #main502_3, #main502_4").bind("change", function() {
+				var sNa = Number($('#main502_1').val());
+				var sCr = Number($('#main502_2').val());
+				var UNa = Number($('#main502_3').val());
+				var UCr = Number($('#main502_4').val());
+				var result = UNa * sCr/sNa/UCr;
+				$('#main502_result').text(result+'%');	
 			});
 		});
 		</script>
@@ -1782,6 +1800,169 @@
 	    <td>Stupor 이상</td>
       </tr>
   </table>
+</div>
+
+<!-- 메인화면5 신장------------------------------------------------------------------------------->
+<div data-role="page" id="main501">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Anion Gap</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <table>
+         <tr>
+           <td width="30%">Na</td>
+           <td width="40%"><input name="main501_1" id="main501_1" type="number"></input></td>
+           <td width="30%">mEq/L</td>
+         </tr>
+         <tr>
+           <td>Cl</td>
+           <td><input name="main501_2" id="main501_2" type="number"></input></td>
+           <td>mEq/L</td>
+         </tr>
+         <tr>
+           <td>HCO3</td>
+           <td><input name="main501_3" id="main501_3" type="number"></input></td>
+           <td>mEq/L</td>
+         </tr>
+         <tr>
+           <td>Albumin</td>
+           <td><input name="main501_4" id="main501_4" type="number"></input></td>
+           <td>g/dl</td>
+         </tr>
+         <tr>
+         	<td colspan="3"> 
+            	<div id="main501_result"></div>
+                    	AG : <span id="main501_result_a" style="color:#FF00FF;font-weight:bold"></span><br>
+                        Corr.AG : <span id="main501_result_b" style="color:#FF00FF;font-weight:bold"></span>
+                        <br>
+                        <p>AG의 정상치는 8-16이다.</p>
+						<p>AG의 증가는 Unmeasured anion 의 증가에 의해서이다 ketoacidosis 와 uremic acidosis, drug ingestion,lactic acidosis 등을 반영한다</p>
+                </div>
+            </td>
+         </tr>
+       </table>
+	</div>
+</div>
+
+<div data-role="page" id="main502">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>FENa</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+	  <table>
+	    <tr>
+	      <td width="30%">s Na</td>
+	      <td width="40%"><input name="main502_1" id="main502_1" type="number"></td>
+	      <td width="30%">meq/L</td>
+        </tr>
+	    <tr>
+	      <td>s Cr.</td>
+	      <td><input name="main502_2" id="main502_2" type="number"></td>
+	      <td>mg/dl</td>
+        </tr>
+	    <tr>
+	      <td>U Na</td>
+	      <td><input name="main502_3" id="main502_3" type="number"></td>
+	      <td>meq/L</td>
+        </tr>
+	    <tr>
+	      <td>U. Cr.</td>
+	      <td><input name="main502_4" id="main502_4" type="number"></td>
+	      <td>mg/dl</td>
+        </tr>
+        <tr>
+         	<td colspan="3"> 
+            	<div id="main501_result"></div>
+                    	결과 : <span id="main502_result" style="color:#FF00FF;font-weight:bold"></span><br>
+                        <br>
+                        <p>의미 : FENa가 1% 미만이면 Prerenal Azotemia 를 시사한다!</p>
+                </div>
+            </td>
+         </tr>
+      </table>
+       
+	</div>
+</div>
+
+<div data-role="page" id="main503">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+
+	</div>
+</div>
+
+<div data-role="page" id="main504">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+
+	</div>
+</div>
+
+<div data-role="page" id="main505">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+	</div>
+</div>
+
+<div data-role="page" id="main506">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+	</div>
+</div>
+
+<div data-role="page" id="main507">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+	</div>
+</div>
+
+<div data-role="page" id="main508">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+	</div>
+</div>
+
+<div data-role="page" id="main509">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1></h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+	</div>
 </div>
 
 </body>
