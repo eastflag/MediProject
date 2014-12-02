@@ -19,6 +19,7 @@
 				padding:0px;
 				font-size: 1.0em;
 				font-family: "nanum", "Trebuchet MS", Arial, Helvetica, sans-serif;
+				line-height:1.5em;
 			}
 			table {
 				border-collapse: collapse;
@@ -129,13 +130,23 @@
 				console.log("result:" + result_a);
 			});
 			
-			$( "#main502_1, #main502_2, #main502_3, #main502_4").bind("change", function() {
+			$('#main502_submit').click(function() {
 				var sNa = Number($('#main502_1').val());
 				var sCr = Number($('#main502_2').val());
 				var UNa = Number($('#main502_3').val());
 				var UCr = Number($('#main502_4').val());
 				var result = UNa * sCr/sNa/UCr;
 				$('#main502_result').text(result+'%');	
+			});
+			
+			$('#main503_submit').click(function() {
+				var Na = Number($('#main503_1').val());
+				var BUN = Number($('#main503_2').val());
+				var Glucose = Number($('#main503_3').val());
+				var MeasuredOsm = Number($('#main503_4').val());
+				var A = 2 * Na + BUN/2.8 + Glucose/18;
+				var result = MeasuredOsm - A;
+				$('#main503_result').text(Math.round(result*100)/100);	
 			});
 		});
 		</script>
@@ -218,7 +229,14 @@
 	    <div data-role="collapsible">
 	      <h3>감염(항생제)</h3>
 	      <ul data-role="listview" data-inset="true">
-	      
+	      	<li><a href="#main601" data-ajax="false">Sepsis 캠페인</a></li>
+            <li><a href="#main602" data-ajax="false">SIRS의 기준</a></li>
+            <li><a href="#main603" data-ajax="false">심내막염 진단 기준(Duke criteria)</a></li>
+            <li><a href="#main604" data-ajax="false">심내막염 방지 예방적 항생제 필요한 경우</a></li>
+            <li><a href="#main605" data-ajax="false">PMC 치료 가이드</a></li>
+            <li><a href="#main606" data-ajax="false">파상풍(tetanus) prophylaxis</a></li>
+            <li><a href="#main607" data-ajax="false">특수감염병별 항생제</a></li>
+            <li><a href="#main608" data-ajax="false">Chemoprophylaxis</a></li>
 	      </ul>
 	    </div>
 	    
@@ -231,11 +249,28 @@
             <li><a href="#main704" data-ajax="false">DKA vs HHS</a></li>
 	      </ul>
 	    </div>
+        
+        <div data-role="collapsible">
+	      <h3>그룹오더</h3>
+	      <ul data-role="listview" data-inset="true">
+	      	<li><a href="#main801" data-ajax="false">CAPD peritonitis</a></li>
+            <li><a href="#main802" data-ajax="false">CIN 예방법</a></li>
+            <li><a href="#main803" data-ajax="false">항생제 모음 </a></li>
+            <li><a href="#main804" data-ajax="false">Acetaminophen 해독요법</a></li>
+            <li><a href="#main805" data-ajax="false">Midazolam and nocuron</a></li>
+            <li><a href="#main806" data-ajax="false">Peridipine / Labetalol</a></li>
+            <li><a href="#main807" data-ajax="false">Amiodarone</a></li>
+            <li><a href="#main808" data-ajax="false">Lidocaine</a></li>
+            <li><a href="#main809" data-ajax="false">Thrombolysis(actilyse/metalyse)</a></li>
+            <li><a href="#main810" data-ajax="false">Paraquat DI 대처법</a></li>
+	      </ul>
+	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>기타</h3>
 	      <ul data-role="listview" data-inset="true">
-	      
+	      	<li><a href="#main2001" data-ajax="false">CSF Tapping 결과</a></li>
+            <li><a href="#main2002" data-ajax="false">LMP 기준 hCG의 변화s</a></li>
 	      </ul>
 	    </div>
 
@@ -704,7 +739,7 @@
             <td><input type="text" id="main201_3"></td>
           </tr>
           <tr>
-            <td><input type="button" id="main201_submit" value="결과보기"></td>
+            <td><input type="fieldset" id="main201_submit" value="결과보기"></td>
             <td><div style="color:#FF00FF;font-weight:bold" id="main201_result"></div></td>
           </tr>
         </table>
@@ -1639,169 +1674,6 @@
 	</div>
 </div>
 
-<!-- 메인화면7 내분비------------------------------------------------------------------------------->
-<div data-role="page" id="main701">
-	<div data-role="header" data-position="inline" >
-	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>저혈당 치료법</h1>
-	</div>
-
-	<div role="main" class="ui-content">
-       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
-       <p>2) 이어서 5%~10% DW를 glucose 100 targer으로 정주한다.</p>
-       <p>3) Severe의 경우  glucacon 1mg IM or SC 권장(S/E 구토 : aspiration 주의)</p>
-	</div>
-</div>
-
-<div data-role="page" id="main702">
-	<div data-role="header" data-position="inline" >
-	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>DKA 처방</h1>
-	</div>
-
-	<div role="main" class="ui-content">
-       <p> 1) Fluid therapy<br>
-         Normal saline : full drop(1L) 이후 volume deficit 에 맞게 1L/hr infusion<br>
-         * Na수치가 155이상이면 half saline 으로<br>
-          => Half saline 150-500cc/hr</p>
-       <p>  2) Insulin therapy<br>
-         Initially RI 10-15 unit IV bolous<br>
-         N/S 150ml + RI 150U mix 5cc/hr속도 주입(50kg 기준) 0.1u/kg/hr<br>
-         시간당 50-100의 glucose를 낮추는 것을 목표로 한다(너무빨리낮추면 osmotic encephalopathy)<br>
-         Glucose level 이 250 까지 내려가면 G.I.K 를 시작한다</p>
-       <p>  3) Potassium<br>
-         K+ hyperkalemia 가 없다면 K 을 시간당 10-20mEq을 준다.<br>
-         Hypokalemia 가 있으면 40mEq/hr 이상의 K+을 공급해야함</p>
-       <p> 4) 모니터링<br>
-       		glucose level 1시간간격측정 electrolyte 1-2시간 간격으로 측정<br>
-            ABGA는 필요시마다 시행</p>
-       <p>  5) Bivon therapy<br>
-         a) coma 나 shock pH &lt;7.1 이하. Plasma bicarnobate 5mEq/L 이하일 경우<br>
-         sodium bicarbonate 50-100eEq/L + 1L half saline + KCl 10-20eEq (500cc/hr)</p>
-	</div>
-</div>
-
-<div data-role="page" id="main703">
-	<div data-role="header" data-position="inline" >
-	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>STEROID 역가비교</h1>
-	</div>
-
-	<div role="main" class="ui-content">
-	  <table width="100%">
-	    <tr>
-	      <td>　</td>
-	      <td>Antiinflammatory    potency</td>
-	      <td>Na+ retaining    potency</td>
-	      <td>Duration of    action</td>
-	      <td>Equivalent dose    oral vs IV</td>
-        </tr>
-	    <tr>
-	      <td>hydrocortisone</td>
-	      <td align="right">1</td>
-	      <td align="right">1</td>
-	      <td>Short</td>
-	      <td align="right">20</td>
-        </tr>
-	    <tr>
-	      <td>solucortef</td>
-	      <td align="right">0.8</td>
-	      <td align="right">0.8</td>
-	      <td>Short</td>
-	      <td align="right">25</td>
-        </tr>
-	    <tr>
-	      <td>Prednisone</td>
-	      <td align="right">4</td>
-	      <td align="right">0.8</td>
-	      <td>Intermediate</td>
-	      <td align="right">5</td>
-        </tr>
-	    <tr>
-	      <td>Prednisolone</td>
-	      <td align="right">5</td>
-	      <td align="right">0.8</td>
-	      <td>Intermediate</td>
-	      <td align="right">5</td>
-        </tr>
-	    <tr>
-	      <td>Triamcinolone</td>
-	      <td align="right">5</td>
-	      <td align="right">0</td>
-	      <td>Intermediate</td>
-	      <td align="right">4</td>
-        </tr>
-	    <tr>
-	      <td>Dexamethasone</td>
-	      <td align="right">25</td>
-	      <td align="right">0</td>
-	      <td>Long</td>
-	      <td align="right">0.75</td>
-        </tr>
-      </table>
-	  
-	</div>
-</div>
-
-<div data-role="page" id="main704">
-	<div data-role="header" data-position="inline" >
-	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>DKA vs HHS</h1>
-	</div>
-    <br>
-	<table width="100%">
-	  <tr>
-	    <td>plasma glucose</td>
-	    <td>&gt;250</td>
-	    <td>&gt;250</td>
-	    <td>&gt;250</td>
-	    <td>&gt;600</td>
-      </tr>
-	  <tr>
-	    <td>Effective Serum osm</td>
-	    <td>다양</td>
-	    <td>다양</td>
-	    <td>다양</td>
-	    <td>&gt;320</td>
-      </tr>
-	  <tr>
-	    <td>Urine or serum ketone</td>
-	    <td>(+)</td>
-	    <td>(+)</td>
-	    <td>(+)</td>
-	    <td>(-) to (+)</td>
-      </tr>
-	  <tr>
-	    <td>Arterial pH</td>
-	    <td>7.25~7.3</td>
-	    <td>7.00~7.24</td>
-	    <td>&lt;7.00</td>
-	    <td>&gt;7.3</td>
-      </tr>
-	  <tr>
-	    <td>Serum bicarbonate</td>
-	    <td>15-18</td>
-	    <td>10~15</td>
-	    <td>&lt;10</td>
-	    <td>&gt;15</td>
-      </tr>
-	  <tr>
-	    <td>Anion Gap</td>
-	    <td>&gt;10</td>
-	    <td>&gt;12</td>
-	    <td>&gt;12</td>
-	    <td>&lt;12</td>
-      </tr>
-	  <tr>
-	    <td>Typical mental status</td>
-	    <td>Alert</td>
-	    <td>Drowsy</td>
-	    <td>Stupor 이상</td>
-	    <td>Stupor 이상</td>
-      </tr>
-  </table>
-</div>
-
 <!-- 메인화면5 신장------------------------------------------------------------------------------->
 <div data-role="page" id="main501">
 	<div data-role="header" data-position="inline" >
@@ -1876,10 +1748,11 @@
         </tr>
         <tr>
          	<td colspan="3"> 
-            	<div id="main501_result"></div>
-                    	결과 : <span id="main502_result" style="color:#FF00FF;font-weight:bold"></span><br>
-                        <br>
-                        <p>의미 : FENa가 1% 미만이면 Prerenal Azotemia 를 시사한다!</p>
+            	<input type="submit" id="main502_submit" value="계산 하기">
+            	<div>
+                    결과 : <span id="main502_result" style="color:#FF00FF;font-weight:bold"></span><br>
+                    <br>
+                    <p>의미 : FENa가 1% 미만이면 Prerenal Azotemia 를 시사한다!</p>
                 </div>
             </td>
          </tr>
@@ -1891,77 +1764,1041 @@
 <div data-role="page" id="main503">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>Osmolar Gap 구하기</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-
+	  <table>
+	    <tr>
+	      <td width="30%">Na</td>
+	      <td width="40%"><input name="main503_1" id="main503_1" type="number"></td>
+	      <td width="30%">mEq/L</td>
+        </tr>
+	    <tr>
+	      <td>BUN</td>
+	      <td><input name="main503_2" id="main503_2" type="number"></td>
+	      <td>mmol/L</td>
+        </tr>
+	    <tr>
+	      <td>Glucose</td>
+	      <td><input name="main503_3" id="main503_3" type="number"></td>
+	      <td>mg/dl</td>
+        </tr>
+	    <tr>
+	      <td>Measured Osm</td>
+	      <td><input name="main503_4" id="main503_4" type="number"></td>
+	      <td>mosm/kg</td>
+        </tr>
+        <tr>
+         	<td colspan="3"> 
+            	<input type="submit" id="main503_submit" value="계산 하기">
+            	<div>
+                    결과 : <span id="main503_result" style="color:#FF00FF;font-weight:bold"></span><br>
+                    <br>
+                    <p>의미 : 정상치는 10이하이다. 10이상일 경우 메탄올이나 에탄올 에틸렌글라이콜, 소르비톨이나 만니톨이 들어가있음을 의미한다</p>
+                </div>
+            </td>
+         </tr>
+      </table>
 	</div>
 </div>
 
 <div data-role="page" id="main504">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>체액의 분포</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-
+      <div>
+          수분의 양 <br>
+          <table>
+            <tr>
+              <td width="20%">남자</td>
+              <td width="20%">60%</td>
+            </tr>
+            <tr>
+              <td>여자</td>
+              <td >50%</td>
+            </tr>
+          </table>
+       </div>
+       <p />
+		<div>
+          분포 <br>
+          <table>
+            <tr>
+              <td width="20%">ECF</td>
+              <td width="20%">33% 이중 3/4가 간질액 1/4이 blood</td>
+            </tr>
+            <tr>
+              <td>ICF</td>
+              <td >66%</td>
+            </tr>
+          </table>
+          <p />
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="20%">수액</td>
+              <td width="20%">plasma volume expansion(1L 주입시)</td>
+            </tr>
+            <tr>
+              <td>5DW</td>
+              <td>83ml</td>
+            </tr>
+            <tr>
+              <td>N/S</td>
+              <td>250ml</td>
+            </tr>
+            <tr>
+              <td>Half saline</td>
+              <td>167ml</td>
+            </tr>
+            <tr>
+              <td>Colloid</td>
+              <td>1000ml</td>
+            </tr>
+          </table>
+       </div>
 	</div>
 </div>
 
 <div data-role="page" id="main505">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>Contrast induced Renal failure 예방법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+       1. Volume infusion<br>
+ 	   1) N/S 100~150cc/hr 로 contrast주입전 12시간동안 주입<br>
+   	   Emergent 일 경우에는 300~500cc/hr 로 속도증가<br>
+       소변량은 시간당 150cc를 contrast 후 6시간동안 유지<br>
+       2) N-acetylcystaine : 600mg PO bid (24시간 전부터 24시간 후까지)<br>
+       Emergent 일 경우 600mg iv 로 주고 이후 2일간 600mg bid PO. 투여<br>
 	</div>
 </div>
 
 <div data-role="page" id="main506">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>마그네슘 보충법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+		<p>
+           * 혈청 마그네슘이 1mEq/L에 electrolyte 이상동반시 요법<br>
+        1) 6g의 MgSO4를 250~500cc의 normal saline 에 mix 하여 3시간동안준다<br>
+        2) 이어서 5g의 MgSO4를  250-500cc의 normal saline 에 mix 하여 6시간동안준다<br>
+        3) 이어서 continous infusion! 5g MgSO4 + 250~500cc N/S mix 12시간마다~ 5일동안!<br>
+    	</p>
+		<p>
+        	* Emergent infusion	<br>
+        1) 2g의 MgSO4 iv  over 2-3분<br>
+        2) 이어서 5g의 MgSO4를  250-500cc의 normal saline 에 mix 하여 6시간동안준다<br>
+        3) 이어서 continous infusion! 5g MgSO4 + 250~500cc N/S mix 12시간마다~ 5일동안!<br>
+   		 ***Renal inpairment 시에는 주의해야됩니다!	<br>
+		</p>
 	</div>
 </div>
 
 <div data-role="page" id="main507">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>칼슘 보충법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+       <p>증상이 있는 Hypocalcemia 는 iv 치료를 원칙으로 한다.</p>
+	
+        1) 10% Calcium chloride 의 약 8ml를 + Normal saline 에 mix 해서 10분간 투여	<br>
+        2) 이어서 kg 당 1-2mg 의 element calcium 을 6-12시간동안 투여<br>
+     	<br>
+		54kg 의 정우 2Amp 의 Cal. Chloride + n/s 100cc mix over 12시간<br>
+		1A 당 calcium chloride  27mg 의 element calcium<br>
+		1A 당 calcium gluconate 9mg 의 element calcium<br>
+
 	</div>
 </div>
 
 <div data-role="page" id="main508">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>고칼슘혈증 처치</h1>
 	</div>
 
 	<div role="main" class="ui-content">
-       <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+        <p>Lasix 40-80mg every 2hr. : N/S을 함께 주는게 중요</p>
+        <p>Calcitonin : 4 Unit/kg IM or SC로 12시간마다 반복. 효과는 수시간안에 있으며 최대효과는 적다</p>
+        <p>hydrocortisone 200mg iv divided 2</p>
+        <p>Pamidronate 90mg iv over 2hour : 약 1주일 뒤에 효과있음</p>
+        <p>Zolendronate : 4mg iv over 15min. : 효과는 파미드로네이트와 비슷	</p>
 	</div>
 </div>
 
 <div data-role="page" id="main509">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1></h1>
+       <h1>Phosphorus 보충</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>적응증 1mg/dl 이하의 환자에서는 보충을 권유</p>
+        <p>Solution </p>
+        <p>Sodium Phosphorus</p>
+        <p>Potassium Phosphorus</p>
+        <p>** 0.6mg/kg 를 1시간동안 준다!!!!!!</p>
+        <p>6시간마다 추적후 Phosphorus 수치가 2가 넘으면 maintain 은 PO 로 할 수 있다</p>
+	</div>
+</div>
+
+<!-- 메인화면6 내분비------------------------------------------------------------------------------->
+<div data-role="page" id="main601">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Sepsis 캠페인</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>1) 빠른 항생제 정주 (Emperical antibiotics)</p>
+        <p>2) Hemodynamic stability 유지<br>
+         CVP 8-12cmH20 유지<br>
+         PCWP 12-16mmHg유지<br>
+         Urine output 0.5cc/min/kg 대략 시간당 30cc<br>
+         MBP 65mmHg 이상유지</p>
+        <p>3) Volume trial 에 반응 없을시 vasopressor 사용 : NE 이 prior choidce 이다. Renal dose 의 dopamine 은 쓰지 않는다.</p>
+        <p>4) central venous oxygen sat. 70% 이상유지</p>
+        <p>5) Adrenal insufficiency 시에 hydrocortisone 50mg iv q6hr 시작한다<br>
+         * Steroid 고려해야할 경우 : Refractory hypotension, fulminant N.meningitidis bacteremia, Prior steroid user, Disseaminated Tbc.(Miliary Tbc 에서 motality 개선효과는 없다)</p>
+        <p>6) Ventilator Therapy : low tidal volume 6ml/kg</p>
+        <p>7) pH <7.15 이하일시 bicarbonate therapy 고려한다.<br>
+        Glucose target : 180이하</p>
+        <p>8) Hb 7-9g/dl 유지</p>
+	</div>
+</div>
+
+<div data-role="page" id="main602">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>SIRS의 기준</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>다음 기준중 2개를 만족할때</p>
+        <p>1) fever : 38'c or hypothermia</p>
+        <p>2) Tachypnea >24/min or PaCO2 < 32mmHg</p>
+        <p>3) Tachycardia  > 90 beat/min</p>
+        <p>4) Leukocytosis >12000/uL or < 4000/uL or > 10% band</p>
+	</div>
+</div>
+
+<div data-role="page" id="main603">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>심내막염 진단 기준(Duke criteria)</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>Duke Criteria</p>									
+        <p style="color:#FF0000;font-weight:bold;">Major criteria</p>										
+        <p>1. Positive culture</p>											
+        <p> 1) 2개의 blood culture 에서 서로 특징적인 균주가 배양된 경우((viridans streptococci, Streptococcus gallolyticus, HACEK group, S.aureus, community acquired enterococci in the absence of a Primary focus)</p>
+        <p> 2) Persistently Positive blood culture, defined as recovery of a microorganism consistent with infective endocarditis from;<br>										
+           Blood culture drawn > 12h apart; or all of 3 or a majority of ≥ 4 separated blood culture with 1st and last drawn at least 1h apart.</p>									
+        <p>2. Evidence of endocardial involvement</p>
+        <p> 1) Positive Echocardiography</p>							
+      <table cellspacing="0" cellpadding="0">
+        <tr>
+          <td >Oscillating inctracardiac mass on valve    or supporting structurs or in the path of regulgitatant jets or in implanted    material in the abscnce of an alternative anatomic explanation or</td>
+        </tr>
+        <tr>
+          <td>Abscess or</td>
+        </tr>
+        <tr>
+          <td>New partial dehiscence of prosthetic valve    or</td>
+        </tr>
+        <tr>
+          <td>New valvular regulgitation</td>
+        </tr>
+      </table>
+      <br>
+     	<p style="color:#FF0000;font-weight:bold;">Minor criteria</p>
+        <p>1. Predisposition : heart condition or injection drug use</p>
+        <p>2. Fever  ≥ 38'C</p>
+        <p>3. Valvular phenomena : major arterial emboli, septic pulmonary infacts, mycotic aneurysms. Intracranial hemorrhage, conjuctival hemorrhage, Janeway lesions</p>
+        <p>4. Immunologic phenomenon : Glomerulonephritis, Osler's nodes, roth's spots, Rheumatic factor</p>
+        <p>5. Microbiologic evidence : Positive culture but not meeting major criteria as noted previously or serologic evidence of active infeciton with organism consistent with infective endocarditis</p>
+        <p style="color:#FF0000;"><span style="font-weight:bold;">결론----</span><br>
+        Definite : 2major or 1major +3minor or 5minor<br>
+        Probable : 1 major +1 minor or 3minor</p>
+        <p />
+        <p>수술을 고려하는 경우!!!!<br>
+         1) 판막기능 부전과 동반된 CHF<br>
+         2) 불안정한 인공 심판막<br>
+         3) 조절되지 않는 감염 ; 지속적인 균혈증, 진균성 심내막염<br>
+         4) 인공심판막에서 적절한 치료에도 불구하고 재발하는 경우</p>
+
+
+	</div>
+</div>
+
+<div data-role="page" id="main604">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>심내막염 방지 예방적 항생제 필요한 경우</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+    <p>1. 인공판막이나 인공물질이 판막치료에 쓰인경우</p>
+    <p>2. 과거에 IE를 앓은 경우</p>
+    <p>3. congenital HD.<br>
+     1) 수술적으로 교정안되는 청색증형 선천심질환 또는 대증적은 션트나 conduits<br>
+     2) 선천심질환 교정했으나 초기 6개월은 권장<br>
+     3) Device나 prosthetic material 로 교정했으나 결손이 남은경우</p>
+    <p>4. 심장이식 + 심장판막병증이 남은경우<br>
+    <span style="color:#FF0000">**참고 : MVP, Rheumatic heart disease, bicuspid valve disease, VSD, ASD HCMP등은 더 이상 고려대상이 아니다</span></p>
+    
+    <p>예방이 필요한 Procedure 들은?<br>
+    1. Dental procedure 구강점막을 침범하는 시술<br>
+    2. 호흡기 점막을 침범하는 시술<br>
+    * Endoscopy colonoscopy, cystoscopy 는 더 이상의 권장사항은 아니고 소변에 enterococci 과 colonization 된 경우 권장<br>
+    * infected skin 을 조작하는 침습적인 시술에도 high risk pt. 에서 권장</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main605">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>PMC 치료 가이드</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p><span style="font-weight:bold">Initial episode mild~modeate</span><br>
+        →→ Metronidazole 500mg tid PO for 10-14days</p>
+        <p><span style="font-weight:bold">Initial episode severe(WBC 15000 이상 or Cr. ≥ 1.5배 premorbid level</span><br>
+        →→ Vancomycin 125mg qid for 10-14days</p>
+        <p><span style="font-weight:bold">Initial Severe complicated(shock, ileus, megacolon 동반시)</span><br>
+        →→ vancomycin 500mg qid PO(Per Levin tube) + Metronidazole iv 500mg tid.) Rectal vancomycin 투여 고려</p>
+		<p style="color:#FF0000;font-weight:bold">첫번째 재발하더라도 치료가이드는 바뀌지 않는다</p>
+	</div>
+</div>
+
+<div data-role="page" id="main606">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>파상풍(tetanus) prophylaxis</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+		<table>
+         <tr>
+           <td width="20%">Toxin Hx    doses</td>
+           <td width="20%">Clean wound</td>
+           <td width="20">　</td>
+           <td width="20%">Not clean wound</td>
+           <td width="20%">　</td>
+         </tr>
+         <tr>
+           <td>　</td>
+           <td>Td</td>
+           <td>TIG</td>
+           <td>Td</td>
+           <td>TIG</td>
+         </tr>
+         <tr>
+           <td>Unknown&lt;3</td>
+           <td>YES</td>
+           <td>NO</td>
+           <td>YES</td>
+           <td>YES</td>
+         </tr>
+         <tr>
+           <td> ≥3</td>
+           <td>NO</td>
+           <td>NO</td>
+           <td>NO</td>
+           <td>NO</td>
+         </tr>
+       </table>
+       <p>** Td는 immunization 을 모르거나 10년이 경과했을 경우 투여</p>
+	</div>
+</div>
+
+<div data-role="page" id="main607">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>특수감염병별 항생제</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p><span style="color:#FF0000;font-weight:bold;">Leptospirosis </span><br>
+         Tx. : TC, doxycycline, ampicilline, amoxicillin PO<br>
+         Pen-G, amoxicillin, ampicillin, erythromycin<br>
+         화학적 예방은 : doxycycline 200mg PO 주1회</p>
+
+        <p><span style="color:#FF0000;font-weight:bold;">Scrub Typhus</span><br>
+        TX: Doxycycline 100mg bid for 7-15days Azithromycin 500mg PO qd for 3days</p>
+        
+        <p><span style="color:#FF0000;font-weight:bold;">Q fever</span><br>
+         Tx : Doxycycline 100mg bid + hydroxychloroquine 200mg tid</p>
+        
+        <p><span style="color:#FF0000;font-weight:bold;">Mycoplasma Pneumonia</span><br>
+         Tx : 1) Azithromycin 500mg x1day PO -> Day2-5 250mg PO qd<br>
+               2) Doxycycline 100mg bid for 10-14days</p>
+        
+        <p><span style="color:#FF0000;font-weight:bold;">Norcadiosis</span><br>
+        Tx : Sulfonamide for 6-12m</p>
+        
+        <p><span style="color:#FF0000;font-weight:bold;">Actinomycosis </span><br>
+         Tx : Penicillin 18-24백만 단위 daily  for 2-6주간</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main608">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Chemoprophylaxis</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+		<p>N.meningitidis<br>
+		  Close contact 시 </p>
+		<table>
+		  <tr>
+		    <td width="25%">약</td>
+		    <td width="25%">나이</td>
+		    <td width="50%">사용법</td>
+	      </tr>
+		  <tr>
+		    <td>RFP</td>
+		    <td>1개월 이하</td>
+		    <td>kg당 5mg bid for 2days    PO</td>
+	      </tr>
+		  <tr>
+		    <td>　</td>
+		    <td>1개월 이상</td>
+		    <td>kg당 10mg bid for    2days PO</td>
+	      </tr>
+		  <tr>
+		    <td>　</td>
+		    <td>성인</td>
+		    <td>600mg bid PO</td>
+	      </tr>
+		  <tr>
+		    <td>Azithromycin</td>
+		    <td>15세이하</td>
+		    <td>kg 당 10mg 1회 PO</td>
+	      </tr>
+		  <tr>
+		    <td>　</td>
+		    <td>15세이상</td>
+		    <td>500mg PO 1회</td>
+	      </tr>
+		  <tr>
+		    <td>Ceftriaxone</td>
+		    <td>15세 이하</td>
+		    <td>125mg IM 1회</td>
+	      </tr>
+		  <tr>
+		    <td>　</td>
+		    <td>15세 이상</td>
+		    <td>250mg IM 1회</td>
+	      </tr>
+		  <tr>
+		    <td>ciprofloxacin</td>
+		    <td>소아금기</td>
+		    <td>　</td>
+	      </tr>
+		  <tr>
+		    <td>　</td>
+		    <td>성인만</td>
+		    <td>500mg PO 1회</td>
+	      </tr>
+	  </table>
+		<p>&nbsp;</p>
+	</div>
+</div>
+
+
+<!-- 메인화면7 내분비------------------------------------------------------------------------------->
+<div data-role="page" id="main701">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>저혈당 치료법</h1>
 	</div>
 
 	<div role="main" class="ui-content">
        <p>1) IV dextrose : 20-50cc 의 50% dextrose</p>
+       <p>2) 이어서 5%~10% DW를 glucose 100 targer으로 정주한다.</p>
+       <p>3) Severe의 경우  glucacon 1mg IM or SC 권장(S/E 구토 : aspiration 주의)</p>
+	</div>
+</div>
+
+<div data-role="page" id="main702">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>DKA 처방</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p> 1) Fluid therapy<br>
+         Normal saline : full drop(1L) 이후 volume deficit 에 맞게 1L/hr infusion<br>
+         * Na수치가 155이상이면 half saline 으로<br>
+          => Half saline 150-500cc/hr</p>
+       <p>  2) Insulin therapy<br>
+         Initially RI 10-15 unit IV bolous<br>
+         N/S 150ml + RI 150U mix 5cc/hr속도 주입(50kg 기준) 0.1u/kg/hr<br>
+         시간당 50-100의 glucose를 낮추는 것을 목표로 한다(너무빨리낮추면 osmotic encephalopathy)<br>
+         Glucose level 이 250 까지 내려가면 G.I.K 를 시작한다</p>
+       <p>  3) Potassium<br>
+         K+ hyperkalemia 가 없다면 K 을 시간당 10-20mEq을 준다.<br>
+         Hypokalemia 가 있으면 40mEq/hr 이상의 K+을 공급해야함</p>
+       <p> 4) 모니터링<br>
+       		glucose level 1시간간격측정 electrolyte 1-2시간 간격으로 측정<br>
+            ABGA는 필요시마다 시행</p>
+       <p>  5) Bivon therapy<br>
+         a) coma 나 shock pH &lt;7.1 이하. Plasma bicarnobate 5mEq/L 이하일 경우<br>
+         sodium bicarbonate 50-100eEq/L + 1L half saline + KCl 10-20eEq (500cc/hr)</p>
+	</div>
+</div>
+
+<div data-role="page" id="main703">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>STEROID 역가비교</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+	  <table>
+	    <tr>
+	      <td width=20%>　</td>
+	      <td width=20%>Antiinflammatory potency</td>
+	      <td width=20%>Na+ retaining potency</td>
+	      <td width=20%>Duration of action</td>
+	      <td width=20%>Equivalent dose oral vs IV</td>
+        </tr>
+	    <tr>
+	      <td>hydrocortisone</td>
+	      <td>1</td>
+	      <td>1</td>
+	      <td>Short</td>
+	      <td>20</td>
+        </tr>
+	    <tr>
+	      <td>solucortef</td>
+	      <td>0.8</td>
+	      <td>0.8</td>
+	      <td>Short</td>
+	      <td>25</td>
+        </tr>
+	    <tr>
+	      <td>Prednisone</td>
+	      <td>4</td>
+	      <td>0.8</td>
+	      <td>Intermediate</td>
+	      <td>5</td>
+        </tr>
+	    <tr>
+	      <td>Prednisolone</td>
+	      <td>5</td>
+	      <td>0.8</td>
+	      <td>Intermediate</td>
+	      <td>5</td>
+        </tr>
+	    <tr>
+	      <td>Triamcinolone</td>
+	      <td>5</td>
+	      <td>0</td>
+	      <td>Intermediate</td>
+	      <td>4</td>
+        </tr>
+	    <tr>
+	      <td>Dexamethasone</td>
+	      <td>25</td>
+	      <td>0</td>
+	      <td>Long</td>
+	      <td>0.75</td>
+        </tr>
+      </table>
+	  
+	</div>
+</div>
+
+<div data-role="page" id="main704">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>DKA vs HHS</h1>
+	</div>
+    <br>
+	<table width="100%">
+	  <tr>
+	    <td>plasma glucose</td>
+	    <td>&gt;250</td>
+	    <td>&gt;250</td>
+	    <td>&gt;250</td>
+	    <td>&gt;600</td>
+      </tr>
+	  <tr>
+	    <td>Effective Serum osm</td>
+	    <td>다양</td>
+	    <td>다양</td>
+	    <td>다양</td>
+	    <td>&gt;320</td>
+      </tr>
+	  <tr>
+	    <td>Urine or serum ketone</td>
+	    <td>(+)</td>
+	    <td>(+)</td>
+	    <td>(+)</td>
+	    <td>(-) to (+)</td>
+      </tr>
+	  <tr>
+	    <td>Arterial pH</td>
+	    <td>7.25~7.3</td>
+	    <td>7.00~7.24</td>
+	    <td>&lt;7.00</td>
+	    <td>&gt;7.3</td>
+      </tr>
+	  <tr>
+	    <td>Serum bicarbonate</td>
+	    <td>15-18</td>
+	    <td>10~15</td>
+	    <td>&lt;10</td>
+	    <td>&gt;15</td>
+      </tr>
+	  <tr>
+	    <td>Anion Gap</td>
+	    <td>&gt;10</td>
+	    <td>&gt;12</td>
+	    <td>&gt;12</td>
+	    <td>&lt;12</td>
+      </tr>
+	  <tr>
+	    <td>Typical mental status</td>
+	    <td>Alert</td>
+	    <td>Drowsy</td>
+	    <td>Stupor 이상</td>
+	    <td>Stupor 이상</td>
+      </tr>
+  </table>
+</div>
+
+<!-- 메인화면8 그룹오더------------------------------------------------------------------------------->
+<div data-role="page" id="main801">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>CAPD peritonitis</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1. "CAPD2 balance1.5%(2L)  1 PK   ×01,<br>
+           + Urokinase (10만IU)녹십자  1 VL<br>
+          [Remark]<br>
+          2시간동안 배안에 넣어 두세요"</p>
+        <p>2. "CAPD2 balance1.5%(2L)  1 PK   ×01,<br>
+           + Fortum (1g)  1 G <br>
+           + Cefazolin (1g)  1 G  <br> 
+        + Heparin Sodium (25000IU)  2000 IU  "</p>
+        <p>3. "Notice >>  <br>
+        3번 연달아 IRRIGATION 후 UK MIX 된 투석액 넣어 주세요. 2시간동안 배안에 넣어둔후 항생제 MIX 된 투석액 넣어주세요</p>
+        <p>4. "CAPD4 balance2.3%(2L)  1 PK  IP <br>
+          + Fortum (1g)  0.25 G  <br>
+          + Cefazolin (1g)  0.25 G  <br>
+          + Heparin Sodium (25000IU)  2000 IU  <br>
+         [Remark]<br>
+         * 배출 후 주입"(4시간 간격)</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main802">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>CIN 예방법</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1) 시술전 12시간 전부터 normal saline or halfsaline 1cc/kg/hr시행후 12시간까지 수액을 주세요.2) 시술전 24시간 전부터 acetylcystein 1200mgbid 처방</p>
+	</div>
+</div>
+
+<div data-role="page" id="main803">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>항생제 모음 </h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p><span style="color:#FF0000;font-weight:bold">Tygacil (tygecycline) </span><br>
+        ----------------------<br>
+        1. "Tygacil (50mg)  50 MG  IV q'12:00 10:00 <br>
+          + 5% D/W (100ml)  100 ML  <br>
+         [Remark]<br>
+         over 30 ~ 60 분"<br>
+        ----------------</p>
+        <p><span style="color:#FF0000;font-weight:bold">Cefazolin</span><br>
+        "Cefazolin (1g)  1 G  IV q'08:00 3회 <br>
+         [Remark]<br>
+         cefazolin"</p>
+        <p><span style="color:#FF0000;font-weight:bold"> Cefepime</span><br>
+        "Maxipime (1g)  2 G  IV q'08:00 3회 </p>
+        
+        <p><span style="color:#FF0000;font-weight:bold">Cefotaxime</span><br>
+        "Cefotaxime (2g)한미  2 G  IV q'08:00 3회 <br>
+         [Remark]<br>
+         cefotaxime"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Yamatetan </span><br>
+        "Yamatetan (1g)  1 G  IV q'12:00 2회 
+         [Remark]
+         1-2G"
+        <p><span style="color:#FF0000;font-weight:bold">Ceftazidime</span><br>
+        "Tazime (2g)  2 G  IV q'08:00 3회 
+         [Remark]
+         ceftazidime"
+        <p><span style="color:#FF0000;font-weight:bold">Ciprofloxacin</span><br>
+        "Lopucin (200mg)  400 MG  IV q'12:00 2회</p>
+        <p><span style="color:#FF0000;font-weight:bold">Levofloxacin</span><br>
+        "Cravit (750mg)  750 MG  IV q'24:00 1회 <br>
+         [Remark]<br>
+         levoflo"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Moxifloxacin</span><br>
+        "Avelox (400mg)  400 MG  IV q'24:00 16:00 </p>
+        <p><span style="color:#FF0000;font-weight:bold">Metronidazole</span><br>
+        "Flagyl (500mg)  500 MG  IV q'06:00 4회 <br>
+         [Remark]<br>
+         7.5mg/kg metronidazole</p>
+        <p><span style="color:#FF0000;font-weight:bold">Vancomycin</span><br>
+        "VANCOCIN C.P (1g)  1 G  IV q'12:00 2회 <br>
+          + N/S-100 (100ml)  100 ML  <br>
+         [Remark]<br>
+         vanco check TDM"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Tazobactam</span><br>
+        "Tazocin (4.5g)  4.5 G  IV q'06:00 4회 
+          + N/S-100 (100ml)  100 ML  
+        <p><span style="color:#FF0000;font-weight:bold">Amikacin</span><br>
+        "Amikin (250mg)  750 MG  IV q'24:00 1회 <br>
+          + N/S (150ml)  100 ML  <br>
+         [Remark]<br>
+         amikacin 15mg/kg"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Isepacin</span><br>
+        "Isepacin (200mg)  400 MG  IV q'24:00 1회 <br>
+          + N/S-100 (100ml)  100 ML  <br>
+         [Remark]<br>
+         isepacin 8mg/kg"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Cilapenem.Meopenem</span><br>
+        "Cilapenem (500mg)제일  1 VL  IV q'06:00 4회 
+          + N/S-100 (100ml)  100 ML  "
+        "Meropen (500mg)  1000 MG  IV q'08:00 3회 
+          + N/S-100 (100ml)  100 ML  
+         [Remark]
+         meropenem, N/S 100 mix"
+        <p><span style="color:#FF0000;font-weight:bold">Zyvox</span><br>
+        "Zyvox (600mg/300ml)  600 MG  IV q'12:00 2회 <br>
+         [Remark]<br>
+         GFR 무관 용법동일"</p>
+        <p><span style="color:#FF0000;font-weight:bold">Teicoplanin</span><br>
+        "Teiconin (400mg)대웅  400 MG  IV <br>
+          + N/S-100 (100ml)  100 ML  "</p>
+        <p><span style="color:#FF0000;font-weight:bold">Bactrim</span><br>
+        1."Septrin 정  4 TA  *04 PO <br>
+         [Remark]<br>
+         아침과 저녁에는 Prednisolone 먹고 나서 15분 뒤 복용 <br>
+        "Notice >>  <br>
+        ***** bactrim for acute P. carinii infection **********<br> 
+        Bactrim 15-20mg/kg/day of Trimethoprime  * 21days* <br>
+        prednisolone     40mg bidx5days -> 40mg qdx5days*-> 20mg 1d    </p>             
+
+	</div>
+</div>
+
+<div data-role="page" id="main804">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Acetaminophen 해독요법</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1. "Muteran (300mg)  11100 MG   ×01, <br>
+          + 5% D/W (500ml)  200 ML  <br>
+         [Remark]<br>
+         150mg/kg for 1 hour"</p>
+        <p>2. "Muteran (300mg)  3700 MG   ×01, <br>
+          + 5% D/W (500ml)  500 ML  <br>
+         [Remark]<br>
+         50mg/kg for 4hours"</p>
+        <p>3. "Muteran (300mg)  7400 MG   ×01, <br>
+          + 5% D/W (500ml)  500 ML  <br>
+         [Remark]<br>
+         50mg/kg for 16hours"</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main805">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Midazolam and nocuron</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+      <p> "Midazolam  (5mg/5ml)[향정]  100 MG   ×01, 5    CC/Hr <br>
+          + N/S (500ml)  250 ML  "<br>
+        "5% D/W (100ml)  100 ML   ×01, 5   CC/Hr <br>
+          + Norcuron (4mg)  5 VL  <br>
+         [Remark]<br>
+         maintenance dose: 1mcg/kg/min= 60mcg/kg/hr, 90kg =<br>
+         > 5400mcg/hr = 5mg/hr (20mg/100cc = 1mg/5cc)"</p>
+	</div>
+</div>
+
+<div data-role="page" id="main806">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Peridipine / Labetalol</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>"5% D/W (500ml)  250 ML   ×01, 12   CC/Hr <br>
+  + Perdipine (10mg)  100 MG  <br>
+ [Remark]<br>
+ 0.28mg /ml  1ug/kg/min = 6ml=2.4mg 차광 line 까지"<br>
+---------------------------------------------------------<br>
+N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
+  + Labesin (100mg)  500 MG <<Remained>>  <br>
+ [Remark]<br>
+ SBP 150 이상시 3cc/hr 증량,SBP 130 이하시 3cc/hr 감량"</p>
+-----------------------------------------------------------	
+	</div>
+</div>
+
+<div data-role="page" id="main807">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Amiodarone</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>1.Cordarone (150mg)  1 AP  IV</p>
+       <p>2."Cordarone (150mg)  3 AP   ×01, <br>
+          + 5% D/W (500ml)  250 ML <br>
+         [Remark]<br>
+         34CC/HR (1mg/min) -> 6시간 뒤 17CC/HR (0.5mg/min)"<br>
+        설명 : <br>
+        LOADING : 150mg OVER 10min  -> 1mg/hr FOR 5hrs<br>
+        MAINTAINANCE : 450mg/250ml = 1.8mg/ml -> 0.5mg/hr (17CC/HR)"</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main808">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Lidocaine</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>"Lidocaine 2% (400mg)  60 MG  IV <br>
+         [Remark]<br>
+         bolus 1-1.5mg/kg iv push response없으면0.5~0.75mg/kg iv push q 5min(max 3mg/kg)"<br>
+        "Lidocaine 2% (400mg)  2000 MG   ×01, 15  CC/Hr <br>
+          + 5% D/W (500ml)  500.0 ML  <br>
+         [Remark]<br>
+         농도 4mg/ml --> 15cc/hr 주입시 1mg/min"</p>
+	</div>
+</div>
+
+<div data-role="page" id="main809">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Thrombolysis(actilyse/metalyse)</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>"Actilyse (20mg)  100 MG   ×01, </p>
+        <p>  + N/S (500ml)  200 ML  <br>
+         [Remark]<br>
+         2시간동안/급성 폐색전증 : 100mg 2시간에 걸쳐 정맥 주입"<br>
+        "Metalyse (40mg)  1 MG   ×01, <br>
+          + N/S (500ml)  200 ML  <br>
+         [Remark]<br>
+         100mg 2시간동안"</p>
+
+	</div>
+</div>
+
+<div data-role="page" id="main810">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>Paraquat DI 대처법</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>1. Gastric lavage, within 3hr of ingestion</p>
+         <p>2. Urine test for paraquat :첫 소변→음독 유무 진단<br>
+        방광 비운 후 repeat→내원 당시의 농도 확인<br>
+        (음독 10시간 내 1+ 이하로 낮추는 것이 좋다.)</p>
+        
+         <p>3. Ingestion of charcoal or Fuller’s Earth with mannitol</p>
+         <p>4. Hemoperfusion for 4 hrs X 2 </p>
+         <p>5. CRRT (CVHDF) for 72hrs after hemoperfusion</p>
+         <p>6. Main Chemo<br>
+        A. Methylprednisolone 1gm+N/S 200ml for 3days(Dexamethasone 50mg IV) <br>
+        → PO PDL , tapering for 2wks<br>
+        Cychlophosphamide 1gm+N/S 200ml for 3days <br>
+        Or<br>
+        B. Dexamethasone 8mg q 8hrs for 2 weeks<br>
+          Cychlophosphamide 5mg/kg QOD for 2 weeks</p>
+        
+         <p>7. Others<br>
+        Vitamine C 3000mg/day, <br>
+        Vitamine E 600IU/day,<br>
+        Melatonin 18mg/day,<br> 
+        Colchicine 200mg/day<br>
+        NAC 50~70mg/kg q 12 hrs (NAC 4.5gm IV)<br>
+        Deferoxamine mesylate 500mg IV<br>
+        Furosemide IV</p>
+
+	</div>
+</div>
+
+<!--메인화면 : 기타 -->
+<div data-role="page" id="main2001">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>CSF Tapping 결과</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+	  Normal<br>
+	  <table cellspacing="0" cellpadding="0">
+	    <col width="85">
+	    <col width="80">
+	    <tr>
+	      <td width="85">CSF Openign Pr.</td>
+	      <td width="80">50-180mmH2O</td>
+        </tr>
+	    <tr>
+	      <td>Glucose</td>
+	      <td>40-85mg/dl</td>
+        </tr>
+	    <tr>
+	      <td>Protein</td>
+	      <td>15-45mg/dl</td>
+        </tr>
+	    <tr>
+	      <td>WBC</td>
+	      <td>성인은 0-5/uL</td>
+        </tr>
+      </table>
+      <p> </p>
+	  Bacterial Meningitis<br>
+	  <table cellspacing="0" cellpadding="0">
+	    <col width="85">
+	    <col width="80">
+	    <tr>
+	      <td width="85">Glucose</td>
+	      <td width="80">40mg/dl 이하</td>
+        </tr>
+	    <tr>
+	      <td>Protein</td>
+	      <td>250mg/dl이상</td>
+        </tr>
+	    <tr>
+	      <td>WBC</td>
+	      <td>10-1000cell/uL 초기엔 100이하가능</td>
+        </tr>
+	    <tr>
+	      <td>diff</td>
+	      <td>PMN dominant</td>
+        </tr>
+	    <tr>
+	      <td>CSF Pr.</td>
+	      <td>Elevated</td>
+        </tr>
+      </table>
+	  <p></p>
+      
+      Viral meningitis<br>
+	  <table cellspacing="0" cellpadding="0">
+	    <col width="85">
+	    <col width="80">
+	    <tr>
+	      <td width="85">Glucose</td>
+	      <td width="80">Normal</td>
+        </tr>
+	    <tr>
+	      <td>Protein</td>
+	      <td>100mg/dl이하, slightly elevated</td>
+        </tr>
+	    <tr>
+	      <td>WBC</td>
+	      <td>보통100개 이하</td>
+        </tr>
+	    <tr>
+	      <td>diff</td>
+	      <td>초기 neutrophil 후기 lymphocyte</td>
+        </tr>
+	    <tr>
+	      <td>CSF Pr.</td>
+	      <td>대부분 normal range</td>
+        </tr>
+      </table>
+
+	</div>
+</div>
+
+<div data-role="page" id="main2002">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1>LMP 기준 hCG의 변화</h1>
+	</div>
+
+	<div role="main" class="ui-content">
+	  <table>
+	    <tr>
+	      <td width="50%">Week from    LMP</td>
+	      <td width="50%">hCG level (mIU/ml)</td>
+        </tr>
+	    <tr>
+	      <td>3</td>
+	      <td>5-50</td>
+        </tr>
+	    <tr>
+	      <td>4</td>
+	      <td>3-425</td>
+        </tr>
+	    <tr>
+	      <td>5</td>
+	      <td>19-7340</td>
+        </tr>
+	    <tr>
+	      <td>6</td>
+	      <td>1080-56500</td>
+        </tr>
+	    <tr>
+	      <td>7~8</td>
+	      <td>7650-229000</td>
+        </tr>
+	    <tr>
+	      <td>9~12</td>
+	      <td>23700-288000</td>
+        </tr>
+	    <tr>
+	      <td>13~16</td>
+	      <td>13300-25400</td>
+        </tr>
+	    <tr>
+	      <td>17~24</td>
+	      <td>4060-165400</td>
+        </tr>
+	    <tr>
+	      <td>25~40</td>
+	      <td>3640-11700</td>
+        </tr>
+      </table>
+
 	</div>
 </div>
 
