@@ -5,94 +5,21 @@
     android:orientation="vertical"
     android:padding="15dp" >
     
+    
+        
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center"
+        android:padding="10dp">
+        <Button 
+            android:id="@+id/btnWrite" android:layout_width="60dp" android:layout_height="35dp" 
+    	    android:background="@drawable/color_red" android:text="글쓰기"
+            android:textColor="#ffffff" android:gravity="center" android:textSize="14dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivUserImg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                style="@style/Contents_Title_Layout"
-                android:layout_marginTop="5dp" >
-
-                <ImageView style="@style/Contents_Title_Icon" />
-
-                <TextView
-                    style="@style/Contents_Title_Text"
-                    android:text="정보 입력" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/Line"
-                android:layout_marginTop="15dp" />
-        </LinearLayout>
-       
-    </LinearLayout>
-    
-   <LinearLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-
-        <EditText
-        	android:id="@+id/et1" android:layout_width="match_parent" android:layout_height="wrap_content"
-        	android:inputType="number"
-        	style="@style/InputBox_Tablet" android:hint="빌리루틴" />
-        
-        <EditText
-        	android:id="@+id/et2" android:layout_width="match_parent" android:layout_height="wrap_content"
-        	android:inputType="number"
-        	style="@style/InputBox_Tablet" android:hint="크레아티닌" />
-        
-        <EditText
-        	android:id="@+id/et3" android:layout_width="match_parent" android:layout_height="wrap_content"
-        	android:inputType="number"
-        	style="@style/InputBox_Tablet" android:hint="INR" />
-
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent" android:layout_height="wrap_content" 
-            android:prompt="@string/spin_21" android:spinnerMode="dropdown"/>
-    
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                style="@style/Contents_Title_Layout"
-                android:layout_marginTop="5dp" >
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/Line"
-                android:layout_marginTop="15dp" />
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center"
-            android:padding="10dp">
-            <Button 
-                android:id="@+id/btnSubmit" android:layout_width="60dp" android:layout_height="35dp" 
-        	    android:background="@drawable/color_red" android:text="완료"
-                android:textColor="#ffffff" android:gravity="center" android:textSize="14dp" />
-        </LinearLayout>
-        
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="" />
+        android:src="@drawable/ab_solid_typing" />
 
 </LinearLayout>
