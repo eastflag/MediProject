@@ -62,18 +62,6 @@ public class MainActivity extends Activity {
 			}
 		}
 	};
-	
-	View.OnClickListener mSubMenuClick = new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			switch(v.getId()) {
-			case R.id.btnWrite:
-				mFragment = new BoardWriteFragment();
-				mFm.beginTransaction().replace(R.id.frame, mFragment).commit();
-				break;
-			}
-		}
-	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -124,7 +112,7 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.menu_board) {
-			mFragment = new BoardListFragment(mSubMenuClick);
+			mFragment = new BoardListFragment();
 			mFm.beginTransaction().replace(R.id.frame, mFragment).commit();
 			showSubmenu();
 			return true;

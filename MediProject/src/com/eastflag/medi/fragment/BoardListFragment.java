@@ -1,5 +1,7 @@
 package com.eastflag.medi.fragment;
 
+import org.json.JSONObject;
+
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.androidquery.AQuery;
 import com.eastflag.medi.BoardWriteActivity;
@@ -16,10 +19,12 @@ public class BoardListFragment extends Fragment {
 
 	private AQuery mAq;
 	private View mView;
-	private OnClickListener mClick;
+	
+	private int pageNo = 1;
+	
+	private ListView mListBoard;
 
-	public BoardListFragment(OnClickListener mClick) {
-		this.mClick = mClick;
+	public BoardListFragment() {
 	}
 
 	@Override
@@ -28,8 +33,9 @@ public class BoardListFragment extends Fragment {
 		mView = inflater.inflate(R.layout.boardlist, null);
 		mAq = new AQuery(getActivity(), mView);
 		
+		mListBoard = (ListView) mView.findViewById(R.id.listBoard);
+		
 		mView.findViewById(R.id.btnWrite).setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
@@ -37,7 +43,10 @@ public class BoardListFragment extends Fragment {
 			}
 		});
 		
-		
+		String url = "http://www.javabrain.kr/api/getBoardList";
+		//JSONObject json = new JSONObject();
+		//json.put("pageNo", )
+		//mAq.post(url, contentHeader, entity, type, callback)
 		
 		return mView;
 	}
