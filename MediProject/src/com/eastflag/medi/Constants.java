@@ -1,4 +1,4 @@
-package com.lgcns.wd;
+package com.eastflag.medi;
 
 public final class Constants {
 	

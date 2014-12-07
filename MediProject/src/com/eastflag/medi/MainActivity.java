@@ -1,11 +1,19 @@
-package com.lgcns.wd;
+package com.eastflag.medi;
+
+import com.eastflag.medi.R;
+import com.eastflag.medi.fragment.BoardListFragment;
+import com.eastflag.medi.fragment.BoardWriteFragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +23,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -23,6 +32,49 @@ public class MainActivity extends Activity {
 	public WebView mWebView;
 	private ProgressBar mProgressBar;
 	private ImageView logo;
+	
+	private FragmentManager mFm;
+	private Fragment mFragment;
+	
+	private View main;
+	private FrameLayout frame;
+	
+	private Handler mHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			switch(msg.what) {
+			case 0:
+				Animation fadeout = AnimationUtils.loadAnimation(MainActivity.this, R.anim.fade_out);
+			    logo.startAnimation(fadeout);
+			    fadeout.setAnimationListener(new AnimationListener() {
+					@Override
+					public void onAnimationStart(Animation animation) {
+						logo.setVisibility(View.GONE);
+					}
+					@Override
+					public void onAnimationRepeat(Animation animation) {
+					}
+					@Override
+					public void onAnimationEnd(Animation animation) {
+					}
+				});
+				break;
+			}
+		}
+	};
+	
+	View.OnClickListener mSubMenuClick = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Log.d("LDK", "submenu clicked");
+			switch(v.getId()) {
+			case R.id.btnWrite:
+				mFragment = new BoardWriteFragment();
+				mFm.beginTransaction().replace(R.id.frame, mFragment).commit();
+				break;
+			}
+		}
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,24 +90,23 @@ public class MainActivity extends Activity {
 		
 		logo = (ImageView) findViewById(R.id.logo);
 		
-		Animation fadeout = AnimationUtils.loadAnimation(this, R.anim.fade_out);
-	    logo.startAnimation(fadeout);
-	    fadeout.setAnimationListener(new AnimationListener() {
-			@Override
-			public void onAnimationStart(Animation animation) {
-				logo.setVisibility(View.GONE);
-			}
-			
-			@Override
-			public void onAnimationRepeat(Animation animation) {
-				
-			}
-			
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				
-			}
-		});
+		mFm = getFragmentManager();
+		
+		main = findViewById(R.id.main);
+		frame = (FrameLayout) findViewById(R.id.frame);
+		
+		mHandler.sendEmptyMessageDelayed(0, 1000);
+	}
+	
+	// show sub menu
+	private void showSubmenu() {
+		main.setVisibility(View.GONE);
+		frame.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideSubmenu() {
+		main.setVisibility(View.VISIBLE);
+		frame.setVisibility(View.GONE);
 	}
 
 	@Override
@@ -73,8 +124,9 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 		if (id == R.id.menu_board) {
-			Intent intent = new Intent(this, BoardActivity.class);
-			startActivity(intent);
+			mFragment = new BoardListFragment(mSubMenuClick);
+			mFm.beginTransaction().replace(R.id.frame, mFragment).commit();
+			showSubmenu();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -89,7 +141,8 @@ public class MainActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle(getString(R.string.app_name))
+		if(mFragment == null) {
+			builder.setTitle(getString(R.string.app_name))
 				.setMessage("종료하시겠습니까?")
 				.setPositiveButton("OK",
 						new DialogInterface.OnClickListener() {
@@ -108,10 +161,14 @@ public class MainActivity extends Activity {
 								dialog.dismiss();
 							}
 						}).show();
+		} else {
+			mFm.beginTransaction().remove(mFragment);
+			mFragment = null;
+			hideSubmenu();
+		}
 	}
 	
 	class MyWebViewClient extends WebViewClient {
-		
 		@Override
 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
 			return super.shouldOverrideUrlLoading(view, url);

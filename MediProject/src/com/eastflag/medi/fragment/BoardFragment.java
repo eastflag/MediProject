@@ -1,4 +1,4 @@
-package com.lgcns.wd.fragment;
+package com.eastflag.medi.fragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.androidquery.AQuery;
-import com.lgcns.wd.R;
+import com.eastflag.medi.R;
 
 public class BoardFragment extends Fragment {
 	
@@ -33,7 +33,7 @@ public class BoardFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		mView = inflater.inflate(R.layout.board, null);
+		mView = inflater.inflate(R.layout.boardlist, null);
 		
 		mAq = new AQuery(mView);
 		

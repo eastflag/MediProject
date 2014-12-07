@@ -1,7 +1,6 @@
-package com.lgcns.wd;
+package com.eastflag.medi;
 
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.eastflag.medi.R;
 
 public class BaseExpandableAdapter extends BaseExpandableListAdapter{
 	

@@ -1,4 +1,4 @@
-package com.lgcns.wd.fragment;
+package com.eastflag.medi.fragment;
 
 import android.app.Fragment;
 import android.graphics.drawable.Drawable;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
-import com.lgcns.wd.R;
+import com.eastflag.medi.R;
 
 public class _1_3_Fragment extends Fragment {
 

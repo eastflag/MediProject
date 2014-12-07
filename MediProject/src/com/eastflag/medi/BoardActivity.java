@@ -1,11 +1,10 @@
-package com.lgcns.wd;
+package com.eastflag.medi;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-
 import com.androidquery.AQuery;
-
+import com.eastflag.medi.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -42,7 +41,7 @@ public class BoardActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.board);
+		setContentView(R.layout.boardlist);
 
 		mAq = new AQuery(this);
 

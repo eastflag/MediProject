@@ -1,4 +1,4 @@
-package com.lgcns.wd.view;
+package com.eastflag.medi.view;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
