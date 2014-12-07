@@ -66,7 +66,6 @@ public class MainActivity extends Activity {
 	View.OnClickListener mSubMenuClick = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Log.d("LDK", "submenu clicked");
 			switch(v.getId()) {
 			case R.id.btnWrite:
 				mFragment = new BoardWriteFragment();
@@ -98,6 +97,7 @@ public class MainActivity extends Activity {
 		mHandler.sendEmptyMessageDelayed(0, 1000);
 	}
 	
+
 	// show sub menu
 	private void showSubmenu() {
 		main.setVisibility(View.GONE);
@@ -130,12 +130,6 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.d("LDK", "onActivityResult");
-		//super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override
