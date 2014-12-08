@@ -5,18 +5,18 @@
     android:orientation="vertical">
    
     <RelativeLayout
-        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:layout_height="40dp"
         android:layout_marginBottom="5dp"
         android:background="#FFCCCCCC">
         <TextView 
             android:layout_width="60dp" android:layout_height="wrap_content" 
             android:layout_centerInParent="true"
-    	    android:text="게시판"  android:textSize="20sp" />
+    	    android:text="게시판"  android:textSize="18sp" />
         <Button 
-            android:id="@+id/btnWrite" android:layout_width="60dp" android:layout_height="35dp" 
-            android:layout_alignParentRight="true"
-    	    android:background="@drawable/color_red" 
-    	    android:text="글쓰기" android:textColor="#ffffff" android:gravity="center" android:textSize="14dp" />
+            android:id="@+id/btnWrite" android:layout_width="60dp" android:layout_height="30dp" 
+            android:layout_centerVertical="true" android:layout_alignParentRight="true"
+    	    android:background="@drawable/button_back" 
+    	    android:text="글쓰기" android:gravity="center" android:textSize="14dp" />
     </RelativeLayout>
 
     <ListView
@@ -26,9 +26,9 @@
     
     <Button 
         android:id="@+id/btnMore" 
-        android:layout_width="match_parent" android:layout_height="35dp" 
-        android:layout_marginTop="5dp"
-  	    android:background="@drawable/color_red" android:text="더보기"
-        android:textColor="#ffffff" android:gravity="center" android:textSize="14dp" />
+        android:layout_width="match_parent" android:layout_height="30dp" 
+        android:layout_margin="5dp"
+  	    android:background="@drawable/button_back" android:text="더보기"
+        android:gravity="center" android:textSize="14dp" />
 
 </LinearLayout>

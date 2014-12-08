@@ -32,6 +32,10 @@
             android:name=".BoardWriteActivity"
             android:label="@string/title_activity_board_write" >
         </activity>
+        <activity
+            android:name=".BoardViewActivity"
+            android:label="@string/title_activity_board_view" >
+        </activity>
     </application>
 
 </manifest>

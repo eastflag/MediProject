@@ -7,5 +7,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_board_write">BoardWriteActivity</string>
+    <string name="title_activity_board_view">BoardViewActivity</string>
 
 </resources>
