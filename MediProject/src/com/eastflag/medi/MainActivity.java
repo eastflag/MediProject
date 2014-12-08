@@ -1,20 +1,14 @@
 package com.eastflag.medi;
 
-import com.eastflag.medi.R;
-import com.eastflag.medi.fragment.BoardListFragment;
-import com.eastflag.medi.fragment.BoardWriteFragment;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +20,8 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import com.eastflag.medi.fragment.BoardListFragment;
 
 public class MainActivity extends Activity {
 	

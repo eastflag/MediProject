@@ -22,9 +22,9 @@ import com.androidquery.callback.AjaxStatus;
 
 public class BoardViewActivity extends Activity {
 	
-	private Button btnSubmit;
 	private ImageView ivUserImg;
 	private EditText etTitle, etContent, etName, etPassword;
+	private Button btnModify, btnImage, btnSubmit;
 	
 	private AQuery mAq;
 	
@@ -48,16 +48,23 @@ public class BoardViewActivity extends Activity {
 		etContent = (EditText) findViewById(R.id.etContent);
 		etName = (EditText) findViewById(R.id.etName);
 		etPassword = (EditText) findViewById(R.id.etPassword);
+		ivUserImg = (ImageView) findViewById(R.id.ivUserImg);
+		btnModify = (Button) findViewById(R.id.btnModify);
+		btnImage = (Button) findViewById(R.id.btnImage);
+		btnSubmit = (Button) findViewById(R.id.btnSubmit);
+		
 		etTitle.setEnabled(false);
 		etContent.setEnabled(false);
 		etName.setEnabled(false);
 		etPassword.setEnabled(false);
+		btnModify.setVisibility(View.GONE);
+		btnImage.setVisibility(View.GONE);
+		btnSubmit.setVisibility(View.GONE);
+		findViewById(R.id.rootPassword).setVisibility(View.GONE);
 		
-		ivUserImg = (ImageView) findViewById(R.id.ivUserImg);
-		btnSubmit = (Button) findViewById(R.id.btnSubmit);
-		
-		findViewById(R.id.btnImage).setOnClickListener(mClick);
+		btnModify.setOnClickListener(mClick);
 		ivUserImg.setOnClickListener(mClick);
+		btnImage.setOnClickListener(mClick);
 		btnSubmit.setOnClickListener(mClick);
 		
 		int board_id = getIntent().getExtras().getInt("board_id");

@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -23,10 +24,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+import com.eastflag.medi.view.LoadingDialog;
 
 public class BoardWriteActivity extends Activity {
 	public final  int MAX_WIDTH = 600;
@@ -60,6 +63,14 @@ public class BoardWriteActivity extends Activity {
 				break;
 				
 			case R.id.btnSubmit:
+				if(TextUtils.isEmpty(etName.getText().toString()) || TextUtils.isEmpty(etPassword.getText().toString()) || 
+						TextUtils.isEmpty(etContent.getText().toString()) || TextUtils.isEmpty(etTitle.getText().toString())) {
+					Toast.makeText(BoardWriteActivity.this, "입력되지 않는 항목이 있습니다", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				
+				LoadingDialog.showLoading(BoardWriteActivity.this);
+				
 				String url = "http://www.javabrain.kr/api/addBoard";
 				JSONObject json = new JSONObject();
 				try {
@@ -73,7 +84,13 @@ public class BoardWriteActivity extends Activity {
 					mAq.post(url, json, JSONObject.class, new AjaxCallback<JSONObject>(){
 						@Override
 						public void callback(String url, JSONObject object, AjaxStatus status) {
-							Log.d("LDK", "status code:" + status.getCode());
+							LoadingDialog.hideLoading();
+							if(status.getCode() == 200) {
+								Toast.makeText(BoardWriteActivity.this, "글쓰기를 성공하였습니다.", Toast.LENGTH_SHORT).show();
+								finish();
+							} else {
+								Toast.makeText(BoardWriteActivity.this, "글쓰기를 실패하였습니다.", Toast.LENGTH_SHORT).show();
+							}
 						}
 					});
 				} catch (JSONException e) {
@@ -96,6 +113,8 @@ public class BoardWriteActivity extends Activity {
 		etContent = (EditText) findViewById(R.id.etContent);
 		etName = (EditText) findViewById(R.id.etName);
 		etPassword = (EditText) findViewById(R.id.etPassword);
+		
+		findViewById(R.id.btnModify).setVisibility(View.GONE);
 		
 		ivUserImg = (ImageView) findViewById(R.id.ivUserImg);
 		btnSubmit = (Button) findViewById(R.id.btnSubmit);
