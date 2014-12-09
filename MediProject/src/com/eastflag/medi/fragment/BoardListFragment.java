@@ -42,6 +42,8 @@ public class BoardListFragment extends Fragment {
 	
 	private ListView mListBoard;
 	private Button btnMore;
+	
+	private int mBoardMode = 1; //1:최초 로딩, 2: 글보기(수정), 3:글쓰기
 
 	public BoardListFragment() {
 	}
@@ -61,6 +63,7 @@ public class BoardListFragment extends Fragment {
 		mView.findViewById(R.id.btnWrite).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				mBoardMode =3; //글쓰기 모드
 				Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
 				getActivity().startActivity(intent);
 			}
@@ -77,6 +80,7 @@ public class BoardListFragment extends Fragment {
 		mListBoard.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				mBoardMode = 2; //글보기 모드
 				Intent intent = new Intent(getActivity(), BoardViewActivity.class);
 				intent.putExtra("board_id", mBoardList.get(position).board_id);
 				getActivity().startActivity(intent);
@@ -88,9 +92,29 @@ public class BoardListFragment extends Fragment {
 		MenuItem refreshItem = menu.findItem(R.id.menu_board); 
 		refreshItem.setTitle("새로고침");*/
 		
-		getList();
-		
 		return mView;
+	}
+	
+
+	@Override
+	public void onResume() {
+		//글쓰기에서 돌아오면 최초 페이지 로딩, 글 보기(수정)에서 돌아오면 현재글 리프레쉬
+		switch(mBoardMode) {
+		case 1: 
+			getList();
+			break;
+		case 2:
+			mBoardList.clear();
+			pageNo = 1;
+			getList();
+			break;
+		case 3:
+			mBoardList.clear();
+			pageNo = 1;
+			getList();
+			break;
+		}
+		super.onPause();
 	}
 
 	private void getList() {
