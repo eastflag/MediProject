@@ -167,28 +167,46 @@
 				$('#main503_result').text(Math.round(result*100)/100);	
 			});
 			
-			$('[name*=btn]').bind('click', function() {
-				var a = $(this).prev("h1").children("img").size();
-				console.log("a:" + a);
-				if(a > 0) {
-					$(this).prev("h1").children("img").remove();
-					localStorage.setItem($(this).attr("name"), 0);
+			$('#faver').bind('click', function() {
+				if($(this).attr('value') == 'minus') {
+					$(this).attr('value', 'plus');
+					//즐겨찾기만 보여주기	
+					$('ul').children('li').children('a').each(function(index, element) {
+						if($(this).children('img').size() == 0) {
+							$(this).parent().hide();
+						}
+					});
 				} else {
-					$(this).prev("h1").append("<img src='images/star.png' width='16px'>");
-					localStorage.setItem($(this).attr("name"), 1);
+					$(this).attr('value', 'minus');
+					//모두 보여주기	
+					$('ul').children('li').children('a').each(function(index, element) {
+						$(this).parent().show();
+					});
+				}
+				 
+			});
+			
+			$('[name*=btn]').bind('click', function() {
+				var val = $(this).val();
+				var size = $('[name=h' +  val + ']').children("img").size();
+				console.log("size:" + size);
+				if(size > 0) {
+					$('[name=h' +  val + ']').children("img").remove();
+					$('[name=li' +  val + ']').children('a').children("img").remove();
+					localStorage.removeItem(val);
+				} else {
+					$('[name=h' +  val + ']').append("<img src='images/star.png' width='16px'>");
+					$('[name=li' +  val + ']').children('a').append("<img src='images/star.png' width='16px'>");
+					sessionStorage.setItem(val, val);
 				}
 				
 			});
 			
-			var a = localStorage.getItem("btn101");
-			console.log("a:" + a);
-			var b = "101";
-			if(a > 0) {
-				$('[name=btn' + b + ']').prev("h1").append("<img src='images/star.png' width='16px'>");
-				$('[name=li' + b + ']').children("a").append("<img src='images/star.png' width='16px'>");
+			for(var i=0; i < sessionStorage.length ; ++i) {
+				var val = sessionStorage.key(i); //localStorage.getItem(localStorage.key(i))
+				$('[name=h' +  val + ']').append("<img src='images/star.png' width='16px'>");
+				$('[name=li' +  val + ']').children('a').append("<img src='images/star.png' width='16px'>");
 			}
-			
-			console.log("localStroage:" + localStorage.getItem("btn101"));
 		});
 		</script>
 	</head>
@@ -197,23 +215,24 @@
 <div data-role="page">
 	<div data-role="header" data-position="inline">
 	   <h1>내과 정보</h1>
+       <button data-icon="star" value="minus"	id="faver">즐겨찾기</button>
 	</div>
 	
 	<div data-role="content">
 		<div data-role="collapsible">
 	      <h3>응급처방(ICU)</h3>
 	      <ul data-role="listview" data-inset="true">
-			<li name="li101"><a href="#main11" data-ajax="false">1. 기계환기재시작기준</a></li>
-			<li><a href="#main12" data-ajax="false">2. FiO2 설정과 한계</a></li>
-			<li><a href="#main13" data-ajax="false">3. sedative agent(ICU setting)</a></li>
-			<li><a href="#main14" data-ajax="false">4. Weaning criteria</a></li>
-			<li><a href="#main15" data-ajax="false">5. ARDS ventilator setting</a></li>
-			<li><a href="#main16" data-ajax="false">6. 패혈증 초기 치료 GOAL</a></li>
-			<li><a href="#main17" data-ajax="false">7. 초기 인공호흡기 세팅법</a></li>
-			<li><a href="#main18" data-ajax="false">8. 도파민 필살기</a></li>
-			<li><a href="#main19" data-ajax="false">9. 도부파민 필살기</a></li>
-			<li><a href="#main110" data-ajax="false">10. Norepi. 사용법</a></li>
-			<li><a href="#main111" data-ajax="false">11. DIC score 계산 ISTH criteria</a></li>
+			<li name="li101"><a href="#main101" data-ajax="false">1. 기계환기재시작기준</a></li>
+			<li name="li102"><a href="#main102" data-ajax="false">2. FiO2 설정과 한계</a></li>
+			<li name="li103"><a href="#main103" data-ajax="false">3. sedative agent(ICU setting)</a></li>
+			<li name="li104"><a href="#main104" data-ajax="false">4. Weaning criteria</a></li>
+			<li name="li105"><a href="#main105" data-ajax="false">5. ARDS ventilator setting</a></li>
+			<li name="li106"><a href="#main106" data-ajax="false">6. 패혈증 초기 치료 GOAL</a></li>
+			<li name="li107"><a href="#main107" data-ajax="false">7. 초기 인공호흡기 세팅법</a></li>
+			<li name="li108"><a href="#main108" data-ajax="false">8. 도파민 필살기</a></li>
+			<li name="li109"><a href="#main109" data-ajax="false">9. 도부파민 필살기</a></li>
+			<li name="li110"><a href="#main110" data-ajax="false">10. Norepi. 사용법</a></li>
+			<li name="li111"><a href="#main111" data-ajax="false">11. DIC score 계산 ISTH criteria</a></li>
 		  </ul>
 	    </div>
 	    
@@ -345,11 +364,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main11">
+<div data-role="page" id="main101">
 	<div data-role="header" data-position="inline">
     	<a href="./main.html" data-rel="back" data-icon="back">Back</a>
-        <h1>1. 기계환기재시작기준</h1>
-        <button data-icon="star" name="btn101">즐겨찾기</button>
+        <h1 name="h101">1. 기계환기재시작기준</h1>
+        <button data-icon="star" name="btn101" value="101">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -362,10 +381,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main12">
+<div data-role="page" id="main102">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. FiO2 설정과 한계</h1>
+       <h1 name="h102">2. FiO2 설정과 한계</h1>
+       <button data-icon="star" name="btn102" value="102">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -378,10 +398,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main13">
+<div data-role="page" id="main103">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. sedative agent(ICU setting)</h1>
+       <h1 name="h103">3. sedative agent(ICU setting)</h1>
+       <button data-icon="star" name="btn103" value="103">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -426,10 +447,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main14">
+<div data-role="page" id="main104">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. Weaning criteria</h1>
+       <h1 name="h104">4. Weaning criteria</h1>
+       <button data-icon="star" name="btn104" value="104">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -441,10 +463,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main15">
+<div data-role="page" id="main105">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. ARDS ventilator setting</h1>
+       <h1 name="h105">5. ARDS ventilator setting</h1>
+       <button data-icon="star" name="btn105" value="105">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -510,10 +533,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main16">
+<div data-role="page" id="main106">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. 패혈증 초기 치료 GOAL</h1>
+       <h1 name="h106">6. 패혈증 초기 치료 GOAL</h1>
+       <button data-icon="star" name="btn106" value="106">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -524,10 +548,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main17">
+<div data-role="page" id="main107">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. 초기 인공호흡기 세팅법</h1>
+       <h1 name="h107">7. 초기 인공호흡기 세팅법</h1>
+       <button data-icon="star" name="btn107" value="107">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -539,10 +564,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main18">
+<div data-role="page" id="main108">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. 도파민 필살기</h1>
+       <h1 name="h108">8. 도파민 필살기</h1>
+       <button data-icon="star" name="btn108" value="108">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -608,10 +634,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main19">
+<div data-role="page" id="main109">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. 도부파민 필살기</h1>
+       <h1 name="h109">9. 도부파민 필살기</h1>
+       <button data-icon="star" name="btn109" value="109">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -672,7 +699,8 @@
 <div data-role="page" id="main110">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>10. Norepi. 사용법</h1>
+       <h1 name="h110">10. Norepi. 사용법</h1>
+       <button data-icon="star" name="btn110" value="110">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -713,7 +741,8 @@
 <div data-role="page" id="main111">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>11. DIC score 계산 ISTH criteria</h1>
+       <h1 name="h111">11. DIC score 계산 ISTH criteria</h1>
+       <button data-icon="star" name="btn111" value="111">즐겨찾기</button>
 	</div>
 
   <div role="main" class="ui-content">
