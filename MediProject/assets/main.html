@@ -166,6 +166,29 @@
 				var result = MeasuredOsm - A;
 				$('#main503_result').text(Math.round(result*100)/100);	
 			});
+			
+			$('[name*=btn]').bind('click', function() {
+				var a = $(this).prev("h1").children("img").size();
+				console.log("a:" + a);
+				if(a > 0) {
+					$(this).prev("h1").children("img").remove();
+					localStorage.setItem($(this).attr("name"), 0);
+				} else {
+					$(this).prev("h1").append("<img src='images/star.png' width='16px'>");
+					localStorage.setItem($(this).attr("name"), 1);
+				}
+				
+			});
+			
+			var a = localStorage.getItem("btn101");
+			console.log("a:" + a);
+			var b = "101";
+			if(a > 0) {
+				$('[name=btn' + b + ']').prev("h1").append("<img src='images/star.png' width='16px'>");
+				$('[name=li' + b + ']').children("a").append("<img src='images/star.png' width='16px'>");
+			}
+			
+			console.log("localStroage:" + localStorage.getItem("btn101"));
 		});
 		</script>
 	</head>
@@ -180,7 +203,7 @@
 		<div data-role="collapsible">
 	      <h3>응급처방(ICU)</h3>
 	      <ul data-role="listview" data-inset="true">
-			<li><a href="#main11" data-ajax="false">1. 기계환기재시작기준</a></li>
+			<li name="li101"><a href="#main11" data-ajax="false">1. 기계환기재시작기준</a></li>
 			<li><a href="#main12" data-ajax="false">2. FiO2 설정과 한계</a></li>
 			<li><a href="#main13" data-ajax="false">3. sedative agent(ICU setting)</a></li>
 			<li><a href="#main14" data-ajax="false">4. Weaning criteria</a></li>
@@ -326,6 +349,7 @@
 	<div data-role="header" data-position="inline">
     	<a href="./main.html" data-rel="back" data-icon="back">Back</a>
         <h1>1. 기계환기재시작기준</h1>
+        <button data-icon="star" name="btn101">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
