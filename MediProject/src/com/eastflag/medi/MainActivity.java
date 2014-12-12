@@ -4,17 +4,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.Preference;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -22,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.eastflag.medi.fragment.BoardListFragment;
+import com.eastflag.medi.util.PreferenceUtil;
 
 public class MainActivity extends Activity {
 	
@@ -68,7 +73,20 @@ public class MainActivity extends Activity {
 		
 		mWebView = (WebView) findViewById(R.id.webview);
 		mWebView.getSettings().setJavaScriptEnabled(true);
+		//html5 localStorage 를 사용하게하기
+		mWebView.getSettings().setDomStorageEnabled(true); 
+		mWebView.getSettings().setDatabaseEnabled(true);
+		//mWebView.addJavascriptInterface(new MyJavaScriptInterface(), "mAndroid");
+		
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+			mWebView.getSettings().setDatabasePath("/data/data/" + mWebView.getContext().getPackageName() + "/databases/");
+		} else {
+			String databasePath = this.getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath(); 
+			mWebView.getSettings().setDatabasePath(databasePath);
+		}
+		
 		mWebView.setWebViewClient(new MyWebViewClient());
+		
 		mWebView.loadUrl("file:///android_asset/main.html");
 		
 		logo = (ImageView) findViewById(R.id.logo);
@@ -164,4 +182,18 @@ public class MainActivity extends Activity {
 			super.onPageFinished(view, url);
 		}
 	}
+	
+/*	class MyJavaScriptInterface {
+	    MyJavaScriptInterface() {
+	 
+	    }
+	 
+	    public void setItem(String key) {
+	    	PreferenceUtil.instance(MainActivity.this).setItem(key);
+	    }
+	    
+	    public String getItem(String key) {
+	    	return PreferenceUtil.instance(MainActivity.this).getItem(key);
+	    }
+	}  */ 
 }

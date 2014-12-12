@@ -186,6 +186,7 @@
 				 
 			});
 			
+			//즐겨찾기 로직-----------------------------------------------------------------------------------
 			$('[name*=btn]').bind('click', function() {
 				var val = $(this).val();
 				var size = $('[name=h' +  val + ']').children("img").size();
@@ -195,16 +196,16 @@
 					$('[name=li' +  val + ']').children('a').children("img").remove();
 					localStorage.removeItem(val);
 				} else {
-					$('[name=h' +  val + ']').append("<img src='images/star.png' width='16px'>");
+					$('[name=h' +  val + ']').prepend("<img src='images/star.png' width='16px'>");
 					$('[name=li' +  val + ']').children('a').append("<img src='images/star.png' width='16px'>");
-					sessionStorage.setItem(val, val);
+					localStorage.setItem(val, val);
 				}
 				
 			});
 			
-			for(var i=0; i < sessionStorage.length ; ++i) {
-				var val = sessionStorage.key(i); //localStorage.getItem(localStorage.key(i))
-				$('[name=h' +  val + ']').append("<img src='images/star.png' width='16px'>");
+			for(var i=0; i < localStorage.length ; ++i) {
+				var val = localStorage.key(i); //localStorage.getItem(localStorage.key(i))
+				$('[name=h' +  val + ']').prepend("<img src='images/star.png' width='16px'>");
 				$('[name=li' +  val + ']').children('a').append("<img src='images/star.png' width='16px'>");
 			}
 		});
@@ -239,125 +240,125 @@
 	    <div data-role="collapsible">
 	      <h3>소화기</h3>
 	      <ul data-role="listview" data-inset="true">
-	        <li><a href="#main201" data-ajax="false">1. stool osmotic gap</a></li>
-            <li><a href="#main202" data-ajax="false">2. NSAIDs risk 별 가이드</a></li>
-            <li><a href="#main203" data-ajax="false">3. GI bleeding의 Forrest classification</a></li>
-            <li><a href="#main204" data-ajax="false">4. UC, CD 빠른 비교</a></li>
-            <li><a href="#main205" data-ajax="false">5. CTP score</a></li>
-            <li><a href="#main206" data-ajax="false">6. MELD-Na score</a></li>
-            <li><a href="#main207" data-ajax="false">7. 췌장염 지표들</a></li>
-            <li><a href="#main208" data-ajax="false">8. 자가면역간염 진단 치료 필살기</a></li>
-            <li><a href="#main209" data-ajax="false">9. 간절제 가능여부 보기</a></li>
-            <li><a href="#main210" data-ajax="false">10. RUCAM(약인성 간손상 파악)</a></li>
-            <li><a href="#main211" data-ajax="false">11. 각종 enema 법과 주의점</a></li>
-            <li><a href="#main212" data-ajax="false">12. 간암 병기 Okuda staging</a></li>
-            <li><a href="#main213" data-ajax="false">13. 간암에서 간이식 적응증 (Milan criteria)</a></li>
-            <li><a href="#main214" data-ajax="false">14. 간성 뇌증 West heaven Criteria</a></li>
-            <li><a href="#main215" data-ajax="false">15. Alcoholic hepatitis Discriminant Function</a></li>
+	        <li name="li201"><a href="#main201" data-ajax="false">1. stool osmotic gap</a></li>
+            <li name="li202"><a href="#main202" data-ajax="false">2. NSAIDs risk 별 가이드</a></li>
+            <li name="li203"><a href="#main203" data-ajax="false">3. GI bleeding의 Forrest classification</a></li>
+            <li name="li204"><a href="#main204" data-ajax="false">4. UC, CD 빠른 비교</a></li>
+            <li name="li205"><a href="#main205" data-ajax="false">5. CTP score</a></li>
+            <li name="li206"><a href="#main206" data-ajax="false">6. MELD-Na score</a></li>
+            <li name="li207"><a href="#main207" data-ajax="false">7. 췌장염 지표들</a></li>
+            <li name="li208"><a href="#main208" data-ajax="false">8. 자가면역간염 진단 치료 필살기</a></li>
+            <li name="li209"><a href="#main209" data-ajax="false">9. 간절제 가능여부 보기</a></li>
+            <li name="li210"><a href="#main210" data-ajax="false">10. RUCAM(약인성 간손상 파악)</a></li>
+            <li name="li211"><a href="#main211" data-ajax="false">11. 각종 enema 법과 주의점</a></li>
+            <li name="li212"><a href="#main212" data-ajax="false">12. 간암 병기 Okuda staging</a></li>
+            <li name="li213"><a href="#main213" data-ajax="false">13. 간암에서 간이식 적응증 (Milan criteria)</a></li>
+            <li name="li214"><a href="#main214" data-ajax="false">14. 간성 뇌증 West heaven Criteria</a></li>
+            <li name="li215"><a href="#main215" data-ajax="false">15. Alcoholic hepatitis Discriminant Function</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>순환기</h3>
 	      <ul data-role="listview" data-inset="true">
-	      	<li><a href="#main301" data-ajax="false">1. Killip Classification</a></li>
-            <li><a href="#main302" data-ajax="false">2. Hyperkalemia 응급처치</a></li>
+	      	<li name="li301"><a href="#main301" data-ajax="false">1. Killip Classification</a></li>
+            <li name="li302"><a href="#main302" data-ajax="false">2. Hyperkalemia 응급처치</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>호흡기</h3>
 	      <ul data-role="listview" data-inset="true">
-	        <li><a href="#main41" data-ajax="false">1. 호흡기 협진필살기</a></li>
-            <li><a href="#main42" data-ajax="false">2. 폐렴환자입원기준(CURB-65)</a></li>
-            <li><a href="#main43" data-ajax="false">3. 결핵약 1차약제 용법</a></li>
-            <li><a href="#main44" data-ajax="false">4. 결핵의 치료효과판정</a></li>
-            <li><a href="#main45" data-ajax="false">5. 빠른 결핵진료지침 link.</a></li>
-            <li><a href="#main46" data-ajax="false">6. COPD 한번에 깨기</a></li>
-            <li><a href="#main47" data-ajax="false">7. 천식 치료 한번에 보기</a></li>
-            <li><a href="#main48" data-ajax="false">8. PFT판독기준</a></li>
-            <li><a href="#main49" data-ajax="false">9. 흡입제들 한번에 이해하기</a></li>
+	        <li name="li401"><a href="#main401" data-ajax="false">1. 호흡기 협진필살기</a></li>
+            <li name="li421"><a href="#main402" data-ajax="false">2. 폐렴환자입원기준(CURB-65)</a></li>
+            <li name="li403"><a href="#main403" data-ajax="false">3. 결핵약 1차약제 용법</a></li>
+            <li name="li404"><a href="#main404" data-ajax="false">4. 결핵의 치료효과판정</a></li>
+            <li name="li405"><a href="#main405" data-ajax="false">5. 빠른 결핵진료지침 link.</a></li>
+            <li name="li406"><a href="#main406" data-ajax="false">6. COPD 한번에 깨기</a></li>
+            <li name="li407"><a href="#main407" data-ajax="false">7. 천식 치료 한번에 보기</a></li>
+            <li name="li408"><a href="#main408" data-ajax="false">8. PFT판독기준</a></li>
+            <li name="li409"><a href="#main409" data-ajax="false">9. 흡입제들 한번에 이해하기</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>신장</h3>
 	      <ul data-role="listview" data-inset="true">
-	        <li><a href="#main501" data-ajax="false">1. Anion Gap </a></li>
-            <li><a href="#main502" data-ajax="false">2. FENa</a></li>
-            <li><a href="#main503" data-ajax="false">3. Osmolar Gap 구하기</a></li>
-            <li><a href="#main504" data-ajax="false">4. 체액의 분포</a></li>
-            <li><a href="#main505" data-ajax="false">5. Contrast induced Renal failure 예방법</a></li>
-            <li><a href="#main506" data-ajax="false">6. 마그네슘 보충법</a></li>
-            <li><a href="#main507" data-ajax="false">7. 칼슘 보충법</a></li>
-            <li><a href="#main508" data-ajax="false">8. 고칼슘혈증 처치</a></li>
-            <li><a href="#main509" data-ajax="false">9. Phosphorus 보충</a></li>
-            <li><a href="#main510" data-ajax="false">10. Hyponatremia 교정 속도가 너무 빠를때 조치</a></li>
-            <li><a href="#main511" data-ajax="false">11. Proteinuria w/u 도표</a></li>
-            <li><a href="#main512" data-ajax="false">12. hematuria w/u 도표</a></li>
-            <li><a href="#main513" data-ajax="false">13. Azotemia w/u 바로보기</a></li>
-            <li><a href="#main514" data-ajax="false">14. polyuria w/u</a></li>
-            <li><a href="#main515" data-ajax="false">15. hyponatremia w/u</a></li>
-            <li><a href="#main516" data-ajax="false">16. hypernatremia w/u</a></li>
-            <li><a href="#main517" data-ajax="false">17. Hypokalemia w/u</a></li>
-            <li><a href="#main518" data-ajax="false">18. hyperkalemia 도표</a></li>
+	        <li name="li501"><a href="#main501" data-ajax="false">1. Anion Gap </a></li>
+            <li name="li502"><a href="#main502" data-ajax="false">2. FENa</a></li>
+            <li name="li503"><a href="#main503" data-ajax="false">3. Osmolar Gap 구하기</a></li>
+            <li name="li504"><a href="#main504" data-ajax="false">4. 체액의 분포</a></li>
+            <li name="li505"><a href="#main505" data-ajax="false">5. Contrast induced Renal failure 예방법</a></li>
+            <li name="li506"><a href="#main506" data-ajax="false">6. 마그네슘 보충법</a></li>
+            <li name="li507"><a href="#main507" data-ajax="false">7. 칼슘 보충법</a></li>
+            <li name="li508"><a href="#main508" data-ajax="false">8. 고칼슘혈증 처치</a></li>
+            <li name="li509"><a href="#main509" data-ajax="false">9. Phosphorus 보충</a></li>
+            <li name="li510"><a href="#main510" data-ajax="false">10. Hyponatremia 교정 속도가 너무 빠를때 조치</a></li>
+            <li name="li511"><a href="#main511" data-ajax="false">11. Proteinuria w/u 도표</a></li>
+            <li name="li512"><a href="#main512" data-ajax="false">12. hematuria w/u 도표</a></li>
+            <li name="li513"><a href="#main513" data-ajax="false">13. Azotemia w/u 바로보기</a></li>
+            <li name="li514"><a href="#main514" data-ajax="false">14. polyuria w/u</a></li>
+            <li name="li515"><a href="#main515" data-ajax="false">15. hyponatremia w/u</a></li>
+            <li name="li516"><a href="#main516" data-ajax="false">16. hypernatremia w/u</a></li>
+            <li name="li517"><a href="#main517" data-ajax="false">17. Hypokalemia w/u</a></li>
+            <li name="li518"><a href="#main518" data-ajax="false">18. hyperkalemia 도표</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>감염(항생제)</h3>
 	      <ul data-role="listview" data-inset="true">
-	      	<li><a href="#main601" data-ajax="false">1. Sepsis 캠페인</a></li>
-            <li><a href="#main602" data-ajax="false">2. SIRS의 기준</a></li>
-            <li><a href="#main603" data-ajax="false">3. 심내막염 진단 기준(Duke criteria)</a></li>
-            <li><a href="#main604" data-ajax="false">4. 심내막염 방지 예방적 항생제 필요한 경우</a></li>
-            <li><a href="#main605" data-ajax="false">5. PMC 치료 가이드</a></li>
-            <li><a href="#main606" data-ajax="false">6. 파상풍(tetanus) prophylaxis</a></li>
-            <li><a href="#main607" data-ajax="false">7. 특수감염병별 항생제</a></li>
-            <li><a href="#main608" data-ajax="false">8. Chemoprophylaxis</a></li>
-            <li><a href="#main609" data-ajax="false">9. 예방접종 리스트</a></li>
-            <li><a href="#main610" data-ajax="false">10. Candida의 항진균제 감수성 모음</a></li>
-            <li><a href="#main611" data-ajax="false">11. 삼일열 말라리아 치료법</a></li>
+	      	<li name="li601"><a href="#main601" data-ajax="false">1. Sepsis 캠페인</a></li>
+            <li name="li602"><a href="#main602" data-ajax="false">2. SIRS의 기준</a></li>
+            <li name="li603"><a href="#main603" data-ajax="false">3. 심내막염 진단 기준(Duke criteria)</a></li>
+            <li name="li604"><a href="#main604" data-ajax="false">4. 심내막염 방지 예방적 항생제 필요한 경우</a></li>
+            <li name="li605"><a href="#main605" data-ajax="false">5. PMC 치료 가이드</a></li>
+            <li name="li606"><a href="#main606" data-ajax="false">6. 파상풍(tetanus) prophylaxis</a></li>
+            <li name="li607"><a href="#main607" data-ajax="false">7. 특수감염병별 항생제</a></li>
+            <li name="li608"><a href="#main608" data-ajax="false">8. Chemoprophylaxis</a></li>
+            <li name="li609"><a href="#main609" data-ajax="false">9. 예방접종 리스트</a></li>
+            <li name="li610"><a href="#main610" data-ajax="false">10. Candida의 항진균제 감수성 모음</a></li>
+            <li name="li611"><a href="#main611" data-ajax="false">11. 삼일열 말라리아 치료법</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>내분비</h3>
 	      <ul data-role="listview" data-inset="true">
-	        <li><a href="#main701" data-ajax="false">1. 저혈당 치료법</a></li>
-            <li><a href="#main702" data-ajax="false">2. DKA 처방</a></li>
-            <li><a href="#main703" data-ajax="false">3. STEROID 역가비교</a></li>
-            <li><a href="#main704" data-ajax="false">4. DKA vs HHS</a></li>
+	        <li name="li701"><a href="#main701" data-ajax="false">1. 저혈당 치료법</a></li>
+            <li name="li702"><a href="#main702" data-ajax="false">2. DKA 처방</a></li>
+            <li name="li703"><a href="#main703" data-ajax="false">3. STEROID 역가비교</a></li>
+            <li name="li704"><a href="#main704" data-ajax="false">4. DKA vs HHS</a></li>
 	      </ul>
 	    </div>
         
         <div data-role="collapsible">
 	      <h3>그룹오더</h3>
 	      <ul data-role="listview" data-inset="true">
-	      	<li><a href="#main801" data-ajax="false">1. CAPD peritonitis</a></li>
-            <li><a href="#main802" data-ajax="false">2. CIN 예방법</a></li>
-            <li><a href="#main803" data-ajax="false">3. 항생제 모음 </a></li>
-            <li><a href="#main804" data-ajax="false">4. Acetaminophen 해독요법</a></li>
-            <li><a href="#main805" data-ajax="false">5. Midazolam and nocuron</a></li>
-            <li><a href="#main806" data-ajax="false">6. Peridipine / Labetalol</a></li>
-            <li><a href="#main807" data-ajax="false">7. Amiodarone</a></li>
-            <li><a href="#main808" data-ajax="false">8. Lidocaine</a></li>
-            <li><a href="#main809" data-ajax="false">9. Thrombolysis(actilyse/metalyse)</a></li>
-            <li><a href="#main810" data-ajax="false">10. Paraquat DI 대처법</a></li>
+	      	<li name="li801"><a href="#main801" data-ajax="false">1. CAPD peritonitis</a></li>
+            <li name="li802"><a href="#main802" data-ajax="false">2. CIN 예방법</a></li>
+            <li name="li803"><a href="#main803" data-ajax="false">3. 항생제 모음 </a></li>
+            <li name="li804"><a href="#main804" data-ajax="false">4. Acetaminophen 해독요법</a></li>
+            <li name="li805"><a href="#main805" data-ajax="false">5. Midazolam and nocuron</a></li>
+            <li name="li806"><a href="#main806" data-ajax="false">6. Peridipine / Labetalol</a></li>
+            <li name="li807"><a href="#main807" data-ajax="false">7. Amiodarone</a></li>
+            <li name="li808"><a href="#main808" data-ajax="false">8. Lidocaine</a></li>
+            <li name="li809"><a href="#main809" data-ajax="false">9. Thrombolysis(actilyse/metalyse)</a></li>
+            <li name="li810"><a href="#main810" data-ajax="false">10. Paraquat DI 대처법</a></li>
 	      </ul>
 	    </div>
 	    
 	    <div data-role="collapsible">
 	      <h3>기타</h3>
 	      <ul data-role="listview" data-inset="true">
-	      	<li><a href="#main2001" data-ajax="false">1. CSF Tapping 결과</a></li>
-            <li><a href="#main2002" data-ajax="false">2. LMP 기준 hCG의 변화s</a></li>
-            <li><a href="#main2003" data-ajax="false">3. 류마티스 관절염 진단기준 </a></li>
-            <li><a href="#main2004" data-ajax="false">4. SLE진단기준 빨리 찾기</a></li>
-            <li><a href="#main2005" data-ajax="false">5. 전신경화증(systemic sclerosis 진단기준)</a></li>
-            <li><a href="#main2006" data-ajax="false">6. 혈관염의분류</a></li>
-            <li><a href="#main2007" data-ajax="false">7. neutropenic fever 초기치료법</a></li>
-            <li><a href="#main2008" data-ajax="false">8. 쇼그렌 진단 Criteria</a></li>
+	      	<li name="li2001"><a href="#main2001" data-ajax="false">1. CSF Tapping 결과</a></li>
+            <li name="li2002"><a href="#main2002" data-ajax="false">2. LMP 기준 hCG의 변화s</a></li>
+            <li name="li2003"><a href="#main2003" data-ajax="false">3. 류마티스 관절염 진단기준 </a></li>
+            <li name="li2004"><a href="#main2004" data-ajax="false">4. SLE진단기준 빨리 찾기</a></li>
+            <li name="li2005"><a href="#main2005" data-ajax="false">5. 전신경화증(systemic sclerosis 진단기준)</a></li>
+            <li name="li2006"><a href="#main2006" data-ajax="false">6. 혈관염의분류</a></li>
+            <li name="li2007"><a href="#main2007" data-ajax="false">7. neutropenic fever 초기치료법</a></li>
+            <li name="li2008"><a href="#main2008" data-ajax="false">8. 쇼그렌 진단 Criteria</a></li>
 	      </ul>
 	    </div>
 
@@ -830,7 +831,8 @@
 <div data-role="page" id="main201">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. 기계환기재시작기준</h1>
+       <h1 name="h201">1. 기계환기재시작기준</h1>
+       <button data-icon="star" name="btn201" value="201">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -862,7 +864,8 @@
 <div data-role="page" id="main202">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. NSAIDs risk 별 가이드</h1>
+       <h1 name="h202">2. NSAIDs risk 별 가이드</h1>
+       <button data-icon="star" name="btn202" value="202">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -902,7 +905,8 @@
 <div data-role="page" id="main203">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. GI bleeding의 Forrest classification</h1>
+       <h1 name="h203">3. GI bleeding의 Forrest classification</h1>
+       <button data-icon="star" name="btn203" value="203">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -950,7 +954,8 @@
 <div data-role="page" id="main204">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. UC, CD 빠른 비교</h1>
+       <h1 name="h204">4. UC, CD 빠른 비교</h1>
+       <button data-icon="star" name="btn204" value="204">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1015,7 +1020,8 @@
 <div data-role="page" id="main205">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. CTP score</h1>
+       <h1 name="h205">5. CTP score</h1>
+       <button data-icon="star" name="btn205" value="205">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1122,7 +1128,8 @@
 <div data-role="page" id="main206">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. MELD-Na score</h1>
+       <h1 name="h206">6. MELD-Na score</h1>
+       <button data-icon="star" name="btn206" value="206">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1201,7 +1208,8 @@
 <div data-role="page" id="main207">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. 췌장염 지표들</h1>
+       <h1 name="h207">7. 췌장염 지표들</h1>
+       <button data-icon="star" name="btn207" value="207">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1276,7 +1284,8 @@
 <div data-role="page" id="main208">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. 자가면역간염 진단 치료 필살기</h1>
+       <h1 name="h208">8. 자가면역간염 진단 치료 필살기</h1>
+       <button data-icon="star" name="btn208" value="208">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1386,7 +1395,8 @@
 <div data-role="page" id="main209">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. 간절제 가능여부 보기</h1>
+       <h1 name="h209">9. 간절제 가능여부 보기</h1>
+       <button data-icon="star" name="btn209" value="209">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1437,7 +1447,8 @@
 <div data-role="page" id="main210">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>10. RUCAM(약인성 간손상 파악)</h1>
+       <h1 name="h210">10. RUCAM(약인성 간손상 파악)</h1>
+       <button data-icon="star" name="btn210" value="210">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1549,7 +1560,8 @@
 <div data-role="page" id="main211">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>11. 각종 enema 법과 주의점</h1>
+       <h1 name="h211">11. 각종 enema 법과 주의점</h1>
+       <button data-icon="star" name="btn211" value="211">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1584,7 +1596,8 @@
 <div data-role="page" id="main212">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>12. 간암 병기 Okuda staging</h1>
+       <h1 name="h212">12. 간암 병기 Okuda staging</h1>
+       <button data-icon="star" name="btn212" value="212">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1643,7 +1656,8 @@
 <div data-role="page" id="main213">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>13. 간암에서 간이식 적응증 (Milan criteria)</h1>
+       <h1 name="h213">13. 간암에서 간이식 적응증 (Milan criteria)</h1>
+       <button data-icon="star" name="btn213" value="213">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1655,7 +1669,8 @@
 <div data-role="page" id="main214">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>14. 간성 뇌증 West heaven Criteria</h1>
+       <h1 name="h214">14. 간성 뇌증 West heaven Criteria</h1>
+       <button data-icon="star" name="btn214" value="214">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1665,7 +1680,8 @@
 <div data-role="page" id="main215">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>15. Alcoholic hepatitis Discriminant Function</h1>
+       <h1 name="h215">15. Alcoholic hepatitis Discriminant Function</h1>
+       <button data-icon="star" name="btn215" value="215">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1702,7 +1718,8 @@
 <div data-role="page" id="main301">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. Killip Classification</h1>
+       <h1 name="h301">1. Killip Classification</h1>
+       <button data-icon="star" name="btn301" value="301">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1733,7 +1750,8 @@
 <div data-role="page" id="main302">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. Hyperkalemia 응급처치</h1>
+       <h1 name="h302">2. Hyperkalemia 응급처치</h1>
+       <button data-icon="star" name="btn302" value="302">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1744,10 +1762,11 @@
 </div>
 
 <!-- 메인화면4 호흡기------------------------------------------------------------------------------->
-<div data-role="page" id="main41">
+<div data-role="page" id="main401">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. 호흡기 협진필살기</h1>
+       <h1 name="h401">1. 호흡기 협진필살기</h1>
+       <button data-icon="star" name="btn401" value="401">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1767,10 +1786,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main42">
+<div data-role="page" id="main402">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. 초기 인공호흡기 세팅법</h1>
+       <h1 name="h402">2. 초기 인공호흡기 세팅법</h1>
+       <button data-icon="star" name="btn402" value="402">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1838,10 +1858,11 @@
 	</div>
 </div>
 
-<div data-role="page" id="main43">
+<div data-role="page" id="main403">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. 결핵약 1차약제 용법</h1>
+       <h1 name="h403">3. 결핵약 1차약제 용법</h1>
+       <button data-icon="star" name="btn403" value="403">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1851,10 +1872,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main44">
+<div data-role="page" id="main404">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. 결핵의 치료효과판정</h1>
+       <h1 name="h404">4. 결핵의 치료효과판정</h1>
+       <button data-icon="star" name="btn404" value="404">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1862,10 +1884,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main45">
+<div data-role="page" id="main405">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. 빠른 결핵진료지침 link</h1>
+       <h1 name="h405">5. 빠른 결핵진료지침 link</h1>
+       <button data-icon="star" name="btn405" value="405">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1873,10 +1896,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main46">
+<div data-role="page" id="main406">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. COPD 한번에 깨기</h1>
+       <h1 name="h406">6. COPD 한번에 깨기</h1>
+       <button data-icon="star" name="btn406" value="406">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1894,10 +1918,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main47">
+<div data-role="page" id="main407">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. 천식 치료 한번에 보기</h1>
+       <h1 name="h407">7. 천식 치료 한번에 보기</h1>
+       <button data-icon="star" name="btn407" value="407">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1905,10 +1930,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main48">
+<div data-role="page" id="main408">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. PFT판독기준</h1>
+       <h1 name="h408">8. PFT판독기준</h1>
+       <button data-icon="star" name="btn408" value="408">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -1916,10 +1942,11 @@
     </div>
 </div> 
 
-<div data-role="page" id="main49">
+<div data-role="page" id="main409">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. 흡입제들 한번에 이해하기</h1>
+       <h1 name="h409">9. 흡입제들 한번에 이해하기</h1>
+       <button data-icon="star" name="btn409" value="409">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2003,7 +2030,8 @@
 <div data-role="page" id="main501">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. Anion Gap</h1>
+       <h1 name="h501">1. Anion Gap</h1>
+       <button data-icon="star" name="btn501" value="501">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2046,7 +2074,8 @@
 <div data-role="page" id="main502">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. FENa</h1>
+       <h1 name="h502">2. FENa</h1>
+       <button data-icon="star" name="btn502" value="502">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2089,7 +2118,8 @@
 <div data-role="page" id="main503">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. Osmolar Gap 구하기</h1>
+       <h1 name="h503">3. Osmolar Gap 구하기</h1>
+       <button data-icon="star" name="btn503" value="503">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2131,7 +2161,8 @@
 <div data-role="page" id="main504">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. 체액의 분포</h1>
+       <h1 name="h504">4. 체액의 분포</h1>
+       <button data-icon="star" name="btn504" value="504">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2191,7 +2222,8 @@
 <div data-role="page" id="main505">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. Contrast induced Renal failure 예방법</h1>
+       <h1 name="h505">5. Contrast induced Renal failure 예방법</h1>
+       <button data-icon="star" name="btn505" value="505">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2207,12 +2239,13 @@
 <div data-role="page" id="main506">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. 마그네슘 보충법</h1>
+       <h1 name="h506">6. 마그네슘 보충법</h1>
+       <button data-icon="star" name="btn506" value="506">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
 		<p>
-           * 혈청 마그네슘이 1mEq/L에 electrolyte 이상동반시 요법<br>
+           * 혈청 마그네슘이 1mEq/L 이하에 electrolyte 이상동반시 요법<br>
         1) 6g의 MgSO4를 250~500cc의 normal saline 에 mix 하여 3시간동안준다<br>
         2) 이어서 5g의 MgSO4를  250-500cc의 normal saline 에 mix 하여 6시간동안준다<br>
         3) 이어서 continous infusion! 5g MgSO4 + 250~500cc N/S mix 12시간마다~ 5일동안!<br>
@@ -2230,7 +2263,8 @@
 <div data-role="page" id="main507">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. 칼슘 보충법</h1>
+       <h1 name="h507">7. 칼슘 보충법</h1>
+       <button data-icon="star" name="btn507" value="507">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2240,8 +2274,8 @@
         2) 이어서 kg 당 1-2mg 의 element calcium 을 6-12시간동안 투여<br>
      	<br>
 		54kg 의 정우 2Amp 의 Cal. Chloride + n/s 100cc mix over 12시간<br>
-		1A 당 calcium chloride  27mg 의 element calcium<br>
-		1A 당 calcium gluconate 9mg 의 element calcium<br>
+		1A 의 calcium chloride  27mg 의 element calcium<br>
+		1A 의 calcium gluconate 9mg 의 element calcium<br>
 
 	</div>
 </div>
@@ -2249,7 +2283,8 @@
 <div data-role="page" id="main508">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. 고칼슘혈증 처치</h1>
+       <h1 name="h508">8. 고칼슘혈증 처치</h1>
+       <button data-icon="star" name="btn508" value="508">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2264,7 +2299,8 @@
 <div data-role="page" id="main509">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. Phosphorus 보충</h1>
+       <h1 name="h509">9. Phosphorus 보충</h1>
+       <button data-icon="star" name="btn509" value="509">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2280,7 +2316,8 @@
 <div data-role="page" id="main510">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>10. Hyponatremia 교정 속도가 너무 빠를때 조치</h1>
+       <h1 name="h510">10. Hyponatremia 교정 속도가 너무 빠를때 조치</h1>
+       <button data-icon="star" name="btn510" value="510">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2299,10 +2336,12 @@
 <div data-role="page" id="main511">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>11. Proteinuria w/u 도표</h1>
+       <h1 name="h511">11. Proteinuria w/u 도표</h1>
+       <button data-icon="star" name="btn511" value="511">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main511_1.png" width="100%" />
 	</div>
 </div>
@@ -2310,10 +2349,12 @@
 <div data-role="page" id="main512">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>12. hematuria w/u 도표</h1>
+       <h1 name="h512">12. hematuria w/u 도표</h1>
+       <button data-icon="star" name="btn512" value="512">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main512_1.png" width="100%" />
 	</div>
 </div>
@@ -2321,10 +2362,12 @@
 <div data-role="page" id="main513">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>13. Azotemia w/u 바로보기</h1>
+       <h1 name="h513">13. Azotemia w/u 바로보기</h1>
+       <button data-icon="star" name="btn513" value="513">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main513_1.png" width="100%" />
 	</div>
 </div>
@@ -2332,10 +2375,12 @@
 <div data-role="page" id="main514">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>14. polyuria w/u</h1>
+       <h1 name="h514">14. polyuria w/u</h1>
+       <button data-icon="star" name="btn514" value="514">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main514_1.png" width="100%" />
 	</div>
 </div>
@@ -2343,10 +2388,12 @@
 <div data-role="page" id="main515">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>15. hyponatremia w/u</h1>
+       <h1 name="h515">15. hyponatremia w/u</h1>
+       <button data-icon="star" name="btn515" value="515">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main515_1.png" width="100%" />
 	</div>
 </div>
@@ -2354,10 +2401,12 @@
 <div data-role="page" id="main516">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>16. hypernatremia w/u</h1>
+       <h1 name="h516">16. hypernatremia w/u</h1>
+       <button data-icon="star" name="btn516" value="516">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
    		<img src="images/main516_1.png" width="100%" />
 	</div>
 </div>
@@ -2365,10 +2414,12 @@
 <div data-role="page" id="main517">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>17. Hypokalemia w/u</h1>
+       <h1 name="h517">17. Hypokalemia w/u</h1>
+       <button data-icon="star" name="btn517" value="517">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
     	<img src="images/main517_1.png" width="100%" />
 	</div>
 </div>
@@ -2376,11 +2427,13 @@
 <div data-role="page" id="main518">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>18. hyperkalemia 도표</h1>
+       <h1 name="h518">18. hyperkalemia 도표</h1>
+       <button data-icon="star" name="btn518" value="518">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
-    <img src="images/main518_1.png" width="100%" />
+    	<p>&lt;from Harrison's internal medicine&gt;</p>
+    	<img src="images/main518_1.png" width="100%" />
 	</div>
 </div>
 
@@ -2388,7 +2441,8 @@
 <div data-role="page" id="main601">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. Sepsis 캠페인</h1>
+       <h1 name="h601">1. Sepsis 캠페인</h1>
+       <button data-icon="star" name="btn601" value="601">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2412,7 +2466,8 @@
 <div data-role="page" id="main602">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. SIRS의 기준</h1>
+       <h1 name="h602">2. SIRS의 기준</h1>
+       <button data-icon="star" name="btn602" value="602">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2427,7 +2482,8 @@
 <div data-role="page" id="main603">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. 심내막염 진단 기준(Duke criteria)</h1>
+       <h1 name="h603">3. 심내막염 진단 기준(Duke criteria)</h1>
+       <button data-icon="star" name="btn603" value="603">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2477,7 +2533,8 @@
 <div data-role="page" id="main604">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. 심내막염 방지 예방적 항생제 필요한 경우</h1>
+       <h1 name="h604">4. 심내막염 방지 예방적 항생제 필요한 경우</h1>
+       <button data-icon="star" name="btn604" value="604">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2502,7 +2559,8 @@
 <div data-role="page" id="main605">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. PMC 치료 가이드</h1>
+       <h1 name="h605">5. PMC 치료 가이드</h1>
+       <button data-icon="star" name="btn605" value="605">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2519,7 +2577,8 @@
 <div data-role="page" id="main606">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. 파상풍(tetanus) prophylaxis</h1>
+       <h1 name="h606">6. 파상풍(tetanus) prophylaxis</h1>
+       <button data-icon="star" name="btn606" value="606">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2560,7 +2619,8 @@
 <div data-role="page" id="main607">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. 특수감염병별 항생제</h1>
+       <h1 name="h607">7. 특수감염병별 항생제</h1>
+       <button data-icon="star" name="btn607" value="607">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2591,7 +2651,8 @@
 <div data-role="page" id="main608">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. Chemoprophylaxis</h1>
+       <h1 name="h608">8. Chemoprophylaxis</h1>
+       <button data-icon="star" name="btn608" value="608">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2656,7 +2717,8 @@
 <div data-role="page" id="main609">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. 예방접종 리스트</h1>
+       <h1 name="h609">9. 예방접종 리스트</h1>
+       <button data-icon="star" name="btn609" value="609">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2668,7 +2730,8 @@
 <div data-role="page" id="main610">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>10. Candida의 항진균제 감수성 모음</h1>
+       <h1 name="h610">10. Candida의 항진균제 감수성 모음</h1>
+       <button data-icon="star" name="btn610" value="610">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2680,7 +2743,8 @@
 <div data-role="page" id="main611">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>11. 삼일열 말라리아 치료법</h1>
+       <h1 name="h611">11. 삼일열 말라리아 치료법</h1>
+       <button data-icon="star" name="btn611" value="611">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2695,7 +2759,8 @@
 <div data-role="page" id="main701">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. 저혈당 치료법</h1>
+       <h1 name="701">1. 저혈당 치료법</h1>
+       <button data-icon="star" name="btn701" value="701">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2708,7 +2773,8 @@
 <div data-role="page" id="main702">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. DKA 처방</h1>
+       <h1 name="702">2. DKA 처방</h1>
+       <button data-icon="star" name="btn702" value="702">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2736,7 +2802,8 @@
 <div data-role="page" id="main703">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. STEROID 역가비교</h1>
+       <h1 name="703">3. STEROID 역가비교</h1>
+       <button data-icon="star" name="btn703" value="703">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2799,7 +2866,8 @@
 <div data-role="page" id="main704">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. DKA vs HHS</h1>
+       <h1 name="704">4. DKA vs HHS</h1>
+       <button data-icon="star" name="btn704" value="704">즐겨찾기</button>
 	</div>
     <br>
 	<table width="100%">
@@ -2866,7 +2934,8 @@
 <div data-role="page" id="main801">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. CAPD peritonitis</h1>
+       <h1 name="h801">1. CAPD peritonitis</h1>
+       <button data-icon="star" name="btn801" value="801">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2893,7 +2962,8 @@
 <div data-role="page" id="main802">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. CIN 예방법</h1>
+       <h1 name="h802">2. CIN 예방법</h1>
+       <button data-icon="star" name="btn802" value="802">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2904,7 +2974,8 @@
 <div data-role="page" id="main803">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. 항생제 모음 </h1>
+       <h1 name="h803">3. 항생제 모음 </h1>
+       <button data-icon="star" name="btn803" value="803">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -2993,7 +3064,8 @@
 <div data-role="page" id="main804">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. Acetaminophen 해독요법</h1>
+       <h1 name="h804">4. Acetaminophen 해독요법</h1>
+       <button data-icon="star" name="btn804" value="804">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3016,7 +3088,8 @@
 <div data-role="page" id="main805">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. Midazolam and nocuron</h1>
+       <h1 name="h805">5. Midazolam and nocuron</h1>
+       <button data-icon="star" name="btn805" value="805">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3033,7 +3106,8 @@
 <div data-role="page" id="main806">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. Peridipine / Labetalol</h1>
+       <h1 name="h806">6. Peridipine / Labetalol</h1>
+       <button data-icon="star" name="btn806" value="806">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3053,7 +3127,8 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main807">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. Amiodarone</h1>
+       <h1 name="h807">7. Amiodarone</h1>
+       <button data-icon="star" name="btn807" value="807">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3072,7 +3147,8 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main808">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. Lidocaine</h1>
+       <h1 name="h808">8. Lidocaine</h1>
+       <button data-icon="star" name="btn808" value="808">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3089,7 +3165,8 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main809">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>9. Thrombolysis(actilyse/metalyse)</h1>
+       <h1 name="h809">9. Thrombolysis(actilyse/metalyse)</h1>
+       <button data-icon="star" name="btn809" value="809">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3108,7 +3185,8 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main810">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>10. Paraquat DI 대처법</h1>
+       <h1 name="h810">10. Paraquat DI 대처법</h1>
+       <button data-icon="star" name="btn810" value="810">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3140,11 +3218,12 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 	</div>
 </div>
 
-<!--메인화면 : 기타 -->
+<!--메인화면 : 기타 ------------------------------------------------------------------------------->
 <div data-role="page" id="main2001">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>1. CSF Tapping 결과</h1>
+       <h1 name="h2001">1. CSF Tapping 결과</h1>
+       <button data-icon="star" name="btn2001" value="2001">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3229,7 +3308,8 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main2002">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>2. LMP 기준 hCG의 변화</h1>
+       <h1 name="h2002">2. LMP 기준 hCG의 변화</h1>
+       <button data-icon="star" name="btn2002" value="2002">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3282,18 +3362,21 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main2003">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>3. 류마티스 관절염 진단기준</h1>
+       <h1 name="h2003">3. 류마티스 관절염 진단기준</h1>
+       <button data-icon="star" name="btn2003" value="2003">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
-    <img src="images/main2003_1.png" width="100%" />
+    	<p>&lt;The 2010 American College of Rheumatology/European League Against Rheumatism classification criteria for rheumatoid arthritis&gt;</p>
+    	<img src="images/main2003_1.png" width="100%" />
     </div>
 </div>
 
 <div data-role="page" id="main2004">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>4. SLE진단기준 빨리 찾기</h1>
+       <h1 name="h2004">4. SLE진단기준 빨리 찾기</h1>
+       <button data-icon="star" name="btn2004" value="2004">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
@@ -3304,21 +3387,26 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main2005">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>5. 전신경화증(systemic sclerosis 진단기준)</h1>
+       <h1 name="h2005">5. 전신경화증(systemic sclerosis 진단기준)</h1>
+       <button data-icon="star" name="btn2005" value="2005">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>2013 American College of Rheumatology/European League Against Rheumatism classification criteria for systemic sclerosis</p>
     	<img src="images/main2005_1.png" width="100%" />
+        <p>9점이상이면 definite SSc 에 해당한다</p>
     </div>
 </div>
 
 <div data-role="page" id="main2006">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>6. 혈관염의분류</h1>
+       <h1 name="h2006">6. 혈관염의분류</h1>
+       <button data-icon="star" name="btn2006" value="2006">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>Revised 2012 Chapel hill consensus conference (CHCC) nomenclature</p>
     	<img src="images/main2006_1.png" width="100%" />
     </div>
 </div>
@@ -3326,10 +3414,12 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main2007">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>7. neutropenic fever 초기치료법</h1>
+       <h1 name="h2007">7. neutropenic fever 초기치료법</h1>
+       <button data-icon="star" name="btn2007" value="2007">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>Ref&gt; Clinical practice guideline</p>
     	<img src="images/main2007_1.png" width="100%" />
     </div>
 </div>
@@ -3337,10 +3427,12 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
 <div data-role="page" id="main2008">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
-       <h1>8. 쇼그렌 진단 Criteria</h1>
+       <h1 name="h2008">8. 쇼그렌 진단 Criteria</h1>
+       <button data-icon="star" name="btn2008" value="2008">즐겨찾기</button>
 	</div>
 
 	<div role="main" class="ui-content">
+    	<p>ACR의 쇼그렌 Criteria</p>
     	<img src="images/main2008_1.png" width="100%" />
     </div>
 </div>
