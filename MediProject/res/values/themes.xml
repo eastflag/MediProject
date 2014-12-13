@@ -4,6 +4,8 @@
     <style name="CustomActionBarTheme"
            parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionMenuTextAppearance">@style/TextAppearance.Holo.Widget.ActionBar.Menu</item>
+       
     </style>
 
     <!-- ActionBar styles -->
@@ -11,12 +13,20 @@
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_typing</item>
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+        
     </style>
     
+    <!-- 액션바 타이틀 스타일 -->
     <style name="MyActionBarTitleText"
            parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+    
+    <!-- 액션바 메뉴 스타일 -->
+    <style name="TextAppearance.Holo.Widget.ActionBar.Menu"
+           parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:textSize">18sp</item>
     </style>
 </resources>

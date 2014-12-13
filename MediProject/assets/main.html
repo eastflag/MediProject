@@ -176,11 +176,19 @@
 							$(this).parent().hide();
 						}
 					});
+					//모두 펼치기
+					$('[data-role=collapsible]').each(function(){
+						$(this).collapsible('expand');
+					});
 				} else {
 					$(this).attr('value', 'minus');
 					//모두 보여주기	
 					$('ul').children('li').children('a').each(function(index, element) {
 						$(this).parent().show();
+					});
+					//모두 닫기
+					$('[data-role=collapsible]').each(function(){
+						$(this).collapsible('collapse');
 					});
 				}
 				 

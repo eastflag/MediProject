@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">내과정보</string>
-    <string name="menu_board">게시판</string>
+    <string name="app_name">나는 의사다</string>
+    <string name="menu_board">의학정보공유게시판</string>
+    <string name="menu_email">contact</string>
     <string name="title_activity_board">BoardActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

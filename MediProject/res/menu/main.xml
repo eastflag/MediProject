@@ -6,6 +6,14 @@
         android:id="@+id/menu_board"
         android:orderInCategory="100"
         android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/menu_board"/>
+    
+    <item
+        android:id="@+id/menu_email"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="@string/menu_email"/>
 
 </menu>

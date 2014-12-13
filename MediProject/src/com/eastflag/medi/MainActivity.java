@@ -6,19 +6,18 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.Preference;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -26,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.eastflag.medi.fragment.BoardListFragment;
-import com.eastflag.medi.util.PreferenceUtil;
 
 public class MainActivity extends Activity {
 	
@@ -130,7 +128,17 @@ public class MainActivity extends Activity {
 			mFm.beginTransaction().replace(R.id.frame, mFragment).commit();
 			showSubmenu();
 			return true;
-		}
+		} else if (id == R.id.menu_email) {
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("text/html");
+			String[] mailto = { "vangsang@naver.com" };
+			intent.putExtra(Intent.EXTRA_EMAIL, mailto);
+			intent.putExtra(Intent.EXTRA_SUBJECT, "개발자에게 문의");
+			//intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+			startActivity(Intent.createChooser(intent, "Send Email"));
+			return true;
+		} 
 		return super.onOptionsItemSelected(item);
 	}
 
