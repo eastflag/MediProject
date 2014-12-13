@@ -22,9 +22,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.eastflag.medi.fragment.BoardListFragment;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends Activity {
 	
@@ -37,6 +41,9 @@ public class MainActivity extends Activity {
 	
 	private View main;
 	private FrameLayout frame;
+	
+	private AdView adView;
+	private LinearLayout adRoot;
 	
 	private Handler mHandler = new Handler(){
 		@Override
@@ -95,6 +102,39 @@ public class MainActivity extends Activity {
 		frame = (FrameLayout) findViewById(R.id.frame);
 		
 		mHandler.sendEmptyMessageDelayed(0, 1000);
+		
+		//admob
+		adRoot = (LinearLayout) findViewById(R.id.adRoot);
+		adView = new AdView(this);
+		adView.setAdSize(AdSize.BANNER);
+		adView.setAdUnitId("ca-app-pub-7453315512607957/3913781400");
+		adRoot.addView(adView);
+		AdRequest adRequest = new AdRequest.Builder().build();
+		adView.loadAd(adRequest);
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (adView != null) {
+			adView.resume();
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (adView != null) {
+			adView.pause();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (adView != null) {
+			adView.destroy();
+		}
 	}
 	
 
@@ -107,11 +147,6 @@ public class MainActivity extends Activity {
 	private void hideSubmenu() {
 		main.setVisibility(View.VISIBLE);
 		frame.setVisibility(View.GONE);
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
 	}
 
 	@Override
