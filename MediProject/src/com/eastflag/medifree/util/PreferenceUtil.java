@@ -1,4 +1,4 @@
-package com.eastflag.medi.util;
+package com.eastflag.medifree.util;
 
 import java.util.Set;
 import java.util.concurrent.ExecutionException;

@@ -1,4 +1,4 @@
-package com.eastflag.medi.fragment;
+package com.eastflag.medifree.fragment;
 
 import java.util.ArrayList;
 
@@ -24,11 +24,11 @@ import android.widget.ListView;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
-import com.eastflag.medi.BoardViewActivity;
-import com.eastflag.medi.BoardWriteActivity;
-import com.eastflag.medi.R;
-import com.eastflag.medi.data.BoardListAdapter;
-import com.eastflag.medi.data.BoardVO;
+import com.eastflag.medifree.BoardViewActivity;
+import com.eastflag.medifree.BoardWriteActivity;
+import com.eastflag.medifree.R;
+import com.eastflag.medifree.data.BoardListAdapter;
+import com.eastflag.medifree.data.BoardVO;
 
 public class BoardListFragment extends Fragment {
 

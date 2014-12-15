@@ -1,4 +1,4 @@
-package com.eastflag.medi.data;
+package com.eastflag.medifree.data;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.eastflag.medi.R;
+import com.eastflag.medifree.R;
 
 public class BoardListAdapter extends BaseAdapter {
 	private Context mContext;

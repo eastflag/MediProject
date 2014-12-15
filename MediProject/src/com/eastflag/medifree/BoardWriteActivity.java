@@ -1,4 +1,4 @@
-package com.eastflag.medi;
+package com.eastflag.medifree;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -29,7 +29,8 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
-import com.eastflag.medi.view.LoadingDialog;
+import com.eastflag.medifree.R;
+import com.eastflag.medifree.view.LoadingDialog;
 
 public class BoardWriteActivity extends Activity {
 	public final  int MAX_WIDTH = 600;

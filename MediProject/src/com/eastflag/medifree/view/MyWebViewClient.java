@@ -1,4 +1,4 @@
-package com.eastflag.medi.view;
+package com.eastflag.medifree.view;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;

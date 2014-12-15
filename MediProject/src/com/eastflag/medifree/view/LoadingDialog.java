@@ -1,6 +1,6 @@
-package com.eastflag.medi.view;
+package com.eastflag.medifree.view;
 
-import com.eastflag.medi.R;
+import com.eastflag.medifree.R;
 
 import android.app.Dialog;
 import android.content.Context;

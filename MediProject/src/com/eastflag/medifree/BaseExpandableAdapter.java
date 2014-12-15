@@ -1,4 +1,4 @@
-package com.eastflag.medi;
+package com.eastflag.medifree;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.eastflag.medi.R;
+import com.eastflag.medifree.R;
 
 public class BaseExpandableAdapter extends BaseExpandableListAdapter{
 	

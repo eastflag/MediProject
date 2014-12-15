@@ -1,4 +1,4 @@
-package com.eastflag.medi;
+package com.eastflag.medifree;
 
 public final class Constants {
 	

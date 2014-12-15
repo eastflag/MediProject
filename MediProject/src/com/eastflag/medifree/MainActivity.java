@@ -1,4 +1,4 @@
-package com.eastflag.medi;
+package com.eastflag.medifree;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +25,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.eastflag.medi.fragment.BoardListFragment;
+import com.eastflag.medifree.R;
+import com.eastflag.medifree.fragment.BoardListFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -107,7 +108,8 @@ public class MainActivity extends Activity {
 		adRoot = (LinearLayout) findViewById(R.id.adRoot);
 		adView = new AdView(this);
 		adView.setAdSize(AdSize.BANNER);
-		adView.setAdUnitId("ca-app-pub-7453315512607957/3913781400");
+		//adView.setAdUnitId("ca-app-pub-7453315512607957/3913781400");
+		adView.setAdUnitId("ca-app-pub-4592095632191867/8262114632");
 		adRoot.addView(adView);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);

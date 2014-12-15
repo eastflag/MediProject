@@ -1,4 +1,4 @@
-package com.eastflag.medi.data;
+package com.eastflag.medifree.data;
 
 public class BoardVO {
 	public int board_id;
