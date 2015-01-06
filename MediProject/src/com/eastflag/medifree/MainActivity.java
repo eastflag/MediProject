@@ -183,25 +183,29 @@ public class MainActivity extends Activity {
 	public void onBackPressed() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		if(mFragment == null) {
-			builder.setTitle(getString(R.string.app_name))
-				.setMessage("종료하시겠습니까?")
-				.setPositiveButton("OK",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int arg1) {
-								dialog.dismiss();
-								finish();
-							}
-						})
-				.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								dialog.dismiss();
-							}
-						}).show();
+			if(mWebView.canGoBack()) {
+				mWebView.goBack();
+			} else {
+				builder.setTitle(getString(R.string.app_name))
+					.setMessage("종료하시겠습니까?")
+					.setPositiveButton("OK",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int arg1) {
+									dialog.dismiss();
+									finish();
+								}
+							})
+					.setNegativeButton("Cancel",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							}).show();
+			}
 		} else {
 			mFm.beginTransaction().remove(mFragment);
 			mFragment = null;
