@@ -52,6 +52,15 @@
 
 				$('#main15_result').text(Math.round(result*100)/100);	
 			});
+			
+			$('#main113_1').bind('change', function() {
+				var value = $('#main113_1 option:selected').val();
+				var strArray = value.split(':');
+				console.log(strArray[0]);
+				$('#main113_result_a').text(strArray[0]);
+				$('#main113_result_b').text(strArray[1]);
+				$('#main113_result_c').text(strArray[2]);
+			});
 			 
 			$('#main201_submit').click(function() {
 				var result = Number($('#main201_3').val()) 
@@ -845,18 +854,18 @@
 	</div>
 
    <div role="main" class="ui-content">
-   개발 참여 : 응급의학과 전문의 Dr. 서영우<br>
-   reference : tintnall's emergency medicine<br>
+   개발 참여: 응급의학과 전문의 Dr. 서영우<br>
+   reference: tintnall's emergency medicine<br>
    <form>
-      <input id="filterTable-input" data-type="search">
+      <input id="filterTable-input" data-type="search" type='text' style="ime-mode:disabled;">
    </form>
       <table style="width:100%" data-role="table" id="movie-table" data-filter="true" data-input="#filterTable-input" class="ui-responsive" 
-      data-column-btn-text="컬럼 보이기 설정" data-mode="columntoggle">
+       data-column-btn-text="컬럼 설정" data-mode="columntoggle">
           <thead>
             <tr>
                <th width="30%" data-priority="1">약품명</th>
-               <th width="35%" data-priority="2">Pregnancy</th>
-               <th width="35%" data-priority="3">lactation</th>
+               <th width="35%" data-priority="1">Pregnancy</th>
+               <th width="35%" data-priority="1">lactation</th>
             </tr>
           </thead>
           <tbody>
@@ -1606,98 +1615,47 @@
    <div role="main" class="ui-content">
      개발 참여: 응급의학과 전문의 Dr. 서영우<br>
      reference: Rosen's emergency medicine</p>
-     <form>
-      <input id="filterTable-input" data-type="search">
-     </form>
-     <table style="width:100%" data-role="table" id="movie-table" data-filter="true" data-input="#filterTable-input" class="ui-responsive" 
-      data-column-btn-text="컬럼 보이기 설정" data-mode="columntoggle">
-      <thead>
+
+     <table>
          <tr>
-            <th width="25%" data-priority="1">질환명</th>
-            <th width="25%" data-priority="2">의심균주</th>
-            <th width="25%" data-priority="3">drug of choice</th>
-            <th width="25%" data-priority="4">alternative</th>
+            <td>
+               <select id="main113_1" name="main113_1">
+                <option value="::">질환명</option>
+                <option value="Group A streptococci:Penicillin:macrolide">Pharyngitis</option>
+                <option value="S.pneumoniae, H. influenza:Amoxicillin, amox/clav or cefuroxime:macrolide or doxycycline">bronchitis,otitis,acute sinusitis</option>
+                <option value="H.influenzae, Group A streptococci:ceftriaxone:cefuroxime">Epiglottitis</option>
+                <option value="S.penumoniae,virus, mycoplasma:azithromycin:levofloxacin">community-acquired pneumonia</option>
+                <option value="aerobes and anaerobes:clindamycin:pip/TZ, ceftriaoxne + Metronidazole">aspiration pneumonia</option>
+                <option value="E.coli and enteric G(-) rod:TMP/SMX:Cirpofloxacin">UTI</option>
+                <option value="N.gonorrhea, chlamydia:Ceftriaxone:Cirpofloxacin">Urethritis</option>
+                <option value="T.pallium, HSV:Penicillin G:doxycycline">genital ulcers</option>
+                <option value="Group A streptococcim staphylococcus aureus:cephalexin:dicloxacillin,clindamycin">cellulitis</option>
+                <option value="polymicrobial:imepenem or meropenem plus vancomycin:X">necrotizing fascitis</option>
+                <option value="Posteurella, mixed flora:amox/clav:clindamycin  and ciprofloxacin">Cat bite</option>
+                <option value="S.pneumonia, N.meningitidis,S.aureus:Ceftriaxone+ vanco:X">Meningitis(normal host)</option>
+                <option value="Listeria, H.influenza:ceftriaxone+ vanco + ampicillin:X">Meningitis(Immunocompromised) or >50</option>
+            </select>
+            </td>
          </tr>
-       </thead>
-       <tr>
-         <td >Pharyngitis</td>
-         <td >Group A streptococci</td>
-         <td >Penicillin</td>
-         <td >macrolide</td>
-       </tr>
-       <tr>
-         <td>bronchitis,otitis,acute sinusitis</td>
-         <td>S.pneumoniae, H. influenza</td>
-         <td>Amoxicillin, amox/clav or cefuroxime</td>
-         <td>macrolide or doxycycline</td>
-       </tr>
-       <tr>
-         <td>Epiglottitis</td>
-         <td>H.influenzae, Group A streptococci</td>
-         <td>ceftriaxone</td>
-         <td>cefuroxime</td>
-       </tr>
-       <tr>
-         <td>community-acquired pneumonia</td>
-         <td>S.penumoniae,virus, mycoplasma</td>
-         <td>azithromycin</td>
-         <td>levofloxacin</td>
-       </tr>
-       <tr>
-         <td>aspiration pneumonia</td>
-         <td>aerobes and anaerobes</td>
-         <td>clindamycin</td>
-         <td>pip/TZ, ceftriaoxne + Metronidazole</td>
-       </tr>
-       <tr>
-         <td>UTI</td>
-         <td>E.coli and enteric G(-) rod</td>
-         <td>TMP/SMX</td>
-         <td>Cirpofloxacin</td>
-       </tr>
-       <tr>
-         <td>Urethritis</td>
-         <td>N.gonorrhea, chlamydia</td>
-         <td>Ceftriaxone</td>
-         <td>Cirpofloxacin</td>
-       </tr>
-       <tr>
-         <td>genital ulcers</td>
-         <td>T.pallium, HSV</td>
-         <td>Penicillin G</td>
-         <td>doxycycline</td>
-       </tr>
-       <tr>
-         <td>cellulitis</td>
-         <td>Group A streptococcim staphylococcus aureus</td>
-         <td>cephalexin</td>
-         <td>dicloxacillin,clindamycin</td>
-       </tr>
-       <tr>
-         <td>necrotizing fascitis</td>
-         <td>polymicrobial</td>
-         <td>imepenem or meropenem plus vancomycin</td>
-         <td>X</td>
-       </tr>
-       <tr>
-         <td>Cat bite</td>
-         <td>Posteurella, mixed flora</td>
-         <td>amox/clav</td>
-         <td>clindamycin  and ciprofloxacin</td>
-       </tr>
-       <tr>
-         <td>Meningitis(normal host)</td>
-         <td>S.pneumonia, N.meningitidis,S.aureus</td>
-         <td colspan="2">Ceftriaxone+ vanco</td>
-       </tr>
-       <tr>
-         <td>Meningitis(Immunocompromised) or &gt;50</td>
-         <td>Listeria, H.influenza</td>
-         <td colspan="2">ceftriaxone+ vanco + ampicillin</td>
-       </tr>
+         <tr>
+            <td>의심균주</td>
+         </tr>
+         <tr>
+         	<td><span id="main113_result_a" style="color:#FF00FF;"></span></td>
+         </tr>
+          <tr>
+            <td>drug of choice</td>
+         </tr>
+         <tr>
+         	<td><span id="main113_result_b" style="color:#FF00FF;"></span></td>
+         </tr>
+          <tr>
+            <td>alternative</td>
+         </tr>
+         <tr>
+         	<td><span id="main113_result_c" style="color:#FF00FF;"></span></td>
+         </tr>
      </table>
-     <p><br>
-     </p>
    
    </div>
 </div>

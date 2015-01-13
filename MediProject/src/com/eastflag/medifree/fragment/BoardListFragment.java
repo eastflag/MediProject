@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,8 @@ public class BoardListFragment extends Fragment {
 	private Button btnMore;
 	
 	private int mBoardMode = 1; //1:최초 로딩, 2: 글보기(수정), 3:글쓰기
+	
+	private ProgressDialog mProgress;
 
 	public BoardListFragment() {
 	}
@@ -53,6 +56,9 @@ public class BoardListFragment extends Fragment {
 			Bundle savedInstanceState) {
 		mView = inflater.inflate(R.layout.boardlist, null);
 		mAq = new AQuery(getActivity(), mView);
+		
+		mProgress = new ProgressDialog(getActivity());
+		mProgress.setMessage("Loading...");
 		
 		btnMore = (Button) mView.findViewById(R.id.btnMore);
 		
@@ -120,10 +126,13 @@ public class BoardListFragment extends Fragment {
 	private void getList() {
 		String url = "http://www.javabrain.kr/api/getBoardList";
 		url += "?pageNo=" + pageNo;
+		
+		mProgress.show();
 
 		mAq.ajax(url, JSONObject.class, new AjaxCallback<JSONObject>(){
 			@Override
 			public void callback(String url, JSONObject object, AjaxStatus status) {
+				mProgress.dismiss();
 				try {
 					Log.d("LDK", object.toString(1));
 					mTotalPage = object.getInt("total");
