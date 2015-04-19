@@ -61,6 +61,70 @@
 				$('#main113_result_b').text(strArray[1]);
 				$('#main113_result_c').text(strArray[2]);
 			});
+			
+			$('#main114_submit').click(function() {
+				var sum = 0;
+				$('input[name*=main114_]:checked').each(function () {
+                	sum += Number($(this).val());
+            	});
+				console.log('sum: ' + sum); 
+				var result = sum;
+
+				$('#main114_result').text(Math.round(result*100)/100);	
+			});
+			
+			$( "#main115_1, #main115_2").bind("change", function() {
+				console.log("main 115 is changed");
+				var 키 = Number($('#main115_1').val());
+				var 몸무게 = Number($('#main115_2').val());
+				var result = 0.007184 * 키^0.725 * 몸무게^0.425  <!--제곱--->
+				$('#main115_result').text(Math.round(result*100)/100);	
+				console.log("result:" + result);
+			});
+			$('#main115').click(function() {
+                var 키 = Number($('#main115_1').val());
+				var 몸무게 = Number($('#main115_2').val());
+				var result = 0.007184 * 키^0.725 * 몸무게^0.425  <!--제곱--->
+				$('#main115_result').text(Math.round(result*100)/100);	
+            });
+			
+			$('#main116_submit').click(function() {
+				var sum = 0;
+				$('input[name*=main116_]:checked').each(function () {
+                	sum += Number($(this).val());
+            	});
+				console.log("sum: " + sum); 
+				var result = sum;
+			
+				$('#main116_result').text(Math.round(result*100)/100);	
+			});
+			
+			$('#main117_1').bind('change', function() {
+				var value = $('#main117_1 option:selected').val();
+				var strArray = value.split(':');
+				console.log(strArray[0]);
+				$('#main117_result_a').text(strArray[0]);
+				$('#main117_result_b').text(strArray[1]);
+				$('#main117_result_c').text(strArray[2]);
+				$('#main117_result_d').text(strArray[3]);
+				$('#main117_result_e').text(strArray[4]);
+				$('#main117_result_f').text(strArray[5]);
+			});
+			
+			$( "#main212_1, #main212_2, #main212_3, #main212_4").bind("change", function() {
+				var result = 0;
+				$("input[name*=main212_]:checked").each(function () {
+                	result += Number($(this).val());
+            	});
+				console.log("result:" + result);
+				if(result == 0) {
+					$('#main212_result').html("<h3>stage I 치료안했을시 수명 8개월</h3>");
+				} else if(result>0 && result < 3) { 
+					$('#main212_result').html("<h3>stage II 치료안했을시 수명 2개월</h3>");
+				} else {
+					$('#main212_result').html("<h3>stage III 치료안했을시 수명 1개월미만</h3>");
+				}
+			});
 			 
 			$('#main201_submit').click(function() {
 				var result = Number($('#main201_3').val()) 
@@ -100,20 +164,7 @@
 				$('#main210_result').text(result);
 			});
 			
-			$( "#main212_1, #main212_2, #main212_3, #main212_4").bind("change", function() {
-				var result = 0;
-				$("input[name*=main212_]:checked").each(function () {
-                	result += Number($(this).val());
-            	});
-				console.log("result:" + result);
-				if(result == 0) {
-					$('#main212_result').html("<h3>stage I 치료안했을시 수명 8개월</h3>");
-				} else if(result>0 && result < 3) { 
-					$('#main212_result').html("<h3>stage II 치료안했을시 수명 2개월</h3>");
-				} else {
-					$('#main212_result').html("<h3>stage III 치료안했을시 수명 1개월미만</h3>");
-				}
-			});
+		
 			
 			$('#main215_submit').click(function() {
 				var a = Number($('#main215_1').val());
@@ -175,6 +226,71 @@
 				var result = MeasuredOsm - A;
 				$('#main503_result').text(Math.round(result*100)/100);	
 			});
+			
+			$("#main519_1, #main519_2").bind("change", function() {
+				console.log("main 519 is changed");
+				var 무게 = Number($('#main519_1').val());
+				var HCO3 = Number($('#main519_2').val());
+				var result = 0.4 * 무게 *(24-HCO3)
+				$('#main519_result').text(Math.round(result*100)/100);	
+				console.log("result:" + result);
+			});		
+			$('#main519_sumbit').click(function() {
+				var 무게 = Number($('#main519_1').val());
+				var HCO3 = Number($('#main519_2').val());
+				var result = 0.4 * 무게 *(24-HCO3)
+				$('#main519_result').text(Math.round(result*100)/100);	
+			});
+			
+			$( "#main520_1, #main520_2, #main520_3, #main520_4").bind("change", function() {
+				console.log("main 520 is changed");
+				var Na = Number($('#main520_1').val());
+				var Glucose = Number($('#main520_2').val());
+				var result_1 = Na + (Glucose-5)/3.5
+				$('#main520_result_1').text(Math.round(result_1*100)/100);	
+				console.log("result_1:" + result_1);
+				
+				var Na = Number($('#main520_3').val());
+				var TG = Number($('#main520_4').val());
+				var result_2 = Na + 0.002 * TG
+				$('#main520_result_2').text(Math.round(result_2*100)/100);	
+				console.log("result_2:" + result_2);
+			});	
+			$('#main520_submit_1').click(function() {
+                var Na = Number($('#main520_1').val());
+				var Glucose = Number($('#main520_2').val());
+				var result_1 = Na + (Glucose-5)/3.5
+				$('#main520_result_1').text(Math.round(result_1*100)/100);	
+            });
+			$('#main520_submit_2').click(function() {
+                var Na = Number($('#main520_3').val());
+				var TG = Number($('#main520_4').val());
+				var result_2 = Na + 0.002 * TG
+				$('#main520_result_2').text(Math.round(result_2*100)/100);	
+            });
+			
+			$('#main521_submit').click(function(e) {
+                var UrineK = Number($('#main521_1').val());
+				var SerumOsm = Number($('#main521_2').val());
+				var Urineosm = Number($('#main521_3').val());
+				var SerumK = Number($('#main521_4').val());
+				var result = UrineK * SerumOsm / Urineosm / SerumK
+				$('#main521_result').text(Math.round(result*100)/100);	
+            });
+			
+			$( "#main522_1, #main522_2, #main522_3, #main522_4, #main522_5").bind("change", function() {
+				console.log("main 519 is changed");
+				var 투석전BUN = Number($('#main522_1').val());
+				var 투석후BUN = Number($('#main522_2').val());
+				var 투석전몸무게 = Number($('#main522_3').val());
+				var 투석후몸무게 = Number($('#main522_4').val());
+				var 투석전시간 = Number($('#main522_5').val());
+				var result_a = Math.log((투석후BUN/ 투석전BUN -0.008 * Math.E) + (4-3.5 * (투석후BUN/투석전BUN) * (투석전몸무게-투석후몸무게) / 투석후몸무게));
+				var result_b = (1-(투석후BUN/투석전BUN) )* 100;
+				$('#main522_result_a').text(Math.round(result_a*100)/100);	
+				$('#main522_result_b').text(Math.round(result_b*100)/100);	
+				console.log("result:" + result);
+			});	
 			
 			$('#faver').bind('click', function() {
 				if($(this).attr('value') == 'minus') {
@@ -240,11 +356,11 @@
 		<div data-role="collapsible">
 	      <h3>응급처방(ICU)</h3>
 	      <ul data-role="listview" data-inset="true">
-			<li name="li101"><a href="#main101" data-ajax="false">1. 기계환기재시작기준</a></li>
-			<li name="li102"><a href="#main102" data-ajax="false">2. FiO2 설정과 한계</a></li>
+	        <li name="li101"><a href="#main102" data-ajax="false">1. 기계환기재시작기준</a></li>
+	        <li name="li102"><a href="#main102" data-ajax="false">2. FiO2 설정과 한계</a></li>
 			<li name="li103"><a href="#main103" data-ajax="false">3. sedative agent(ICU setting)</a></li>
 			<li name="li104"><a href="#main104" data-ajax="false">4. Weaning criteria</a></li>
-			<li name="li105"><a href="#main105" data-ajax="false">5. ARDS ventilator setting</a></li>
+			<li name="li105"><a href="#main105" data-ajax="false">5. ARDS venti</a></li>
 			<li name="li106"><a href="#main106" data-ajax="false">6. 패혈증 초기 치료 GOAL</a></li>
 			<li name="li107"><a href="#main107" data-ajax="false">7. 초기 인공호흡기 세팅법</a></li>
 			<li name="li108"><a href="#main108" data-ajax="false">8. 도파민 필살기</a></li>
@@ -253,6 +369,10 @@
 			<li name="li111"><a href="#main111" data-ajax="false">11. DIC score 계산 ISTH criteria</a></li>
             <li name="li112"><a href="#main112" data-ajax="false">12. 임신시 약물 투여</a></li>
             <li name="li113"><a href="#main113" data-ajax="false">13. ER의 흔한 감염병과 항생제</a></li>
+            <li name="li114"><a href="#main114" data-ajax="false">14. Glasgow coma scale</a></li>
+            <li name="li115"><a href="#main115" data-ajax="false">15. Body surface  area</a></li>
+            <li name="li116"><a href="#main116" data-ajax="false">16. Appendicitis 의 가능성(Alvarado score)</a></li>
+            <li name="li117"><a href="#main117" data-ajax="false">17. 주요 항생제 기본 dosing</a></li>
 		  </ul>
 	    </div>
 	    
@@ -282,6 +402,10 @@
 	      <ul data-role="listview" data-inset="true">
 	      	<li name="li301"><a href="#main301" data-ajax="false">1. Killip Classification</a></li>
             <li name="li302"><a href="#main302" data-ajax="false">2. Hyperkalemia 응급처치</a></li>
+            <li name="li303"><a href="#main303" data-ajax="false">3. NYHA functional classification</a></li>
+            <li name="li304"><a href="#main304" data-ajax="false">4. Thrombolysis contraindication</a></li>
+            <li name="li305"><a href="#main305" data-ajax="false">5. Warfarinization INR 조절</a></li>
+            <li name="li306"><a href="#main306" data-ajax="false">6. Preclamsia HTN medication</a></li>
 	      </ul>
 	    </div>
 	    
@@ -297,6 +421,7 @@
             <li name="li407"><a href="#main407" data-ajax="false">7. 천식 치료 한번에 보기</a></li>
             <li name="li408"><a href="#main408" data-ajax="false">8. PFT판독기준</a></li>
             <li name="li409"><a href="#main409" data-ajax="false">9. 흡입제들 한번에 이해하기</a></li>
+            <li name="li410"><a href="#main410" data-ajax="false">10. 산소공급방법별 FiO2</a></li>
 	      </ul>
 	    </div>
 	    
@@ -304,7 +429,7 @@
 	      <h3>신장</h3>
 	      <ul data-role="listview" data-inset="true">
 	        <li name="li501"><a href="#main501" data-ajax="false">1. Anion Gap </a></li>
-            <li name="li502"><a href="#main502" data-ajax="false">2. FENa</a></li>
+	        <li name="li502"><a href="#main502" data-ajax="false">2. FENa</a></li>
             <li name="li503"><a href="#main503" data-ajax="false">3. Osmolar Gap 구하기</a></li>
             <li name="li504"><a href="#main504" data-ajax="false">4. 체액의 분포</a></li>
             <li name="li505"><a href="#main505" data-ajax="false">5. Contrast induced Renal failure 예방법</a></li>
@@ -321,6 +446,10 @@
             <li name="li516"><a href="#main516" data-ajax="false">16. hypernatremia w/u</a></li>
             <li name="li517"><a href="#main517" data-ajax="false">17. Hypokalemia w/u</a></li>
             <li name="li518"><a href="#main518" data-ajax="false">18. hyperkalemia 도표</a></li>
+            <li name="li519"><a href="#main519" data-ajax="false">19. Bicarbonate deficit </a></li>
+            <li name="li520"><a href="#main520" data-ajax="false">20. Corrected Na+ </a></li>
+            <li name="li521"><a href="#main521" data-ajax="false">21. TTKG </a></li>
+            <li name="li522"><a href="#main522" data-ajax="false">22. 투석적정도(Kt/V, UPR) </a></li>
 	      </ul>
 	    </div>
 	    
@@ -348,6 +477,8 @@
             <li name="li702"><a href="#main702" data-ajax="false">2. DKA 처방</a></li>
             <li name="li703"><a href="#main703" data-ajax="false">3. STEROID 역가비교</a></li>
             <li name="li704"><a href="#main704" data-ajax="false">4. DKA vs HHS</a></li>
+            <li name="li705"><a href="#main705" data-ajax="false">5. Rapid ACTH test 해석</a></li>
+            <li name="li706"><a href="#main706" data-ajax="false">6. 부신위기나 수술시 스테로이드 투여</a></li>
 	      </ul>
 	    </div>
         
@@ -378,6 +509,8 @@
             <li name="li2006"><a href="#main2006" data-ajax="false">6. 혈관염의분류</a></li>
             <li name="li2007"><a href="#main2007" data-ajax="false">7. neutropenic fever 초기치료법</a></li>
             <li name="li2008"><a href="#main2008" data-ajax="false">8. 쇼그렌 진단 Criteria</a></li>
+            <li name="li2009"><a href="#main2009" data-ajax="false">9. anti-TNF 와 결핵과의 관련</a></li>
+            <li name="li2010"><a href="#main2010" data-ajax="false">10. 동등진통용량표</a></li>
 	      </ul>
 	    </div>
 
@@ -1660,6 +1793,331 @@
    </div>
 </div>
 
+<div data-role="page" id="main114">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h114">14. Glasgow coma scale</h1>
+       <button data-icon="star" name="btn114" value="114">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+   
+        <table>
+          <tr>
+            <td>1) Eye opening</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="vertical" name="main114_1" id="main114_1" data-mini="true">
+                  <input name="main114_1group" id="main114_1a" value="1" type="radio" />
+				  <label for="main114_1a">none : 1</label>
+				  <input name="main114_1group" id="main114_1b" value="2" type="radio" />
+				  <label for="main114_1b">To pain : 2</label>
+                  <input name="main114_1group" id="main114_1c" value="3" type="radio" />
+				  <label for="main114_1c">To speech : 3</label>
+                  <input name="main114_1group" id="main114_1d" value="4" type="radio" />
+				  <label for="main114_1d">Spontaneous : 4</label>
+                </fieldset>
+                </td>
+          </tr>
+          <tr>
+            <td>2) Verbal response</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="vertical" name="main114_2" id="main114_2" data-mini="true">
+                  <input name="main114_2group" id="main114_2a" value="1" type="radio" />
+				  <label for="main114_2a">none : 1</label>
+				  <input name="main114_2group" id="main114_2b" value="2" type="radio" />
+				  <label for="main114_2b">이해불가능한 소리 : 2</label>
+                  <input name="main114_2group" id="main114_2c" value="3" type="radio" />
+				  <label for="main114_2c">부적절한 단어 : 3</label>
+                  <input name="main114_2group" id="main114_2d" value="4" type="radio" />
+				  <label for="main114_2d">Confused/Disoriented : 4</label>
+                  <input name="main114_2group" id="main114_2e" value="5" type="radio" />
+				  <label for="main114_2e">Oriented : 5</label>
+                </fieldset>
+                </td>
+          </tr>
+          <tr>
+            <td>3) Motor responese</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="vertical" name="main114_3" id="main114_3" data-mini="true">
+                  <input name="main114_3group" id="main114_3a" value="1" type="radio" />
+				  <label for="main114_3a">none : 1</label>
+				  <input name="main114_3group" id="main114_3b" value="2" type="radio" />
+				  <label for="main114_3b">Extension to pain : 2</label>
+                  <input name="main114_3group" id="main114_3c" value="3" type="radio" />
+				  <label for="main114_3c">Abnormal flextion to pain : 3</label>
+                  <input name="main114_3group" id="main114_3d" value="4" type="radio" />
+				  <label for="main114_3d">Withdraws from pain : 4</label>
+                  <input name="main114_3group" id="main114_3e" value="5" type="radio" />
+				  <label for="main114_3e">Localises pain : 5</label>
+                  <input name="main114_3group" id="main114_3f" value="6" type="radio" />
+				  <label for="main114_3f">Obeys command : 6</label>
+                </fieldset>
+                </td>
+          </tr>
+          <tr>
+          	<td>
+            	<input type="button" id="main114_submit" value="계산하기">
+            </td>
+            <td>
+            	<div>
+                   결과 :  점수는 총 <span id="main114_result" style="color:#FF00FF;font-weight:bold"></span>  점입니다 <br>
+                </div>
+            </td>
+          </tr>
+       </table>
+ 	</div>
+</div>
+       
+<div data-role="page" id="main115">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h115">15. Body surface area </h1>
+       <button data-icon="star" name="btn115" value="115">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<table>
+         <tr>
+           <td width="30%">키</td>
+           <td width="40%"><input name="main115_1" id="main115_1" type="tel"></input></td>
+           <td width="30%">CM</td>
+         </tr>
+         <tr>
+           <td>몸무게</td>
+           <td><input name="main115_2" id="main115_2" type="tel"></input></td>
+           <td>Kg</td>
+         </tr>
+         <tr>
+         	<td><input type="submit" id="main115_submit" value="계산하기"></td>
+         	<td colspan="2"> 
+               BSA : <span id="main115_result" style="color:#FF00FF;font-weight:bold"></span><br>
+            </td>
+         </tr>
+       </table>
+	</div>
+</div>
+
+<div data-role="page" id="main116">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h116">16. Appendicitis 의 가능성(Alvarado score) </h1>
+       <button data-icon="star" name="btn116" value="116">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	 <table>
+          <tr>
+            <td>anorexia</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_1" id="main116_1" >
+                  <input name="main116_1group" id="main116_1a" value="1" type="radio" />
+				  <label for="main116_1a">YES</label>
+				  <input name="main116_1group" id="main116_1b" value="0" type="radio" />
+				  <label for="main116_1b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>Nausea/Vomiting</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_2" id="main116_2" >
+                  <input name="main116_2group" id="main116_2a" value="1" type="radio" />
+				  <label for="main116_2a">YES</label>
+				  <input name="main116_2group" id="main116_2b" value="0" type="radio" />
+				  <label for="main116_2b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td> Migratory RLQ pain</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_3" id="main116_3" >
+                  <input name="main116_3group" id="main116_3a" value="1" type="radio" />
+				  <label for="main116_3a">YES</label>
+				  <input name="main116_3group" id="main116_3b" value="0" type="radio" />
+				  <label for="main116_3b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+                 <tr>
+            <td>RLQ tenderness</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_4" id="main116_4" >
+                  <input name="main116_4group" id="main116_4a" value="2" type="radio" />
+				  <label for="main116_4a">YES</label>
+				  <input name="main116_4group" id="main116_4b" value="0" type="radio" />
+				  <label for="main116_4b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+                 <tr>
+            <td>RLQ rebound tenderness</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_5" id="main116_5">
+                  <input name="main116_5group" id="main116_5a" value="1" type="radio" />
+				  <label for="main116_5a">YES</label>
+				  <input name="main116_5group" id="main116_5b" value="0" type="radio" />
+				  <label for="main116_5b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+                 <tr>
+            <td>Temp. > 37.3'C</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_6" id="main116_6">
+                  <input name="main116_6group" id="main116_6a" value="1" type="radio" />
+				  <label for="main116_6a">YES</label>
+				  <input name="main116_6group" id="main116_6b" value="0" type="radio" />
+				  <label for="main116_6b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+                 <tr>
+            <td>WBC > 10000/mm3</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_7" id="main116_7">
+                  <input name="main116_7group" id="main116_7a" value="2" type="radio" />
+				  <label for="main116_7a">YES</label>
+				  <input name="main116_7group" id="main116_7b" value="0" type="radio" />
+				  <label for="main116_7b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+                 <tr>
+            <td>Shift to the left of neutrophil</td>
+            <td>
+            <fieldset  data-role="controlgroup" data-type="horizontal" name="main116_8" id="main116_8">
+                  <input name="main116_8group" id="main116_8a" value="1" type="radio" />
+				  <label for="main116_8a">YES</label>
+				  <input name="main116_8group" id="main116_8b" value="0" type="radio" />
+				  <label for="main116_8b">NO</label>
+                </fieldset>
+            </td>
+          </tr>
+          
+          
+          <tr>
+          	<td>
+            	<input type="button" id="main116_submit" value="계산하기">
+            </td>
+            <td>
+            	<div>
+                   결과 :  점수는 총 <span id="main116_result" style="color:#FF00FF;font-weight:bold"></span> 점입니다 <br> 
+                </div>
+            </td>
+          </tr>
+          
+       </table>
+       <table width="200" border="1">
+        <tr>
+          <th>Reference Table</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td>0-4점</td>
+          <td>Unlikely</td>
+        </tr>
+       <tr>
+          <td>5-6점</td>
+          <td>Possible</td>
+        </tr>
+        <tr>
+          <td>7-8점</td>
+          <td>Probable</td>
+        </tr>
+        <tr>
+          <td>9-10점</td>
+          <td>Very Probable</td>
+        </tr>
+   
+    </table>
+        
+        
+	</div>
+</div>
+
+<div data-role="page" id="main117">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h117">17. 주요 항생제 기본 dosing</h1>
+       <button data-icon="star" name="btn117" value="117">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+	  <table cellspacing="0" cellpadding="0" width="100%">
+	    <tr>
+	      <td width="50%">약품명</td>
+	      <td>
+          	<select id="main117_1" name="main117_1">
+                <option value=":::::">질환명</option>
+                <option value="15mg/kg(once daily):15mg/kg(once daily):30-50 : 7.5mg/kg (once daily)| , 10-30 : q48hr:7.5mg/kg q72hr:7.5mg/kg  투석후:15-20mg/L/d">amikacin</option>
+                <option value="5-7mg/kg qd:5-7mg/kg qd:1.7mg/kg q12-48h:1.7mg/kg q48-72h:3mg/kg 투석후:3-4mg/L/d">gentamycin</option>
+                <option value="5-7mg/kg qd:5-7mg/kg qd:1.7mg/kg q24-48h:1.7mg/kg q48-72h:3mg/kg 투석후:3-4mg/L/d">tobramycin</option>
+                <option value="250mg-500mg q8hr:1:1:1:100% 투석후:1">cefaclor</option>
+                <option value="0.5`-1g q12hr:q12hr:q12-24hr:q36hr:0.5~1g  투석후:0,5g/d">cefadroxil</option>
+                <option value="1-2g q8hr:q8hr:q12hr:q24-48h:0.5~1g 투석후:0.5g q12h">cefazolin</option>
+                <option value="2g q8hr:2g q8hr:1-2g q24h:0.5~1g q24h:1g 투석후:1-2g q48hr">cefepime</option>
+                <option value="1-2g q6-8hr:1-2g q6-8hr:1-2g q8-12hr:1-2g q24-48h:1g 투석후:1g/d">cefoxitin</option>
+                <option value="2g q8hr:2g q8hr:2g q12-24hr:2g q24hr:0.5~2g 투석후:1g/d">cefotaxime</option>
+                <option value="1-2g q8hr:1-2g q8hr:1-2g q12-24hr:1-2g q24hr-48hr:1g 투석후:0,5g/d">ceftazidime</option>
+                <option value="1-2g q12~24h:1:1:1:1:1g q12h">ceftriaxone</option>
+                <option value="500-750mg po(or iv 400mg) q12hr:1:400mg iv q24h:50%감량:250mg po or 200mg iv q12h:250mg po or 200mg iv q8h">ciprofloxacin</option>
+                <option value="750mg q24hr iv,po:750mg q24hr iv,po:250-750mg q24-48(시작은 500-750mg):250-500mg q24-48h(시작은 500mg):CrCl < 10 와 같음:CrCl < 10 와 같음">levofloxacin</option>
+                <option value="400mg q24hr:400mg q24hr:400mg q24hr:400mg q24hr:data 부족:data 부족">moxifloxacin</option>
+                <option value="500-1000mg q12h:500-1000mg q12h:75%로 감량:50-75% 감량:dose after dialysis:None">clarithromycin</option>
+                <option value="250-500mg q24hr:1:1:1:none:none">Azithromycin</option>
+                <option value="250-500mg q6hr:1:1:50-75%:none:none">Erythromycin</option>
+                <option value="1g q24hr:1:100%(CrCl 30이하에서는 50%):0.5:1g 24hr 투석후 150mg 추가:0.5">ertapenem</option>
+                <option value="1g q8hr:1g q8hr:1g q 12hr:0,5g q24h:dose after dialysis:0,5g q24h">Meropenem</option>
+                <option value="250-500mg q8hr:1:1:0.5:50% 투석후:0.5">metronidazole</option>
+                <option value="600mg q12hr:1:1:1:1:1">linezolid</option>
+                <option value="0.5~1.25 q12hr:1g q12-24hr:1g q24-96hr:1g q4-7d:1g q4-7d:1g q4-7d">vancomycin</option>
+                <option value="200mg po tid:200mg po tid:1:1:none:none">rifaximin</option>
+                <option value="150-450mg q6hr:1:1:1:none:none">clindamycin</option>
+                <option value="4.5g q8-8hr:1:2.25g q6hr(Crcl <20 이면 q8hr):2.25g q8hr:2.25g q8hr 1.125g 투석후 추기:2.25g q8hr">piperacillin/tazobactam</option>
+                <option value="75mg q12hr:75mg q12hr:CrCl >30 이면  75mg bid 이하면 qd:no data:30mg 투석안하는날 투여:30mg 주1회">oseltamivir</option>
+                <option value="250-500mg q8hr:100% q8hr:q8-12hr:q24h :dose after dialysis:250mg q12h">amoxicillin</option>
+                <option value="250-2000mg q6hr:q6hr:q8-12hr:q12-24hr:dose after dialysis:250mg q12h">ampicillin</option>
+                <option value="250-500mg qid:q8-12hr:q12-24hr:q24hr:none:none">tetracyclin</option>
+                <option value="100mg q12hr:1:1:1:none:none">doxycycline</option>
+                <option value="100-400mg q24h:1:0.5:0.5:100% after dialysis:0.5">Fluconazole</option>
+                <option value="70mg initial dose -> 50mg qd:no change:no change:no change:no change:no change">caspofungin</option>
+                <option value="200-400mg q24hr:1:1:1:none:none">ketoconazole</option>
+                <option value="5-10mg/kg q8hr:5-10mg/kg q8hr:100% q12-24h:50% q24h:dose after dialysis:50% q24h">acyclovir</option>
+            </select>
+          </td>
+        </tr>
+	    <tr>
+	      <td>Normal renal    function</td>
+	      <td><span id="main117_result_a" style="color:#FF00FF;"></span></td>
+        </tr>
+	    <tr>
+	      <td>CrCl(50-90ml/min)</td>
+	      <td><span id="main117_result_b" style="color:#FF00FF;"></span></td>
+        </tr>
+	    <tr>
+	      <td>CrCl10-50ml/min)</td>
+	      <td><span id="main117_result_c" style="color:#FF00FF;"></span></td>
+        </tr>
+	    <tr>
+	      <td>CrCl(&lt;10ml/min)</td>
+	      <td><span id="main117_result_d" style="color:#FF00FF;"></span></td>
+        </tr>
+	    <tr>
+	      <td>HD</td>
+	      <td><span id="main117_result_e" style="color:#FF00FF;"></span></td>
+        </tr>
+	    <tr>
+	      <td>PD</td>
+	      <td><span id="main117_result_f" style="color:#FF00FF;"></span></td>
+        </tr>
+      </table>
+      <br>
+ref> drug prescribing in renal failure, Standford antimicrobial therapy
+	</div>
+</div>
+
+
 <!-- 메인화면2 소화기------------------------------------------------------------------------------->
 <div data-role="page" id="main201">
 	<div data-role="header" data-position="inline" >
@@ -2594,6 +3052,207 @@
 	</div>
 </div>
 
+<div data-role="page" id="main303">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h331">3. NYHA functional classification</h1>
+       <button data-icon="star" name="btn303" value="303">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    <table width="200" border="1">
+        <tr>
+          <td>I</td>
+          <td>걷거나 계단 오를때 아무 문제 없다.</td>
+        </tr>
+        <tr>
+          <td>II</td>
+          <td>경한 증상 일상생활의 약간의 제한</td>
+        </tr>
+        <tr>
+          <td>III</td>
+          <td>쉴때만 편안하고 100m 정도만 걸어도 힘들다. 일상생활의 이하의 활동에도 증상이 있다</td>
+        </tr>
+        <tr>
+          <td>IV</td>
+          <td>쉴때도 증상이 있고 대부분 가만히 누워만 있을 정도로 증상이 심한 경우</td>
+        </tr>
+    </table>
+
+	</div>
+</div>
+
+<div data-role="page" id="main304">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h304">4. Thrombolysis contraindication</h1>
+       <button data-icon="star" name="btn304" value="304">즐겨찾기</button>
+	</div>
+
+	<table width="200" border="1">
+        <tr>
+          <th>Absolute Cix</th>
+        </tr>
+        <tr>
+          <td>1. 뇌혈관출혈의 병력<br>
+          	  2. 1년 이내에 CVA병력(비출혈성) or TIA hx <br>
+              3. 심한 고혈압 >180/100mmHg <br>
+              4. Aortic dissection 의심시<br>
+              5. Active internal bleeding<br>
+              6. spinal or intracranial neoplasm<br>
+          </td>
+        </tr>
+        <tr>
+          <th>Relatice Cix</th>
+        </tr>
+        <tr>
+          <td>1. 항혈전약 사용중 INR > 2.0 이상<br>
+              2. 2주이내에  surgical procedure or 10분 이상의 CPR 병력<br>
+              3. 출혈성 소인 존재<br>
+              4. 월경, 임신(꼭써야할 상황에선 사용해야함)
+          </td>
+        </tr>
+     
+    </table>
+</div>
+
+<div data-role="page" id="main305">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h305">5. Warfarinization INR 조절</h1>
+       <button data-icon="star" name="btn305" value="305">즐겨찾기</button>
+	</div>
+
+	<table width="200" border="1">
+        <tr>
+          <th>환자 INR</th>
+          <th>용량조절</th>
+          <th>다음 추적일</th>
+        </tr>
+        <tr>
+          <td>1.8-1.9 </td>
+          <td>지속적으로 낮다면 주간 용량 10%증량 </td>
+          <td>2-4주 </td>
+        </tr>
+        <tr>
+          <td>1.6-1.8 </td>
+          <td>주간용량 10% 증량 </td>
+          <td>1-2주 </td>
+        </tr>
+        <tr>
+          <td>1.6이하 </td>
+          <td>Boosting dose 50% 추가이후 주간용량 10% 증량</td>
+          <td>1주이내 </td>
+        </tr>
+        <tr>
+          <td>3.0-3.2 </td>
+          <td>지속적으로 높다면 주간용량 10% 감량 </td>
+          <td>4-6주 </td>
+        </tr>
+        <tr>
+          <td>3.4-3.9  </td>
+          <td>주간 용량 10% 감량 </td>
+          <td>1-2주 </td>
+        </tr>
+        <tr>
+          <td>4.0-4.9 </td>
+          <td>1일 생략 후 주간용량 10% 감량 </td>
+          <td>최대1주이내 </td>
+        </tr>
+        <tr>
+          <td>5.0-5.9 </td>
+          <td>2일 생량 후 주간용량 10% 감량 </td>
+          <td>최대1주이내 </td>
+        </tr>
+        <tr>
+          <td>6.0-8.0 </td>
+          <td>warfarin 중단,vitamin K 고려 5.0 이하에서 감량된 용량 </td>
+          <td>다음날 </td>
+        </tr> 
+    </table>
+    <div role="main" class="ui-content">
+        <p>** high bleeding risk 에서는 더 주의 70세이상 HTN DM renal failure, MI 나 stroke GI bleeding Hx(+) </p>
+        <p>대처(INR 6-8)<br>
+        1. 와파린 stop <br>
+        2. oral vita K 1mg <br>
+        3, INR f/u<br>
+        4. INR 이 5이하일때 다시 감량한 warfarin dose 시작<br>
+        5, INR  >8 이상이면 2-5mg vita K po or SQ <br>
+        6. INR > 8 Bleeding 동반시 vita K 투여 후 10ml/kg </p>
+        ref> NHS cumbria, Warfarin management guide line 
+	</div>
+</div>
+
+<div data-role="page" id="main306">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h306">6. Preclamsia HTN medication</h1>
+       <button data-icon="star" name="btn306" value="306">즐겨찾기</button>
+	</div>
+
+	<table width="200" border="1">
+        <tr>
+          <th>type of HTN Drug</th>
+          <th>Regimen</th>
+          <th> </th>
+        </tr>
+        <tr>
+          <td>Aucte</td>
+          <td>hydralazine </td>
+          <td>5mg iv bolous every 20-30min to max. of 20mg, then infusion at 5-10mg/hr</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>labetalol </td>
+          <td>50mg iv every 20min to maximum 300mg</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>nifedipine SR  </td>
+          <td>20mg PO</td>
+        </tr>
+        <tr>
+          <td>Chronic</td>
+          <td>methyldopa </td>
+          <td>500-2000mg/day po</td>
+        </tr>
+        <tr>
+          <td>First-line choice</td>
+          <td>clonidine </td>
+          <td>0.2~0.8mg/day po</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>labetalol </td>
+          <td>200-1200mg/day po</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>atenolol </td>
+          <td>50-100mg day PO</td>
+        </tr>
+        <tr>
+          <td>Second-line choice</td>
+          <td>hydralazine </td>
+          <td>25-200mg/day po</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>prazocin </td>
+          <td>1-10mg/day po</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>nifedipine SR  </td>
+          <td>40-100mg/po</td>
+        </tr>
+        
+    </table>
+    <div role="main" class="ui-content">
+        Ref. : conprehensive clinical nephrology
+	</div>
+</div>
+
 <!-- 메인화면4 호흡기------------------------------------------------------------------------------->
 <div data-role="page" id="main401">
 	<div data-role="header" data-position="inline" >
@@ -2858,6 +3517,103 @@
         </table>
     </div>
 </div> 
+
+<div data-role="page" id="main410">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h410">10. 산소공급방법별 FiO2</h1>
+       <button data-icon="star" name="btn410" value="410">즐겨찾기</button>
+	</div>
+
+	<table width="100" border="1">
+    
+        <tr>
+          <td>Nasal </td>
+          <td>1L/min </td>
+          <td>24% </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>2L/min </td>
+          <td>28% </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>3L/min </td>
+          <td>32% </td>
+        </tr>
+ 		<tr>
+          <td> </td>
+          <td>4L/min </td>
+          <td>36% </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>5L/min </td>
+          <td>40% </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>L/min </td>
+          <td>44% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td>Mask </td>
+          <td>5-6L/min </td>
+          <td>40% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td> </td>
+          <td>6-7L/min </td>
+          <td>50% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td> </td>
+          <td>7-8L/min </td>
+          <td>60% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td>Mask with reservior bag </td>
+          <td>6L/min </td>
+          <td>60% </td>
+        </tr>
+       </tr>
+        		<tr>
+          <td> </td>
+          <td>7L/min </td>
+          <td>70% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td> </td>
+          <td>8L/min </td>
+          <td>80% </td>
+        </tr>
+       </tr>
+        <tr>
+          <td> </td>
+          <td>9L/min </td>
+          <td>90%  </td>
+        </tr>
+       </tr>
+        <tr>
+          <td> </td>
+          <td>10L/min </td>
+          <td>99% </td>
+        </tr>
+       
+    </table>
+    <div role="main" class="ui-content">
+        Ref> 1992 Thorax ;47:609-611
+	</div>
+ </div>
+
+
+
 
 <!-- 메인화면5 신장------------------------------------------------------------------------------->
 <div data-role="page" id="main501">
@@ -3270,7 +4026,182 @@
 	</div>
 </div>
 
-<!-- 메인화면6 내분비------------------------------------------------------------------------------->
+<div data-role="page" id="main519">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h519">19.Bicarbonate deficit </h1>
+       <button data-icon="star" name="btn519" value="519">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<table>
+         <tr>
+           <td width="30%">체중</td>
+           <td width="40%"><input name="main519_1" id="main519_1" type="tel"></input></td>
+           <td width="30%">kg</td>
+         </tr>
+         <tr>
+           <td>HCO3</td>
+           <td><input name="main519_2" id="main519_2" type="tel"></input></td>
+           <td>mmol/L</td>
+         </tr>
+         <tr>
+            <td><input type="button" id="main519_submit" value="계산하기"></td>
+         	<td colspan="2"> 
+                    	deficit : <span id="main519_result" style="color:#FF00FF;font-weight:bold"></span><br>
+            </td>
+         </tr>
+       </table>
+	</div>
+</div>
+
+
+
+<div data-role="page" id="main520">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h520">20.Corrected Na+ </h1>
+       <button data-icon="star" name="btn520" value="520">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<table>
+         <tr>
+           <td width="30%">Na+</td>
+           <td width="40%"><input name="main520_1" id="main520_1" type="tel"></input></td>
+           <td width="30%">meq/L</td>
+         </tr>
+         <tr>
+           <td>Glucose</td>
+           <td><input name="main520_2" id="main520_2" type="tel"></input></td>
+           <td>mmol/L</td>
+         </tr>
+         <tr>
+         	<td><input type="button" id="main520_submit_1" value="계산하기"></td>
+         	<td colspan="2"> 
+               Corrected Na+ : <span id="main520_result_1" style="color:#FF00FF;font-weight:bold"></span><br>
+            </td>
+         </tr>
+       </table>
+       
+       <table>
+         <tr>
+           <td width="30%">Na+</td>
+           <td width="40%"><input name="main520_3" id="main520_3" type="tel"></input></td>
+           <td width="30%">meq/L</td>
+         </tr>
+         <tr>
+           <td>TG</td>
+           <td><input name="main520_4" id="main520_4" type="tel"></input></td>
+           <td>mg/dl</td>
+         </tr>
+         <tr>
+            <td><input type="button" id="main520_submit_2" value="계산하기"></td>
+         	<td colspan="2"> 
+               Corrected Na+ : <span id="main520_result_2" style="color:#FF00FF;font-weight:bold"></span><br>
+            </td>
+         </tr>
+       </table>
+	</div>
+</div>
+
+       
+<div data-role="page" id="main521">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h521">21. TTKG </h1>
+       <button data-icon="star" name="btn521" value="521">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<table>
+         <tr>
+           <td width="30%"> Urine K</td>
+           <td width="40%"><input name="main521_1" id="main521_1" type="tel"></input></td>
+           <td width="30%"> mEq/L</td>
+         </tr>
+         <tr>
+           <td>Serum Osm</td>
+           <td><input name="main521_2" id="main521_2" type="tel"></input></td>
+           <td>mosm/kg</td>
+         </tr>
+         <tr>
+         <tr>
+           <td width="30%">Urine osm </td>
+           <td width="40%"><input name="main521_3" id="main521_3" type="tel"></input></td>
+           <td width="30%">mosm/kg </td>
+         </tr>
+         <tr>
+           <td width="30%">Serum K </td>
+           <td width="40%"><input name="main521_4" id="main521_4" type="tel"></input></td>
+           <td width="30%">mEq/L </td>
+         </tr>
+            <td><input type="submit" id="main521_submit" value="계산하기"></td>
+         	<td colspan="2"> 
+               BSA : <span id="main521_result" style="color:#FF00FF;font-weight:bold"></span><br>
+            </td>
+         </tr>
+       </table>
+      고칼륨혈증에서 TTKG >8 distal/tubular flow 의 감소 : 유효 순환혈장량 감소 <br>
+      고칼륨혈증에서 TTKG <5 distal K+ 분비감소<br>
+      저칼륨혈증 TTKG > 4 이면 distal tubule에서의 분비증가로 K+ loss 를의미한다 <br>
+      주의 : 요삼투질 농도가 혈장삼투질 농도보다 낮은경우, 요량이 너무 많은 경우는 TTKG적용이 힘들 <br>
+       
+	</div>
+</div>
+
+<!--주석이다-->
+
+<div data-role="page" id="main522">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h522"> 22.투석적정도(Kt/V, UPR)</h1>
+       <button data-icon="star" name="btn522" value="522">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<table>
+         <tr>
+           <td width="30%">투석전 BUN</td>
+           <td width="40%"><input name="main522_1" id="main522_1" type="tel"></input></td>
+           <td width="30%">mg/dl</td>
+         </tr>
+         <tr>
+           <td>투석후 BUN</td>
+           <td><input name="main522_2" id="main522_2" type="tel"></input></td>
+           <td>mg/dl</td>
+         </tr>
+         <tr>
+           <td>투석전 몸무게</td>
+           <td><input name="main522_3" id="main522_3" type="tel"></input></td>
+           <td>kg</td>
+         </tr>
+         <tr>
+           <td>투석후 몸무게</td>
+           <td><input name="main522_4" id="main522_4" type="tel"></input></td>
+           <td>kg</td>
+         </tr>
+         <tr>
+           <td>투석 시간</td>
+           <td><input name="main522_5" id="main522_5" type="tel"></input></td>
+           <td>hr</td>
+         </tr>
+         <tr>
+         	<td><input type="submit" id="mai522_submit" value="계산하기"></td>
+         	<td colspan="2"> 
+                Kt/V : <span id="main522_result_a" style="color:#FF00FF;font-weight:bold"></span><br>
+                UPR(%) : <span id="main522_result_b" style="color:#FF00FF;font-weight:bold"></span>
+            </td>
+         </tr>
+       </table>
+       UPR의 적절한 수치는 65 % 이상이 되어야한다.<br>
+	   Kt/V 는 1.2 가 acceptable 하다 Kt/V 가 낮다면 1회 투석시간을 늘리거나 혈류량을 증가시킨다.<br>
+	   투석환자에서 매월 정기적으로 측정할것을 권장한다<br>
+
+	</div>
+</div>
+
+<!-- 메인화면6 감염, 항생제------------------------------------------------------------------------------->
 <div data-role="page" id="main601">
 	<div data-role="header" data-position="inline" >
 	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
@@ -3761,6 +4692,36 @@
 	    <td>Stupor 이상</td>
       </tr>
   </table>
+</div>
+
+<div data-role="page" id="main705">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h301">5. Rapid ACTH test 해석</h1>
+       <button data-icon="star" name="btn705" value="705">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+        <p>cosyntropin 250ug 투여후 30-60분뒤에 혈장 cortisol / aldosterone 측정<br>
+        정상 cortisol > 18 ug/dl or 7ug/dl 이상의 증가<br>
+        aldosterone > 5ng/dl</p>
+        <p>Primary insufficiency :  cortisol aldosterone 모두 반응없음<br>
+        Secondary insufficiency  : cortisol  반응없음/ aldosterone 은 정상</p>
+        
+	</div>
+</div>
+
+<div data-role="page" id="main706">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h706">6. 부신위기나 수술시 스테로이드 투여</h1>
+       <button data-icon="star" name="btn706" value="706">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p> 급성 부신위기나 수술시 스테로이드 투여 계획</p>
+    	<img src="images/main706.png" width="100%" />
+    </div>
 </div>
 
 <!-- 메인화면8 그룹오더------------------------------------------------------------------------------->
@@ -4269,6 +5230,43 @@ N/S (500ml)  500 ML <<Remained>>   ×01, 10   CC/Hr <br>
     	<img src="images/main2008_1.png" width="100%" />
     </div>
 </div>
+
+<div data-role="page" id="main2009">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h2009">9. anti-TNF 와 결핵과의 관련</h1>
+       <button data-icon="star" name="btn2009" value="2009">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+       <p>ref> 결핵진료지침<br>
+ 	   LTBI 에 대한 검사를 해야한다<br>
+   	   결핵이 진단되면 치료후 2개월 뒤에 anti-TNF 약치료한다<br>
+       잠복결핵이 진단되면 잠복결핵 치료후 2주 뒤에(동시에 할수도 있다)</p>
+       <p>잠복결핵 치료법 <br>
+       1) INH 9개월 (300-400mg)<br>
+       2) RFP 4개월<br>
+       3) INH+RFP 3개월<br></p>
+       TST는 8-10주 간격으로 반복하여 anti-TNF 사용중 결핵을 모니터한다<br>
+       치료도중 결핵이 생기면 anti-TNF 중단(2개월 후 재사용고려)
+       
+	</div>
+</div>
+
+<div data-role="page" id="main2010">
+	<div data-role="header" data-position="inline" >
+	   <a href="./main.html" data-rel="back" data-icon="back">Back</a>
+       <h1 name="h2008">10. 동등진통용량표</h1>
+       <button data-icon="star" name="btn2008" value="2008">즐겨찾기</button>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>동등진통용량표</p>
+    	<img src="images/main2010.png" width="100%" />
+    </div>
+</div>
+
+
 
 </body>
 </html>
