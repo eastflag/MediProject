@@ -77,14 +77,14 @@
 				console.log("main 115 is changed");
 				var 키 = Number($('#main115_1').val());
 				var 몸무게 = Number($('#main115_2').val());
-				var result = 0.007184 * 키^0.725 * 몸무게^0.425  <!--제곱--->
+				var result = 0.007184 * Math.pow(키, 0.725) * Math.pow(몸무게, 0.425);  <!--제곱--->
 				$('#main115_result').text(Math.round(result*100)/100);	
 				console.log("result:" + result);
 			});
 			$('#main115').click(function() {
                 var 키 = Number($('#main115_1').val());
 				var 몸무게 = Number($('#main115_2').val());
-				var result = 0.007184 * 키^0.725 * 몸무게^0.425  <!--제곱--->
+				var result = 0.007184 * Math.pow(키, 0.725) * Math.pow(몸무게, 0.425);  <!--제곱--->
 				$('#main115_result').text(Math.round(result*100)/100);	
             });
 			
@@ -101,7 +101,7 @@
 			
 			$('#main117_1').bind('change', function() {
 				var value = $('#main117_1 option:selected').val();
-				var strArray = value.split(':');
+				var strArray = value.split(';');
 				console.log(strArray[0]);
 				$('#main117_result_a').text(strArray[0]);
 				$('#main117_result_b').text(strArray[1]);
@@ -246,7 +246,7 @@
 				console.log("main 520 is changed");
 				var Na = Number($('#main520_1').val());
 				var Glucose = Number($('#main520_2').val());
-				var result_1 = Na + (Glucose-5)/3.5
+				var result_1 = Na + (Glucose/18-5)/3.5
 				$('#main520_result_1').text(Math.round(result_1*100)/100);	
 				console.log("result_1:" + result_1);
 				
@@ -259,7 +259,7 @@
 			$('#main520_submit_1').click(function() {
                 var Na = Number($('#main520_1').val());
 				var Glucose = Number($('#main520_2').val());
-				var result_1 = Na + (Glucose-5)/3.5
+				var result_1 = Na + (Glucose/18-5)/3.5
 				$('#main520_result_1').text(Math.round(result_1*100)/100);	
             });
 			$('#main520_submit_2').click(function() {
@@ -449,7 +449,7 @@
             <li name="li519"><a href="#main519" data-ajax="false">19. Bicarbonate deficit </a></li>
             <li name="li520"><a href="#main520" data-ajax="false">20. Corrected Na+ </a></li>
             <li name="li521"><a href="#main521" data-ajax="false">21. TTKG </a></li>
-            <li name="li522"><a href="#main522" data-ajax="false">22. 투석적정도(Kt/V, UPR) </a></li>
+            <!--<li name="li522"><a href="#main522" data-ajax="false">22. 투석적정도(Kt/V, UPR) </a></li>-->
 	      </ul>
 	    </div>
 	    
@@ -2049,41 +2049,44 @@
 	      <td width="50%">약품명</td>
 	      <td>
           	<select id="main117_1" name="main117_1">
-                <option value=":::::">질환명</option>
-                <option value="15mg/kg(once daily):15mg/kg(once daily):30-50 : 7.5mg/kg (once daily)| , 10-30 : q48hr:7.5mg/kg q72hr:7.5mg/kg  투석후:15-20mg/L/d">amikacin</option>
-                <option value="5-7mg/kg qd:5-7mg/kg qd:1.7mg/kg q12-48h:1.7mg/kg q48-72h:3mg/kg 투석후:3-4mg/L/d">gentamycin</option>
-                <option value="5-7mg/kg qd:5-7mg/kg qd:1.7mg/kg q24-48h:1.7mg/kg q48-72h:3mg/kg 투석후:3-4mg/L/d">tobramycin</option>
-                <option value="250mg-500mg q8hr:1:1:1:100% 투석후:1">cefaclor</option>
-                <option value="0.5`-1g q12hr:q12hr:q12-24hr:q36hr:0.5~1g  투석후:0,5g/d">cefadroxil</option>
-                <option value="1-2g q8hr:q8hr:q12hr:q24-48h:0.5~1g 투석후:0.5g q12h">cefazolin</option>
-                <option value="2g q8hr:2g q8hr:1-2g q24h:0.5~1g q24h:1g 투석후:1-2g q48hr">cefepime</option>
-                <option value="1-2g q6-8hr:1-2g q6-8hr:1-2g q8-12hr:1-2g q24-48h:1g 투석후:1g/d">cefoxitin</option>
-                <option value="2g q8hr:2g q8hr:2g q12-24hr:2g q24hr:0.5~2g 투석후:1g/d">cefotaxime</option>
-                <option value="1-2g q8hr:1-2g q8hr:1-2g q12-24hr:1-2g q24hr-48hr:1g 투석후:0,5g/d">ceftazidime</option>
-                <option value="1-2g q12~24h:1:1:1:1:1g q12h">ceftriaxone</option>
-                <option value="500-750mg po(or iv 400mg) q12hr:1:400mg iv q24h:50%감량:250mg po or 200mg iv q12h:250mg po or 200mg iv q8h">ciprofloxacin</option>
-                <option value="750mg q24hr iv,po:750mg q24hr iv,po:250-750mg q24-48(시작은 500-750mg):250-500mg q24-48h(시작은 500mg):CrCl < 10 와 같음:CrCl < 10 와 같음">levofloxacin</option>
-                <option value="400mg q24hr:400mg q24hr:400mg q24hr:400mg q24hr:data 부족:data 부족">moxifloxacin</option>
-                <option value="500-1000mg q12h:500-1000mg q12h:75%로 감량:50-75% 감량:dose after dialysis:None">clarithromycin</option>
-                <option value="250-500mg q24hr:1:1:1:none:none">Azithromycin</option>
-                <option value="250-500mg q6hr:1:1:50-75%:none:none">Erythromycin</option>
-                <option value="1g q24hr:1:100%(CrCl 30이하에서는 50%):0.5:1g 24hr 투석후 150mg 추가:0.5">ertapenem</option>
-                <option value="1g q8hr:1g q8hr:1g q 12hr:0,5g q24h:dose after dialysis:0,5g q24h">Meropenem</option>
-                <option value="250-500mg q8hr:1:1:0.5:50% 투석후:0.5">metronidazole</option>
-                <option value="600mg q12hr:1:1:1:1:1">linezolid</option>
-                <option value="0.5~1.25 q12hr:1g q12-24hr:1g q24-96hr:1g q4-7d:1g q4-7d:1g q4-7d">vancomycin</option>
-                <option value="200mg po tid:200mg po tid:1:1:none:none">rifaximin</option>
-                <option value="150-450mg q6hr:1:1:1:none:none">clindamycin</option>
-                <option value="4.5g q8-8hr:1:2.25g q6hr(Crcl <20 이면 q8hr):2.25g q8hr:2.25g q8hr 1.125g 투석후 추기:2.25g q8hr">piperacillin/tazobactam</option>
-                <option value="75mg q12hr:75mg q12hr:CrCl >30 이면  75mg bid 이하면 qd:no data:30mg 투석안하는날 투여:30mg 주1회">oseltamivir</option>
-                <option value="250-500mg q8hr:100% q8hr:q8-12hr:q24h :dose after dialysis:250mg q12h">amoxicillin</option>
-                <option value="250-2000mg q6hr:q6hr:q8-12hr:q12-24hr:dose after dialysis:250mg q12h">ampicillin</option>
-                <option value="250-500mg qid:q8-12hr:q12-24hr:q24hr:none:none">tetracyclin</option>
-                <option value="100mg q12hr:1:1:1:none:none">doxycycline</option>
-                <option value="100-400mg q24h:1:0.5:0.5:100% after dialysis:0.5">Fluconazole</option>
-                <option value="70mg initial dose -> 50mg qd:no change:no change:no change:no change:no change">caspofungin</option>
-                <option value="200-400mg q24hr:1:1:1:none:none">ketoconazole</option>
-                <option value="5-10mg/kg q8hr:5-10mg/kg q8hr:100% q12-24h:50% q24h:dose after dialysis:50% q24h">acyclovir</option>
+                <option value=";;;;;">질환명</option>
+                <option value="15mg/kg(once daily);15mg/kg(once daily);30-50 : 7.5mg/kg (once daily)| , 10-30 : q48hr;7.5mg/kg q72hr;7.5mg/kg  투석후;15-20mg/L/d">amikacin</option>
+                <option value="5-7mg/kg qd;5-7mg/kg qd;1.7mg/kg q12-48h;1.7mg/kg q48-72h;3mg/kg 투석후;3-4mg/L/d">gentamycin</option>
+                <option value="5-7mg/kg qd;5-7mg/kg qd;1.7mg/kg q24-48h;1.7mg/kg q48-72h;3mg/kg 투석후;3-4mg/L/d">tobramycin</option>
+                <option value="250mg-500mg q8hr;100%;100%;100%;100% 투석후;100%">cefaclor</option>
+                <option value="0.5`-1g q12hr;q12hr;q12-24hr;q36hr;0.5~1g  투석후;0,5g/d">cefadroxil</option>
+                <option value="1-2g q8hr;q8hr;q12hr;q24-48h;0.5~1g 투석후;0.5g q12h">cefazolin</option>
+                <option value="2g q8hr;2g q8hr;1-2g q24h;0.5~1g q24h;1g 투석후;1-2g q48hr">cefepime</option>
+                <option value="1-2g q6-8hr;1-2g q6-8hr;1-2g q8-12hr;1-2g q24-48h;1g 투석후;1g/d">cefoxitin</option>
+                <option value="2g q8hr;2g q8hr;2g q12-24hr;2g q24hr;0.5~2g 투석후;1g/d">cefotaxime</option>
+                <option value="1-2g q8hr;1-2g q8hr;1-2g q12-24hr;1-2g q24hr-48hr;1g 투석후;0,5g/d">ceftazidime</option>
+                
+                <option value="1-2g q12~24h;100%;100%;100%;100%;1g q12h">ceftriaxone</option>
+                <option value="500-750mg po(or iv 400mg) q12hr;100%;400mg iv q24h;50%감량;250mg po or 200mg iv q12h;250mg po or 200mg iv q8h">ciprofloxacin</option>
+                <option value="750mg q24hr iv,po;750mg q24hr iv,po;250-750mg q24-48(시작은 500-750mg);250-500mg q24-48h(시작은 500mg);CrCl < 10 와 같음;CrCl < 10 와 같음">levofloxacin</option>
+                <option value="400mg q24hr;400mg q24hr;400mg q24hr;400mg q24hr;data 부족;data 부족">moxifloxacin</option>
+                <option value="500-1000mg q12h;500-1000mg q12h;75%로 감량;50-75% 감량;dose after dialysis;None">clarithromycin</option>
+                <option value="250-500mg q24hr;100%;100%;100%;none;none">Azithromycin</option>
+                <option value="250-500mg q6hr;100%;100%;50-75%;none;none">Erythromycin</option>
+                <option value="1g q24hr;100%;100%(CrCl 30이하에서는 50%);50%;1g 24hr 투석후 150mg 추가;50%">ertapenem</option>
+                <option value="1g q8hr;1g q8hr;1g q 12hr;0,5g q24h;dose after dialysis;0,5g q24h">Meropenem</option>
+                <option value="250-500mg q8hr;100%;100%;50%;50% 투석후;50%">metronidazole</option>
+                
+                <option value="600mg q12hr;100%;100%;100%;100%;100%">linezolid</option>
+                <option value="0.5~1.25 q12hr;1g q12-24hr;1g q24-96hr;1g q4-7d;1g q4-7d;1g q4-7d">vancomycin</option>
+                <option value="200mg po tid;200mg po tid;100%;100%;none;none">rifaximin</option>
+                <option value="150-450mg q6hr;100%;100%;100%;none;none">clindamycin</option>
+                <option value="4.5g q6-8hr;100%;2.25g q6hr(Crcl <20 이면 q8hr);2.25g q8hr;2.25g q8hr 1.125g 투석후 추기;2.25g q8hr">piperacillin/tazobactam</option>
+                <option value="75mg q12hr;75mg q12hr;CrCl >30 이면  75mg bid 이하면 qd;no data;30mg 투석안하는날 투여;30mg 주1회">oseltamivir</option>
+                <option value="250-500mg q8hr;100% q8hr;q8-12hr;q24h ;dose after dialysis;250mg q12h">amoxicillin</option>
+                <option value="250-2000mg q6hr;q6hr;q8-12hr;q12-24hr;dose after dialysis;250mg q12h">ampicillin</option>
+                <option value="250-500mg qid;q8-12hr;q12-24hr;q24hr;none;none">tetracyclin</option>
+                <option value="100mg q12hr;100%;100%;100%;none;none">doxycycline</option>
+                
+                <option value="100-400mg q24h;100%;50%;50%;100% after dialysis;50%">Fluconazole</option>
+                <option value="70mg initial dose -> 50mg qd;no change;no change;no change;no change;no change">caspofungin</option>
+                <option value="200-400mg q24hr;100%;100%;100%;none;none">ketoconazole</option>
+                <option value="5-10mg/kg q8hr;5-10mg/kg q8hr;100% q12-24h;50% q24h;dose after dialysis;50% q24h">acyclovir</option>
             </select>
           </td>
         </tr>
@@ -4074,7 +4077,7 @@ ref> drug prescribing in renal failure, Standford antimicrobial therapy
          <tr>
            <td>Glucose</td>
            <td><input name="main520_2" id="main520_2" type="tel"></input></td>
-           <td>mmol/L</td>
+           <td>mg/dl</td>
          </tr>
          <tr>
          	<td><input type="button" id="main520_submit_1" value="계산하기"></td>
@@ -4138,7 +4141,7 @@ ref> drug prescribing in renal failure, Standford antimicrobial therapy
          </tr>
             <td><input type="submit" id="main521_submit" value="계산하기"></td>
          	<td colspan="2"> 
-               BSA : <span id="main521_result" style="color:#FF00FF;font-weight:bold"></span><br>
+               <span id="main521_result" style="color:#FF00FF;font-weight:bold"></span><br>
             </td>
          </tr>
        </table>
