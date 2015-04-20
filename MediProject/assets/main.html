@@ -202,7 +202,7 @@
 				var Hco3 = Number($('#main501_3').val());
 				var Albumin = Number($('#main501_4').val());
 				var result_a = Na - (Ci+Hco3);
-				var result_b = result_a + 0.25*(40-Albumin);
+				var result_b = result_a + (2.5 * (4 - Albumin));
 				$('#main501_result_a').text(result_a);	
 				$('#main501_result_b').text(result_b);
 				console.log("result:" + result_a);
