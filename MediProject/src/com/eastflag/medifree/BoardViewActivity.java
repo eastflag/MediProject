@@ -5,8 +5,6 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,7 +21,6 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
-import com.eastflag.medifree.R;
 import com.eastflag.medifree.view.LoadingDialog;
 
 public class BoardViewActivity extends Activity {
@@ -56,7 +53,7 @@ public class BoardViewActivity extends Activity {
 				Button btnConfirm = (Button) view.findViewById(R.id.btnConfirm);
 				btnConfirm.setOnClickListener(new View.OnClickListener() {
 					@Override
-					public void onClick(View v) {
+					public void onClick(View dv) { //2015-06-01 삭제 안되는 오류 수정
 						if(user_password.equals(etPw.getText().toString())) {
 							if(v.getId() == R.id.btnDelete) {
 								removeBoard();
@@ -147,6 +144,7 @@ public class BoardViewActivity extends Activity {
 	private void removeBoard() {
 		String url = "http://www.javabrain.kr/api/removeBoard";
 		JSONObject json = new JSONObject();
+		Log.d("LDK", "removeBoard:" + board_id);
 		
 		try {
 			json.put("board_id", board_id);
